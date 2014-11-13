@@ -2,7 +2,9 @@
 #pragma implicit
 #pragma downcast
 
+
 // Does this script currently respond to input?
+
 var canControl : boolean = true;
 
 var useFixedUpdate : boolean = true;
@@ -19,11 +21,24 @@ var inputMoveDirection : Vector3 = Vector3.zero;
 @System.NonSerialized
 var inputJump : boolean = false;
 
+//---------------------------------------------something I put in because it is needed later on
+var curValue : float;
+var Player : GameObject;
+//----------------------------------------------------------------
+
 class CharacterMotorMovement {
+	
+	//------------------------------------------------I put it in so that these 3 values cannot be tampered with inside the inspector.
+	//------------------------------------------------Delete the 3 @System.NonSerialized below to put them back in the inspector.
+	//------------------------------------------------my next code is down at line 193
+	
 	// The maximum horizontal speed when moving
-	var maxForwardSpeed : float = 10.0;
-	var maxSidewaysSpeed : float = 10.0;
-	var maxBackwardsSpeed : float = 10.0;
+	@System.NonSerialized
+	var maxForwardSpeed : float;
+	@System.NonSerialized
+	var maxSidewaysSpeed : float;
+	@System.NonSerialized
+	var maxBackwardsSpeed : float;
 	
 	// Curve for multiplying speed based on slope (negative = downwards)
 	var slopeSpeedMultiplier : AnimationCurve = AnimationCurve(Keyframe(-90, 1), Keyframe(0, 1), Keyframe(90, 0));
@@ -178,6 +193,13 @@ private var controller : CharacterController;
 function Awake () {
 	controller = GetComponent (CharacterController);
 	tr = transform;
+	//---------------------------------------------Code I put in
+	var cSharpScript = Player.GetComponent("test");
+	curValue = cSharpScript.myValue;
+	/*maxForwardSpeed = testScript.Speed;
+	maxSidewaysSpeed = testScript.Speed;
+	maxBackwardsSpeed = testScript.Speed;*/
+	//---------------------------------------------------------------
 }
 
 private function UpdateFunction () {
