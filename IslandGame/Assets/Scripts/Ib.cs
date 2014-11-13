@@ -36,10 +36,10 @@ public class Ib : MonoBehaviour {
 		if(pauseMovement == true){
 			transform.position += transform.forward * 10 * Time.deltaTime;	// This so far controls the movement, just moves towards the player
 		}
-		if (Input.GetKey(KeyCode.K)){
+		if (Input.GetKey(KeyCode.P)){
 			myStick.SetActive(false);	// This deactivates the stick! Making it disappear form the scene and makes it inaffective (but it still "follows" he player's position)
 		}
-		if (Input.GetKey(KeyCode.L)){
+		if (Input.GetKey(KeyCode.O)){
 			myStick.SetActive(true);	// Same as before just with activating it!
 		}
 	}
