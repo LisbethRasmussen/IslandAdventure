@@ -28,36 +28,30 @@ public class MouseLook : MonoBehaviour {
 	public float minimumY = -60F;
 	public float maximumY = 60F;
 
-	private static bool PlayerCanLook = true;
-
-	public static bool GetPlayerCanLook(){
-		return PlayerCanLook;
-	}
-	public static void SetPlayerCanLook (bool x) {
-		PlayerCanLook = x;
-	}
-
 	float rotationY = 0F;
 
 	void Update ()
 	{
-		if (PlayerCanLook == true) {
-						if (axes == RotationAxes.MouseXAndY) {
-								float rotationX = transform.localEulerAngles.y + Input.GetAxis ("Mouse X") * sensitivityX;
+		if (axes == RotationAxes.MouseXAndY)
+		{
+			float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityX;
 			
-								rotationY += Input.GetAxis ("Mouse Y") * sensitivityY;
-								rotationY = Mathf.Clamp (rotationY, minimumY, maximumY);
+			rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
+			rotationY = Mathf.Clamp (rotationY, minimumY, maximumY);
 			
-								transform.localEulerAngles = new Vector3 (-rotationY, rotationX, 0);
-						} else if (axes == RotationAxes.MouseX) {
-								transform.Rotate (0, Input.GetAxis ("Mouse X") * sensitivityX, 0);
-						} else {
-								rotationY += Input.GetAxis ("Mouse Y") * sensitivityY;
-								rotationY = Mathf.Clamp (rotationY, minimumY, maximumY);
+			transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
+		}
+		else if (axes == RotationAxes.MouseX)
+		{
+			transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivityX, 0);
+		}
+		else
+		{
+			rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
+			rotationY = Mathf.Clamp (rotationY, minimumY, maximumY);
 			
-								transform.localEulerAngles = new Vector3 (-rotationY, transform.localEulerAngles.y, 0);
-						}
-				}
+			transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
+		}
 	}
 	
 	void Start ()
