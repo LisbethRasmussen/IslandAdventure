@@ -35,7 +35,7 @@ public class MouseLook : MonoBehaviour {
 	public static bool GetMouseLookLock(){
 		return MouseLookLock;
 	}
-	public static bool SetMouseLookLock(bool x){
+	public static void SetMouseLookLock(bool x){
 		MouseLookLock = x;
 	}
 
