@@ -12,8 +12,19 @@ public class Movement2 : MonoBehaviour {
 	private static int foodCount = 0;
 	private static float playerPosX;
 	private static float playerPosZ;
+
+
 	public GameObject myStick;			// I need mah stick!
-	
+	public static bool MiniGameOn = false;
+
+	public static bool GetMiniGameOn(){ //this is for the conversation script, in case it is needed.
+		return MiniGameOn;
+	}
+	public static void SetMiniGameOn(bool x){//this value is to changed in the conversation script, so when I has asked the player
+		MiniGameOn = x; 			//to fish up the boxes, this needs to be returned true.
+	}
+
+
 	public static int GetFoodCount(){
 		return foodCount;
 	}
@@ -28,7 +39,7 @@ public class Movement2 : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		
+		MiniGameOn = true; //this needs to be deleted later.
 	}
 	
 	// Update is called once per frame
@@ -36,19 +47,31 @@ public class Movement2 : MonoBehaviour {
 		playerPosX = transform.position.x;
 		playerPosZ = transform.position.z;
 
+		//------------------------------------------minibox game components
+
+		if (MiniGameOn == true){
+			myStick.SetActive(true);
+		}
+		else{
+			myStick.SetActive(false);
+		}
+
+		//somehow this does not work now. debug later.
 		if (Input.GetKey(KeyCode.T) && myStick.activeSelf == true){	// ".activeSelf" checks if the object is active or not
-			myStick.transform.Rotate(Vector3.left * 20 * Time.deltaTime);	// Makes the stick rotate up! don't ask why it is .left and not .up
+			myStick.transform.Rotate(-20 * Time.deltaTime, 0, 0, Space.World);	// Makes the stick rotate up! don't ask why it is .left and not .up
 		}
 		if (Input.GetKey(KeyCode.G) && myStick.activeSelf == true){
-			myStick.transform.Rotate(Vector3.right * 20 * Time.deltaTime);	// Makes the stick rotate down! don't ask why it is .right and not .down
+			myStick.transform.Rotate(20 * Time.deltaTime, 0, 0, Space.World);	// Makes the stick rotate down! don't ask why it is .right and not .down
 		}
 		
-		if (Input.GetKey(KeyCode.O)){
+		/*if (Input.GetKey(KeyCode.O)){
 			myStick.SetActive(false);	// This deactivates the stick! Making it disappear form the scene and makes it inaffective (but it still "follows" he player's position)
 		}
 		if (Input.GetKey(KeyCode.P)){
 			myStick.SetActive(true);	// Same as before just with activating it!
-		}
+		}*/
+
+		//------------------------------------------mingame code stop-----------------------------------
 		
 		if (messageON == false){
 			// Basic movements for testing

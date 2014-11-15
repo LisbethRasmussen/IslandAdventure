@@ -26,6 +26,13 @@ public class Ib : MonoBehaviour {
 		PosX = transform.position.x;		
 		PosZ = transform.position.z;
 
+		if (Movement2.GetMiniGameOn() == true){
+			myStick.SetActive(false);
+		}
+		else{
+			myStick.SetActive(true);
+		}
+
 		playerDistanceX = Mathf.Abs(PosX - Movement2.GetPlayerX());	// Calculates the distance from Ib and the player (X (Z is below))
 		playerDistanceZ = Mathf.Abs(PosZ - Movement2.GetPlayerZ());
 
