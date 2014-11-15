@@ -28,7 +28,17 @@ public class MouseLook : MonoBehaviour {
 	public float minimumY = -60F;
 	public float maximumY = 60F;
 
+	public static bool MouseLookLock = false;
+
 	float rotationY = 0F;
+
+	public static bool GetMouseLookLock(){
+		return MouseLookLock;
+	}
+	public static bool SetMouseLookLock(bool x){
+		MouseLookLock = x;
+	}
+
 
 	void Update ()
 	{

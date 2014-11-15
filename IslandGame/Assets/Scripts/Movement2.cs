@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//access to the player mouselook:
+//GetMouseLookLock
+//SetMouseLookLock
+
 public class Movement2 : MonoBehaviour {
 
 	private bool messageON = false;
