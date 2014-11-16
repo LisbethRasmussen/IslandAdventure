@@ -15,7 +15,7 @@ public class ThePictureFlyAway : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+
 	}
 	
 	// Update is called once per frame
@@ -32,5 +32,6 @@ public class ThePictureFlyAway : MonoBehaviour {
 
 		InvisibleWall.SetActive (false);//we need to allow the player to go in the water after loosing the picture.
 
+		BackPack2.SetHaveBackpack (false);
 	}
 }

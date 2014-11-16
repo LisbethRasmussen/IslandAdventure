@@ -14,7 +14,6 @@ public class Movement2 : MonoBehaviour {
 	private static float playerPosZ;
 	private static float playerPosY; //because of the picture
 
-
 	public GameObject myStick;			// I need mah stick!
 	public static bool MiniGameOn = false;
 
