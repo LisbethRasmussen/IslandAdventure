@@ -21,7 +21,11 @@ public class Hook : MonoBehaviour {
 	private bool Box2 = false;
 	private bool Box3 = false;
 
-	private float saftyCounter = 0;
+	public static int BoxesOnLand = 0;
+
+	public static int GetBoxesOnLand(){
+		return BoxesOnLand;
+	}
 
 	public static float GetPosX(){
 		return PosX;
@@ -57,19 +61,21 @@ public class Hook : MonoBehaviour {
 			BoxOnLand1.SetActive(true);
 			myCheatBox.SetActive (false);
 			Box.SetInRange(false);
+			BoxesOnLand += 1;
 		}
 		if (Box2 == false && Box.GetInRange() ==true && BoxInWater2.activeSelf == false && PosX <= 1287 && PosX >= 1274 && PosZ <= 1435 && PosZ >=1419){
-			saftyCounter = 0;
 			Box2 = true;
 			BoxOnLand2.SetActive(true);
 			myCheatBox.SetActive (false);
 			Box.SetInRange(false);
+			BoxesOnLand += 1;
 		}
 		if (Box3 == false && Box.GetInRange() ==true && BoxInWater3.activeSelf == false && PosX <= 1287 && PosX >= 1274 && PosZ <= 1435 && PosZ >=1419){
 			Box3 = true;
 			BoxOnLand3.SetActive(true);
 			myCheatBox.SetActive (false);
 			Box.SetInRange(false);
+			BoxesOnLand += 1;
 		}
 
 		/*if (Box.GetInRange() == true){			// If the hook is in range of the box:

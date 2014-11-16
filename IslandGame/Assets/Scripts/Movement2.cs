@@ -70,7 +70,9 @@ public class Movement2 : MonoBehaviour {
 		if (Input.GetKey(KeyCode.P)){
 			myStick.SetActive(true);	// Same as before just with activating it!
 		}*/
-
+		if (Hook.GetBoxesOnLand() == 3){
+			myStick.SetActive(false);
+		}
 		//------------------------------------------mingame code stop-----------------------------------
 		
 		if (messageON == false){
