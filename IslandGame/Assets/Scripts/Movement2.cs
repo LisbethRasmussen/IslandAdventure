@@ -12,6 +12,7 @@ public class Movement2 : MonoBehaviour {
 	private static int foodCount = 0;
 	private static float playerPosX;
 	private static float playerPosZ;
+	private static float playerPosY; //because of the picture
 
 
 	public GameObject myStick;			// I need mah stick!
@@ -36,6 +37,9 @@ public class Movement2 : MonoBehaviour {
 	public static float GetPlayerZ() {
 		return playerPosZ;
 	}
+	public static float GetPlayerY() {
+		return playerPosY;
+	}
 	
 	// Use this for initialization
 	void Start () {
@@ -46,7 +50,7 @@ public class Movement2 : MonoBehaviour {
 	void Update () {
 		playerPosX = transform.position.x;
 		playerPosZ = transform.position.z;
-
+		playerPosY = transform.position.y;
 		//------------------------------------------minibox game components
 
 		if (MiniGameOn == true){
