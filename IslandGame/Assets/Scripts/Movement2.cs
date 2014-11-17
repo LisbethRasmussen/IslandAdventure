@@ -14,6 +14,10 @@ public class Movement2 : MonoBehaviour {
 	private static float playerPosZ;
 	private static float playerPosY; //because of the picture
 
+	public GameObject NormalSpeed;
+	public GameObject FasterSpeed;
+	public GameObject SlowerSpeed;
+
 	//------------------------------------------As the java script and C# did not want to work together
 	//This wall makes the player stop moving.
 	public GameObject GoNoFurtherWall;
@@ -57,7 +61,10 @@ public class Movement2 : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		MiniGameOn = true; //this needs to be deleted later.
+		//MiniGameOn = true; //this needs to be deleted later.
+		NormalSpeed.SetActive (true);
+		FasterSpeed.SetActive (false);
+		SlowerSpeed.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -65,6 +72,23 @@ public class Movement2 : MonoBehaviour {
 		playerPosX = transform.position.x; //setting the floats to the players position in world.
 		playerPosZ = transform.position.z;
 		playerPosY = transform.position.y;
+
+		if (Input.GetKey(KeyCode.H)){
+			NormalSpeed.SetActive (true);
+			FasterSpeed.SetActive (false);
+			SlowerSpeed.SetActive (false);
+		}
+		if (Input.GetKey(KeyCode.J)){
+			NormalSpeed.SetActive (false);
+			FasterSpeed.SetActive (true);
+			SlowerSpeed.SetActive (false);
+		}
+		if (Input.GetKey(KeyCode.K)){
+			NormalSpeed.SetActive (false);
+			FasterSpeed.SetActive (false);
+			SlowerSpeed.SetActive (true);
+		}
+
 
 		/*if (Input.GetKey(KeyCode.V)){ //needs to be deleted later on, this code is for debugging.
 			CanPlayerMove = true;

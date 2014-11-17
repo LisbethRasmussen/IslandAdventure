@@ -3,12 +3,20 @@
 #pragma downcast
 
 // Does this script currently respond to input?
+@System.NonSerialized
 var canControl : boolean = true;
 
 var useFixedUpdate : boolean = true;
 
 // For the next variables, @System.NonSerialized tells Unity to not serialize the variable or show it in the inspector view.
 // Very handy for organization!
+
+//--------------------------------------------------my code---------------------------------------------------
+var SpeedBoxNormal : GameObject; //this is some psheudo way of getting C# and java to interact.
+var SpeedBoxSlow : GameObject; //because both scripts can check and set if an object is active or not
+var SpeedBoxFaster : GameObject; //so If a C# script sets an object to active/passive, the java should be able to respond.
+//--------------------------------------------not working yet-------------------------------------------------
+
 
 // The current global direction we want the character to move in.
 @System.NonSerialized
@@ -20,10 +28,13 @@ var inputMoveDirection : Vector3 = Vector3.zero;
 var inputJump : boolean = false;
 
 class CharacterMotorMovement {
-	// The maximum horizontal speed when moving
-	var maxForwardSpeed : float = 10.0;
-	var maxSidewaysSpeed : float = 10.0;
-	var maxBackwardsSpeed : float = 10.0;
+
+	@System.NonSerialized
+	var maxForwardSpeed : float = 6.0;
+	@System.NonSerialized
+	var maxSidewaysSpeed : float = 6.0;
+	@System.NonSerialized
+	var maxBackwardsSpeed : float = 6.0;
 	
 	// Curve for multiplying speed based on slope (negative = downwards)
 	var slopeSpeedMultiplier : AnimationCurve = AnimationCurve(Keyframe(-90, 1), Keyframe(0, 1), Keyframe(90, 0));
@@ -56,6 +67,7 @@ class CharacterMotorMovement {
 	
 	@System.NonSerialized
 	var lastHitPoint : Vector3 = Vector3(Mathf.Infinity, 0, 0);
+	
 }
 
 var movement : CharacterMotorMovement = CharacterMotorMovement();
@@ -179,8 +191,38 @@ function Awake () {
 	controller = GetComponent (CharacterController);
 	tr = transform;
 }
+//------------------------------------------------------------------------------my code, not working '-.-
+function SetSpeed (Speed : float){
 
+	/*function SetVelocity (velocity : Vector3) {
+	grounded = false;
+	movement.velocity = velocity;
+	movement.frameVelocity = Vector3.zero;
+	SendMessage("OnExternalVelocity");
+}*/
+	if (SpeedBoxNormal.activeSelf == true){
+		Speed = 10.0f;
+		movement.maxForwardSpeed = Speed;
+		movement.maxSidewaysSpeed = Speed;
+		movement.maxBackwardsSpeed = Speed;
+	}
+	if (SpeedBoxSlow.activeSelf == true){
+		Speed = 0.0f;
+		movement.maxForwardSpeed = Speed;
+		movement.maxSidewaysSpeed = Speed;
+		movement.maxBackwardsSpeed = Speed;
+	}
+	if (SpeedBoxFaster.activeSelf == true){
+		Speed = 100.0f;
+		movement.maxForwardSpeed = Speed;
+		movement.maxSidewaysSpeed = Speed;
+		movement.maxBackwardsSpeed = Speed;
+	}
+
+}
+//-----------------------------------------------------------------------------------------------------
 private function UpdateFunction () {
+
 	// We copy the actual velocity into a temporary variable that we can manipulate.
 	var velocity : Vector3 = movement.velocity;
 	
