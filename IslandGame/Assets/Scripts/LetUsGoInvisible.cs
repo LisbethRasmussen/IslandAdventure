@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//this script is intended to be faking the vision of the player. It should appear as if the players vision fade in and out due to
+//the harsh trip of being a castaway.
+
 //Place this script on the black box.
 
 //Under the mesh rendere of the object this is to be placed on, choose some shader/material which can be tampered with
@@ -19,9 +22,17 @@ public class LetUsGoInvisible : MonoBehaviour {
 	private float fadeCounter = 1;
 
 	private int FadedTooManyTimes = 0;
+	private static bool BlackMyScreen = false;
+	private static bool Sleeping = false;
 
 	public static void SetFogBegin(bool x){
 		HasGameStarted = x;
+	}
+	public static void SetBlackMyScreen (bool x){
+		BlackMyScreen = x;
+	}
+	public static void SetSleep (bool x){
+		Sleep = x;
 	}
 
 	// Use this for initialization
@@ -54,6 +65,26 @@ public class LetUsGoInvisible : MonoBehaviour {
 
 		if (FadedTooManyTimes == 5){
 			HasGameStarted = false;
+			fadeCounter = 0;
+			renderer.material.color = new Color(0,0,0,0);
+			FadedTooManyTimes = 0;
+		}
+
+		if (BlackMyScreen == true) {
+			renderer.material.color = new Color(0,0,0,1);
+			fadeCounter ++;
+			if (fadeCounter == 48){
+				renderer.material.color = new Color(0,0,0,0);
+			}
+
+		}
+		if (Sleeping == true) {
+			renderer.material.color = new Color(0,0,0,1); //the 1 stands for not being transparent at all
+			fadeCounter ++;
+			if (fadeCounter == 100){
+				renderer.material.color = new Color(0,0,0,0); //while the 0 is totally transparent
+			}
+			
 		}
 
 		//renderer.material.color -= new Color(0,0,0,0.01f);//basically just telling the object, that the material to be rendered should be set to a new color.
