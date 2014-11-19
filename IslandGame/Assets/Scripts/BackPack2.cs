@@ -51,7 +51,8 @@ public class BackPack2 : MonoBehaviour {
 			GUI.Button (new Rect(1100,10,250,250), "food items "
 			            + Movement2.GetFoodCount()
 			            + LineShift
-			            + "I should also be an item! Maybe a waterbottle here."
+			            + "Fire wood collected"
+			            + Movement2.GetFireWood()
 			            + LineShift
 			            + "You don't say? what about me? Maybe not needed."
 			            + LineShift

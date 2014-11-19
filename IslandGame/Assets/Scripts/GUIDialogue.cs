@@ -103,7 +103,7 @@ public class GUIDialogue : MonoBehaviour {
 				if (GUI.Button (new Rect(Screen.width/2-50, Screen.height/2+150, 100, 25), "What now?") || GUI.Button (new Rect(Screen.width/2-85, Screen.height/2+175, 170, 25), "Right. Let's just move on.")){
 					currentDialogue++;
 					lastDialogue = 2;	// Will set the last Dialogue to 2 (3rd image) as the last part of the array is not needed
-					// Insert here that the player shall optain a backpack
+					BackPack2.SetHaveBackpack(true);
 				}
 				else if (GUI.Button (new Rect(Screen.width/2-85, Screen.height/2+200, 170, 25), "I don't think I like your tone.")){
 					currentDialogue = 2;	// Skips a part of the dialogue which is not needed
