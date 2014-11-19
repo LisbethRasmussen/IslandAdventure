@@ -30,11 +30,11 @@ var inputJump : boolean = false;
 class CharacterMotorMovement {
 
 	@System.NonSerialized
-	var maxForwardSpeed : float = 6.0;
+	var maxForwardSpeed : float;
 	@System.NonSerialized
-	var maxSidewaysSpeed : float = 6.0;
+	var maxSidewaysSpeed : float;
 	@System.NonSerialized
-	var maxBackwardsSpeed : float = 6.0;
+	var maxBackwardsSpeed : float;
 	
 	// Curve for multiplying speed based on slope (negative = downwards)
 	var slopeSpeedMultiplier : AnimationCurve = AnimationCurve(Keyframe(-90, 1), Keyframe(0, 1), Keyframe(90, 0));
@@ -191,15 +191,9 @@ function Awake () {
 	controller = GetComponent (CharacterController);
 	tr = transform;
 }
-//------------------------------------------------------------------------------my code, not working '-.-
-function SetSpeed (Speed : float){
 
-	/*function SetVelocity (velocity : Vector3) {
-	grounded = false;
-	movement.velocity = velocity;
-	movement.frameVelocity = Vector3.zero;
-	SendMessage("OnExternalVelocity");
-}*/
+//-----------------------------------------------------------------------------------------------------
+private function UpdateFunction () {
 	if (SpeedBoxNormal.activeSelf == true){
 		Speed = 10.0f;
 		movement.maxForwardSpeed = Speed;
@@ -218,11 +212,6 @@ function SetSpeed (Speed : float){
 		movement.maxSidewaysSpeed = Speed;
 		movement.maxBackwardsSpeed = Speed;
 	}
-
-}
-//-----------------------------------------------------------------------------------------------------
-private function UpdateFunction () {
-
 	// We copy the actual velocity into a temporary variable that we can manipulate.
 	var velocity : Vector3 = movement.velocity;
 	
