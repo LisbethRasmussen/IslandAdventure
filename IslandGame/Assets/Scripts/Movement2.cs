@@ -11,6 +11,9 @@ public class Movement2 : MonoBehaviour {
 	private int messageTimer = 0;
 	private static int foodCount = 0;
 	private static int FireWood = 0;
+
+	private static bool AnimationON = false;
+
 	private static float playerPosX;
 	private static float playerPosZ;
 	private static float playerPosY; //because of the picture
@@ -33,7 +36,13 @@ public class Movement2 : MonoBehaviour {
 		CanPlayerMove = x; //setting the bool to the value of x, which can be accessed from other scripts.
 	}*/
 	//-------------------------------------------------------------------------------------------Wall
-
+	public static bool GetAnimationOn(){
+		return AnimationON;
+	}
+	public static void SetAnimationOn(bool x){
+		AnimationON = x;
+	}
+	
 	//------------------------------------------minigame code-----------------------------------------
 	public GameObject myStick;			// I need mah stick!
 	public static bool MiniGameOn = false; //Is the game even on?
@@ -66,10 +75,11 @@ public class Movement2 : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//MiniGameOn = true; //this needs to be deleted later.
-		NormalSpeed.SetActive (true);
+		//needs to be changed later since we start with an animation
+		NormalSpeed.SetActive (true); //to false
 		FasterSpeed.SetActive (false);
-		SlowerSpeed.SetActive (false);
+		SlowerSpeed.SetActive (false); //to true
+		MouseLook.SetMouseLookLock(true); //to false
 	}
 	
 	// Update is called once per frame
@@ -78,24 +88,25 @@ public class Movement2 : MonoBehaviour {
 		playerPosZ = transform.position.z;
 		playerPosY = transform.position.y;
 
-		if (Choices.GetChoice(3) == false && GUIDialogue.GetDialogueON() == false){
+		if (Choices.GetChoice(3) == false && GUIDialogue.GetDialogueON() == false && AnimationON == false){
 			NormalSpeed.SetActive (true);
 			FasterSpeed.SetActive (false);
 			SlowerSpeed.SetActive (false);
 		}
-		if (Choices.GetChoice(1) == false && GUIDialogue.GetDialogueON() == false){ //If they chose to eat - we move faster!
+		if (Choices.GetChoice(1) == false && GUIDialogue.GetDialogueON() == false && AnimationON == false){ //If they chose to eat - we move faster!
 			NormalSpeed.SetActive (false);
 			FasterSpeed.SetActive (true);
 			SlowerSpeed.SetActive (false);
 		}
-		if(GUIDialogue.GetDialogueON() == true){
+		if(GUIDialogue.GetDialogueON() == true || AnimationON == true){
 			NormalSpeed.SetActive (false); //this is the speed in which they walk not so fast, as they lack energy.
 			FasterSpeed.SetActive (false); //this is the speed after they've aten something, or if they are well rested.
 			SlowerSpeed.SetActive (true); //this value needs to be checked in the java script, it should be 0
+			MouseLook.SetMouseLookLock(false);
 		}
 
 
-		/*if (Input.GetKey(KeyCode.V)){ //needs to be deleted later on, this code is for debugging.
+		/*if (Input.GetKey(KeyCode.V)){ //needs to be deleted later on
 			CanPlayerMove = true;
 		}
 		if (Input.GetKey(KeyCode.C)){

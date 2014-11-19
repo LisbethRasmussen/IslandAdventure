@@ -16,40 +16,43 @@ using System.Collections;
 
 public class LetUsGoInvisible : MonoBehaviour {
 
-	private bool FadeOut = true;
-	private bool FadeIn = false;
-	public static bool HasGameStarted = false;
+	private bool FadeOut = true; //we need two different kinds of states on the cube. One where it gets lighter
+	private bool FadeIn = false; //and one where it gets darker.
+	public static bool HasGameStarted = false; //this may need to be deleted accoring to what the bool on the starting script does.
 	private float fadeCounter = 1;
 
-	private int FadedTooManyTimes = 0;
-	private static bool BlackMyScreen = false;
-	private static bool Sleeping = false;
+	private int FadedTooManyTimes = 0; //we only want the scene to fade a certain number of times.
+	private static bool BlackMyScreen = false; //we need a "glitch" so the player knows that a cutscene is happening
+	private static bool Sleeping = false; //not matter what a sleeping scene occures, so the screen also needs to be black there.
 
-	public static void SetFogBegin(bool x){
+	public static void SetFogBegin(bool x){//this value is to be set outside.
 		HasGameStarted = x;
 	}
-	public static void SetBlackMyScreen (bool x){
+	public static void SetBlackMyScreen (bool x){//same same
 		BlackMyScreen = x;
 	}
-	public static void SetSleep (bool x){
+	public static bool SetSleep (){//need a returner to send a message to a sound script with snorring (maybe not necessary).
+		return Sleeping;
+	}
+	public static void SetSleep (bool x){//same as the others.
 		Sleeping = x;
 	}
 
 	// Use this for initialization
 	void Start () {
-		HasGameStarted = true;
+		//HasGameStarted = true;//this needs to be deleted later on.
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		if (HasGameStarted == true && FadeOut == true){
+		if (HasGameStarted == true && FadeOut == true){ //we want to start with this one, which is why it has already been set to true in the beginning (before the start function)
 			fadeCounter -= 0.01f;
-			renderer.material.color = new Color(0,0,0,fadeCounter);
-			if (fadeCounter <= 0.01f){
-				FadeOut = false;
+			renderer.material.color = new Color(0,0,0,fadeCounter); //as this runs every fram, the counter runs down in value, which makes the cube more transparent.
+			if (fadeCounter <= 0.01f){ //when the cube reaches a certain level of transparency, we don't want it to be more invisible.
+				FadeOut = false; //and therefore we exchange the values of the bools, thereby setting off the other if statements.
 				FadeIn = true;
-				FadedTooManyTimes += 1;
+				FadedTooManyTimes += 1; //and we add a one to the counter so we can keep track of the number of times the screen has faded in and out.
 			}
 		}
 
@@ -70,19 +73,21 @@ public class LetUsGoInvisible : MonoBehaviour {
 			FadedTooManyTimes = 0;
 		}
 
-		if (BlackMyScreen == true) {
+		if (BlackMyScreen == true && Movement2.GetAnimationOn() == true) {
 			renderer.material.color = new Color(0,0,0,1);
 			fadeCounter ++;
 			if (fadeCounter == 48){
 				renderer.material.color = new Color(0,0,0,0);
+				BlackMyScreen = false;
 			}
 
 		}
-		if (Sleeping == true) {
+		if (Sleeping == true) { //change this with the GUI dialogue script and the Choices script
 			renderer.material.color = new Color(0,0,0,1); //the 1 stands for not being transparent at all
 			fadeCounter ++;
 			if (fadeCounter == 100){
 				renderer.material.color = new Color(0,0,0,0); //while the 0 is totally transparent
+				Sleeping = false;
 			}
 			
 		}
