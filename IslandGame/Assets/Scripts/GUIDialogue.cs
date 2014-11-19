@@ -105,13 +105,13 @@ public class GUIDialogue : MonoBehaviour {
 					lastDialogue = 2;	// Will set the last Dialogue to 2 (3rd image) as the last part of the array is not needed
 					BackPack2.SetHaveBackpack(true);
 				}
-				else if (GUI.Button (new Rect(Screen.width/2-85, Screen.height/2+200, 170, 25), "I don't think I like your tone.")){
+				else if (GUI.Button (new Rect(Screen.width/2-85, Screen.height/2+200, 170, 25), "No shit Sherlock.")){
 					currentDialogue = 2;	// Skips a part of the dialogue which is not needed
-					// Insert here that the player shall optain a backpack
+					BackPack2.SetHaveBackpack(true);
 				}
 			}
-			// For dialogue 8 !!! (ABC choice9
-			if (NumberOfDialogue == 8 && currentDialogue == 0){
+			// For dialogue 7 !!! (ABC choice9
+			if (NumberOfDialogue == 7 && currentDialogue == 0){
 				if (GUI.Button (new Rect(Screen.width/2-235, Screen.height/2+150, 470, 25), "Yes. I suggest that we should split up and search in either directions for food.")){
 					currentDialogue++;
 					lastDialogue = 3;	// Will set the last Dialogue to 2 (3rd image) as the last part of the array is not needed
@@ -124,18 +124,25 @@ public class GUIDialogue : MonoBehaviour {
 			// The normal "Next" button
 			if (ChoiceIsMade == false){
 				if (GUI.Button (new Rect(Screen.width/2- 50, Screen.height/2+100, 100, 25), "Next")){
-					if (NumberOfDialogue == 4 && currentDialogue == 2){
+					if (NumberOfDialogue == 3 && currentDialogue == 2){
 						Choices.SetDecisionToBeMade(true);
 						Choices.SetChoiceNumber(1);
 						// Also the 1 choice script shall run the "GUIDialogue.NextDialogue()" when a choice is made or we would be stuck!
 					}
 					else currentDialogue++;
+					// Other triggers in dialogue:
+					if (NumberOfDialogue == 3 && currentDialogue == 4){
+						// Insert the "Eating Sound" to trigger here
+					}
+					if (NumberOfDialogue == 4 && (currentDialogue == 4 || currentDialogue == 5)){
+						BackPack2.SetHaveBackpack(true);
+					}
 				}
 			}
 
 			if (ChoiceIsMade == true){
-				// For dialogue 4 !!! (1 choice)
-				if (NumberOfDialogue == 4){
+				// For dialogue 3 !!! (1 choice)
+				if (NumberOfDialogue == 3){
 					if (Choices.GetChoice(1) == true){
 						lastDialogue = 4;
 						ChoiceIsMade = false;
@@ -145,8 +152,8 @@ public class GUIDialogue : MonoBehaviour {
 						ChoiceIsMade = false;
 					}
 				}
-				// For dialogue 5 !!! (how the outcome of 1 choice was)
-				if (NumberOfDialogue == 5 && currentDialogue == 2){
+				// For dialogue 4 !!! (how the outcome of 1 choice was)
+				if (NumberOfDialogue == 4 && currentDialogue == 2){
 					if (Choices.GetChoice(1) == true){
 						lastDialogue = 5;
 						ChoiceIsMade = false;
@@ -156,8 +163,8 @@ public class GUIDialogue : MonoBehaviour {
 						ChoiceIsMade = false;
 					}
 				}
-				// For dialogue 13 !!! (how the outcome of 3 choice was)
-				if (NumberOfDialogue == 13 && currentDialogue == 2){
+				// For dialogue 12 !!! (how the outcome of 3 choice was)
+				if (NumberOfDialogue == 12 && currentDialogue == 2){
 					if (Choices.GetChoice(3) == true){
 						lastDialogue = 3;
 						ChoiceIsMade = false;
@@ -167,8 +174,8 @@ public class GUIDialogue : MonoBehaviour {
 						ChoiceIsMade = false;
 					}
 				}
-				// For dialogue 14 !!! (how the outcome of 3 and 4 choices was)
-				if (NumberOfDialogue == 14 && currentDialogue == 1){
+				// For dialogue 13 !!! (how the outcome of 3 and 4 choices was)
+				if (NumberOfDialogue == 13 && currentDialogue == 1){
 					if (Choices.GetChoice(3) == true){
 						lastDialogue = 2;
 						ChoiceIsMade = false;
