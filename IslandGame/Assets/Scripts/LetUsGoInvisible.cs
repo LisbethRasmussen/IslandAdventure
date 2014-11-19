@@ -32,7 +32,7 @@ public class LetUsGoInvisible : MonoBehaviour {
 		BlackMyScreen = x;
 	}
 	public static void SetSleep (bool x){
-		Sleep = x;
+		Sleeping = x;
 	}
 
 	// Use this for initialization
