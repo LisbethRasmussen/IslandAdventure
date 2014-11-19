@@ -12,6 +12,9 @@ public class Movement2 : MonoBehaviour {
 	private static int foodCount = 0;
 	private static int FireWood = 0;
 
+	public GameObject Carl; //we need to have him inactive at three times: Beginning, during food search and when he falls down a hole.
+	public static bool CarlActive = false; //this variable is for the getter function further down.
+
 	private bool arrivedFirstTime = false;
 	public static bool GatherFood = false;
 	public static bool FindCarl = false;
@@ -36,6 +39,7 @@ public class Movement2 : MonoBehaviour {
 	public GameObject FasterSpeed;//the middle way was to create these objects, and make the c# script set them active or not active, and then let the javascript
 	public GameObject SlowerSpeed;//detect which object is active and set the speed to a certain value, if a certain object is active on the scene.
 	//the code in the java script for this is after line 190 and consists of three if statements checking for the objects' active status.
+	//The objects needs to be placed out of sight at all times. They are not part of the graphics.
 
 	//------------------------------------------As the java script and C# did not want to work together
 	/*//This wall makes the player stop moving.
@@ -49,6 +53,11 @@ public class Movement2 : MonoBehaviour {
 	public static void SetCanPlayerMove (bool x){ //we need the conversation script/decision script/cutscene script to tamper with this.
 		CanPlayerMove = x; //setting the bool to the value of x, which can be accessed from other scripts.
 	}*/
+	//---------------------------------------The Carl getter------------------------------------
+	public static bool GetCarlActive(){ 
+		return CarlActive;
+	}
+
 	//---------------------------------Cave Wall setters--------------------------------------
 	public static void SetGatherFood(bool x){
 		GatherFood = x;
@@ -60,11 +69,11 @@ public class Movement2 : MonoBehaviour {
 		ProceedFromTheCave = x;
 	}
 	//------------------------------------------------------------------------------don't move!
-	public static bool GetAnimationOn(){
+	public static bool GetAnimationOn(){ //this bool is used to send information to somewhere I forgot.
 		return AnimationON;
 	}
-	public static void SetAnimationOn(bool x){
-		AnimationON = x;
+	public static void SetAnimationOn(bool x){ //this is to be set in the script which playes the animation.
+		AnimationON = x;						//Another script will turn it off after the animation time has run out.
 	}
 	
 	//------------------------------------------minigame code-----------------------------------------
@@ -109,6 +118,9 @@ public class Movement2 : MonoBehaviour {
 		CWallL.SetActive (true);
 		CWallR.SetActive (true);
 		CWallB.SetActive (false);
+
+		Carl.SetActive (false); //We don't want him to be there at first!!!
+		CarlActive = false;
 	}
 	
 	// Update is called once per frame
@@ -117,6 +129,15 @@ public class Movement2 : MonoBehaviour {
 		playerPosZ = transform.position.z;
 		playerPosY = transform.position.y;
 
+		//--------------------------------------Setting Carl to active and inactive.
+		/*Something like:
+		if (animation 1 == false && NormalSpeed.selfActive(true){
+			Carl.SetActive(true);
+			CarlActive = true;
+		}
+
+
+		//----------------------------------------Java c# coorperation cheat
 		if (Choices.GetChoice(3) == false && GUIDialogue.GetDialogueON() == false && AnimationON == false){
 			NormalSpeed.SetActive (true);
 			FasterSpeed.SetActive (false);
@@ -133,7 +154,7 @@ public class Movement2 : MonoBehaviour {
 			SlowerSpeed.SetActive (true); //this value needs to be checked in the java script, it should be 0
 			MouseLook.SetMouseLookLock(false);
 		}
-
+		//------------------------------------------------------------------------------------------------
 
 		/*if (Input.GetKey(KeyCode.V)){ //needs to be deleted later on
 			CanPlayerMove = true;

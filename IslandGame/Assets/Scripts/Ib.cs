@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Ib : MonoBehaviour {
+public class Ib : MonoBehaviour { //don't be fooled by the name, this is Carl's script.
 
 	private static float PosX;				// Ib's X position in world space (Z is below)
 	private static float PosZ;
@@ -36,15 +36,15 @@ public class Ib : MonoBehaviour {
 		playerDistanceX = Mathf.Abs(PosX - Movement2.GetPlayerX());	// Calculates the distance from Ib and the player (X (Z is below))
 		playerDistanceZ = Mathf.Abs(PosZ - Movement2.GetPlayerZ());
 
-		transform.LookAt (GameObject.Find ("Player").transform);	// This makes Ib look directly at the player all the time! Creepy D:
+		if (Movement2.GetCarlActive () == true) {
+			transform.LookAt (GameObject.Find ("Player").transform);	// This makes Ib look directly at the player all the time! Creepy D:
 		
-		if((playerDistanceX >= movementRange && playerDistanceZ >= movementRange) || playerDistanceX >= maxMovementRange || playerDistanceZ >= maxMovementRange){	// See if the Ib is too far away from the player
-			pauseMovement = true;	// Then lets move closer to our friend!
+			if ((playerDistanceX >= movementRange && playerDistanceZ >= movementRange) || playerDistanceX >= maxMovementRange || playerDistanceZ >= maxMovementRange) {	// See if the Ib is too far away from the player
+				pauseMovement = true;	// Then lets move closer to our friend!
+			} else {
+				pauseMovement = false;	// I am close enough... don't want things to become weird!
+			}
 		}
-		else{
-			pauseMovement = false;	// I am close enough... don't want things to become weird!
-		}
-
 		if(pauseMovement == true){
 			//transform.position += transform.forward * 10 * Time.deltaTime;	// This so far controls the movement, just moves towards the player
 			//This if statement is not needed, but I'm not gonna delete it yet, as I have to tell that the animation

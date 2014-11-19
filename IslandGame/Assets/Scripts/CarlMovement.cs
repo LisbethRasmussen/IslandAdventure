@@ -44,7 +44,7 @@ public class CarlMovement : MonoBehaviour {
 
 		//It's just easier to remember what the value is for when calling it speed instead.
 
-		if (Ib.GetPauseMovement() == true){
+		if (Ib.GetPauseMovement() == true && Movement2.GetCarlActive == true){
 			//anim.SetBool("WalkingForward", true); //walking animation on. This also makes the char moving forward, so no need for other speed variables.
 			anim.SetFloat("Speed", 0.2f); //this is send to the animator component, telling it that a float value we created inside this is set to this value, which makes the condition for changing between the animation happens.
 		}
