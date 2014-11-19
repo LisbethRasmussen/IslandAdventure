@@ -12,6 +12,20 @@ public class Movement2 : MonoBehaviour {
 	private static int foodCount = 0;
 	private static int FireWood = 0;
 
+	private bool arrivedFirstTime = false;
+	public static bool GatherFood = false;
+	public static bool FindCarl = false;
+	public static bool ProceedFromTheCave = false;
+	public GameObject CWallF;
+	public GameObject CWallL;
+	public GameObject CWallR;
+	public GameObject CWallB;
+
+	/*public GameObject FoodAreaWallF;
+	public GameObject FoodAreaWallL;
+	public GameObject FoodAreaWallR;
+	public GameObject FoodAreaWallB;*/ //set to inactive to avoid error untill tomorrow.
+
 	private static bool AnimationON = false;
 
 	private static float playerPosX;
@@ -35,7 +49,17 @@ public class Movement2 : MonoBehaviour {
 	public static void SetCanPlayerMove (bool x){ //we need the conversation script/decision script/cutscene script to tamper with this.
 		CanPlayerMove = x; //setting the bool to the value of x, which can be accessed from other scripts.
 	}*/
-	//-------------------------------------------------------------------------------------------Wall
+	//---------------------------------Cave Wall setters--------------------------------------
+	public static void SetGatherFood(bool x){
+		GatherFood = x;
+	}
+	public static void SetFindCarl(bool x){
+		FindCarl = x;
+	}
+	public static void SetProceedFromTheCave(bool x){
+		ProceedFromTheCave = x;
+	}
+	//------------------------------------------------------------------------------don't move!
 	public static bool GetAnimationOn(){
 		return AnimationON;
 	}
@@ -80,6 +104,11 @@ public class Movement2 : MonoBehaviour {
 		FasterSpeed.SetActive (false);
 		SlowerSpeed.SetActive (false); //to true
 		MouseLook.SetMouseLookLock(true); //to false
+
+		CWallF.SetActive (true);
+		CWallL.SetActive (true);
+		CWallR.SetActive (true);
+		CWallB.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -143,7 +172,40 @@ public class Movement2 : MonoBehaviour {
 			MiniGameOn = false; //just to be sure that the stick does not respawn.
 		}
 		//------------------------------------------mingame code stop-----------------------------------
-		
+
+		//-------------------------------------------------------------walls around the cave
+		if (playerPosX >= 1040 && playerPosX <= 1020 && playerPosZ >= 1334 && playerPosZ <= 1320 && arrivedFirstTime == false){
+			CWallB.SetActive (true);
+			arrivedFirstTime = true;
+		}
+		if (GatherFood == true){
+			CWallL.SetActive(false);
+		}
+		if (FindCarl == true){
+			CWallR.SetActive(false);
+			CWallL.SetActive(true);
+		}
+		if (ProceedFromTheCave == true){
+			CWallF.SetActive(false);
+		}
+
+
+		/*if (playerPosX >= 2000 && playerPosX <= 3000 && playerPosZ >= 2000 && playerPosZ <= 3000 && GatherFood == true){
+				FoodAreaWallF.SetActive (true); //the above values needs to be adjusted.
+				FoodAreaWallL.SetActive (true);
+				FoodAreaWallR.SetActive (true);
+				FoodAreaWallB.SetActive (true);
+		}
+		if (foodCount == 7.0f){
+			FoodAreaWallF.SetActive (false);
+			FoodAreaWallL.SetActive (false);
+			FoodAreaWallR.SetActive (false);
+			FoodAreaWallB.SetActive (false);
+			GatherFood = false;
+		}*/ //set this active when the other stuff is active as well.
+
+
+		//------------------------------------------------------------------------------------------
 		if (messageON == false){
 			// Basic movements for testing
 			

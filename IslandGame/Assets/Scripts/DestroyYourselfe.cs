@@ -10,8 +10,8 @@ public class DestroyYourselfe : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Movement2.GetCanPlayerMove() == true){
+		/*if (Movement2.GetCanPlayerMove() == true){ //this script is at the moment obsolete.
 			Destroy(gameObject);
-		}
+		}*/
 	}
 }
