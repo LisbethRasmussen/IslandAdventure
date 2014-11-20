@@ -3,6 +3,7 @@ using System.Collections;
 //This script needs to be on the player character. For further information about the code, check CarlMovement scriptet
 public class AnimationsOnOff : MonoBehaviour {
 
+	public GameObject Player;
 	private int FrameCounter = 0;
 
 	public float animSpeed = 1.5f;
@@ -25,18 +26,18 @@ public class AnimationsOnOff : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		anim = GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		if (Movement2.GetAnimationOn() == true){
-
+		/*if (Movement2.GetAnimationOn() == true){
+			Player.transform.parent = transform;
 		}
 		if (Movement2.GetAnimationOn() == false){
-
-		}
+			Player.transform.parent = null;
+		}*/
 
 		if (Movement2.GetAnimationOn() == false){
 			anim.SetInteger("NumberOfAnimation", 1);
@@ -44,8 +45,8 @@ public class AnimationsOnOff : MonoBehaviour {
 		if (Animation1 == false && Movement2.GetAnimationOn() == true){
 			anim.SetInteger("NumberOfAnimation", 2);
 			FrameCounter++;
-			//print (FrameCounter);
-			if (FrameCounter >= 380){
+			print (FrameCounter);
+			if (FrameCounter >= 260){
 				Animation1 = true;
 				Movement2.SetAnimationOn(false);
 				Movement2.SetGoNormal(true);

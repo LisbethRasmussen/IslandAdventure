@@ -25,6 +25,8 @@ public class Movement2 : MonoBehaviour {
 	public GameObject CWallB;
 
 	private static bool AnimationON = false;
+	//public GameObject AnimatorObject;
+	public Animator Anim;
 
 	private static float playerPosX;
 	private static float playerPosZ;
@@ -109,6 +111,8 @@ public class Movement2 : MonoBehaviour {
 
 		Carl.SetActive (false); //We don't want him to be there at first!!!
 		CarlActive = false;
+
+		Anim = gameObject.GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -144,6 +148,8 @@ public class Movement2 : MonoBehaviour {
 			FasterSpeed.SetActive (false);
 			SlowerSpeed.SetActive (false);
 			MouseLook.SetMouseLookLock(false);
+			Anim.enabled = false;
+			print ("heya");
 		}
 		if (GoFaster == true){
 			NormalSpeed.SetActive (false);
@@ -151,12 +157,12 @@ public class Movement2 : MonoBehaviour {
 			SlowerSpeed.SetActive (false);
 			MouseLook.SetMouseLookLock(false);
 		}
-		if (AnimationON == true){
-
+		/*if (AnimationON == true){
+			AnimatorObject.transform.parent = null;
 		}
 		if (AnimationON == false){
-			
-		}
+			AnimatorObject.transform.parent = transform;
+		}*/
 		//------------------------------------------------------------------------------------------------
 
 		//------------------------------------------minibox game components
