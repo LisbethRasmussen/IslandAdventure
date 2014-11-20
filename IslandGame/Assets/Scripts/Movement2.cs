@@ -147,12 +147,12 @@ public class Movement2 : MonoBehaviour {
 			NormalSpeed.SetActive (false);
 			FasterSpeed.SetActive (true);
 			SlowerSpeed.SetActive (false);
-		}
-		if(GUIDialogue.GetDialogueON() == true || AnimationON == true){
+		}*/
+		if(GUIDialogue.GetDialogueON() == true || AnimationON == true || TestStart.GetStartSettings() == true){
 			NormalSpeed.SetActive (false); //this is the speed in which they walk not so fast, as they lack energy.
 			FasterSpeed.SetActive (false); //this is the speed after they've aten something, or if they are well rested.
 			SlowerSpeed.SetActive (true); //this value needs to be checked in the java script, it should be 0
-			MouseLook.SetMouseLookLock(false);
+			MouseLook.SetMouseLookLock(true);
 		}
 		//------------------------------------------------------------------------------------------------
 

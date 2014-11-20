@@ -42,6 +42,7 @@ public class TestStart : MonoBehaviour {
 				GUIDialogue.SetDialogueON(true);	// (Dialogue) Sets a bool inside the dialogue script to be true which will show dialogue
 				//Choices.SetDecisionToBeMade(true);// (Choice) Makes the program know that a choice shall be made
 				//Choices.SetChoiceNumber(6);		// (Choice) Sets what choice shall be made
+				LetUsGoInvisible.SetFogBegin(true);
 			}
 		}
 	}
