@@ -27,6 +27,9 @@ public class Movement2 : MonoBehaviour {
 	private static bool AnimationON = false;
 	//public GameObject AnimatorObject;
 	public Animator Anim;
+	public static int AnimationCounter = 1;
+	public static int GetAnimationCounter(){return AnimationCounter;}
+	public static void SetAnimationCounter(int x){AnimationCounter = x;}
 
 	private static float playerPosX;
 	private static float playerPosZ;
@@ -44,49 +47,29 @@ public class Movement2 : MonoBehaviour {
 	public static void SetGoFaster(bool x){ GoFaster = x;}
 
 	//---------------------------------------The Carl getter------------------------------------
-	public static bool GetCarlActive(){ 
-		return CarlActive;
-	}
-	public static void SetCarlActive(bool x){ 
-		CarlActive = x;
-	}
+	public static bool GetCarlActive(){ return CarlActive;}
+	public static void SetCarlActive(bool x){ CarlActive = x;}
 
 	//---------------------------------Cave Wall setters--------------------------------------
-	public static void SetGatherFood(bool x){
-		GatherFood = x;
-	}
-	public static void SetFindCarl(bool x){
-		FindCarl = x;
-	}
-	public static void SetProceedFromTheCave(bool x){
-		ProceedFromTheCave = x;
-	}
+	public static void SetGatherFood(bool x){GatherFood = x;}
+	public static void SetFindCarl(bool x){FindCarl = x;}
+	public static void SetProceedFromTheCave(bool x){ProceedFromTheCave = x;}
 	//------------------------------------------------------------------------------don't move!
-	public static bool GetAnimationOn(){ //this bool is used to send information to somewhere I forgot.
-		return AnimationON;
-	}
-	public static void SetAnimationOn(bool x){ //this is to be set in the script which playes the animation.
-		AnimationON = x;						//Another script will turn it off after the animation time has run out.
-	}
+	public static bool GetAnimationOn(){return AnimationON;} //this is to make sure that the animator script only does something when this is turned true
+	public static void SetAnimationOn(bool x){AnimationON = x;} //several different scripts can be used to trigger the animation accoring to time and place, therefore we need a setter.
 	
 	//------------------------------------------minigame code-----------------------------------------
 	public GameObject myStick;			// I need mah stick!
-	public static bool MiniGameOn = false; //Is the game even on?
+	public static bool MiniGameOn = false; //Is the box game even on?
 
-	public static bool GetMiniGameOn(){ //this is for the conversation script, in case it is needed.
-		return MiniGameOn;
-	}
+	public static bool GetMiniGameOn(){return MiniGameOn;}
 	public static void SetMiniGameOn(bool x){//this value is to changed in the conversation script, so when I has asked the player
-		MiniGameOn = x; 			//to fish up the boxes, this needs to be returned true.
+		MiniGameOn = x;
 	}
 	//----------------------------------------------------------------------------------------------------
-
-	public static int GetFoodCount(){ //code for sending the number of food items picked up to the backpack script
-		return foodCount;
-	}
-	public static int GetFireWood(){ 
-		return FireWood;
-	}
+	//code for sending the number of food items picked up to the backpack script
+	public static int GetFoodCount(){return foodCount;}
+	public static int GetFireWood(){ return FireWood;}
 	//--------------------------------------code for sending the information about the players positions
 	public static float GetPlayerX() {
 		return playerPosX;
@@ -156,6 +139,9 @@ public class Movement2 : MonoBehaviour {
 		}
 		if (AnimationON == true){
 			Anim.enabled = true;
+		}
+		if (AnimationON == false){
+			Anim.enabled = false;
 		}
 		//------------------------------------------------------------------------------------------------
 

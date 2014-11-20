@@ -11,18 +11,8 @@ public class AnimationsOnOff : MonoBehaviour {
 	public Animator anim;
 
 	private AnimatorStateInfo currentBaseState;
-
-	private bool Animation1 = false;
-	private bool Animation2 = false;
-	private bool Animation3 = false;
-	private bool Animation4 = false;
-	private bool Animation5 = false;
-	private bool Animation6 = false;
-	private bool Animation7 = false;
-	private bool Animation8 = false;
-	private bool Animation9 = false;
-	private bool Animation10 = false;
-	private bool Animation11 = false;
+	//static int PlayerStartState = Animator.StringToHash("Base Layer.PlayerStart");
+	//static int PlayerStartState = Animator.StringToHash("Base Layer.PlayerStart");
 
 	// Use this for initialization
 	void Start () {
@@ -32,41 +22,40 @@ public class AnimationsOnOff : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		/*if (Movement2.GetAnimationOn() == true){
-			Player.transform.parent = transform;
-		}
-		if (Movement2.GetAnimationOn() == false){
-			Player.transform.parent = null;
-		}*/
 
 		if (Movement2.GetAnimationOn() == false){
-			anim.SetInteger("NumberOfAnimation", 1);
+			anim.SetInteger("NumberOfAnimation", 0);
 		}
-		if (Animation1 == false && Movement2.GetAnimationOn() == true){
-			anim.SetInteger("NumberOfAnimation", 2);
-			FrameCounter++;
-			print (FrameCounter);
-			if (FrameCounter >= 500){
-				Animation1 = true;
+		if (Movement2.GetAnimationCounter() == 1 && Movement2.GetAnimationOn() == true){
+			anim.SetInteger("NumberOfAnimation", 1);
+			//if (this.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !anim.IsInTransition(0)){
+			if(this.anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerStart") && this.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1){
 				Movement2.SetAnimationOn(false);
 				Movement2.SetGoNormal(true);
 				Carl.SetActive(true);
 				Movement2.SetCarlActive(true);
-				FrameCounter = 0;
+				Movement2.SetAnimationCounter(Movement2.GetAnimationCounter() + 1);
 			}
 		}
-		if (Animation2 == false && Movement2.GetAnimationOn() == true && Animation1 == true){
+
+		if (Movement2.GetAnimationCounter() == 2 && Movement2.GetAnimationOn() == true){
+			anim.SetInteger("NumberOfAnimation", 2);
+			if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("BoatWater") && this.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1){
+				Movement2.SetAnimationOn(false);
+				Movement2.SetGoNormal(true);
+				print ("hej");
+				Movement2.SetAnimationCounter(Movement2.GetAnimationCounter() + 1);
+			}
+		}
+		if (Movement2.GetAnimationCounter() == 3 && Movement2.GetAnimationOn() == true){
 			anim.SetInteger("NumberOfAnimation", 3);
-			if (FrameCounter >= 4350){
-				Animation2 = true;
+			FrameCounter++;
+			print (FrameCounter);
+			if (FrameCounter >= 50){
 				Movement2.SetAnimationOn(false);
-			}
-		}
-		if (Animation3 == false && Movement2.GetAnimationOn() == true && Animation2 == true){
-			anim.SetInteger("NumberOfAnimation", 4);
-			if (FrameCounter >= 4983){
-				Animation3 = true;
-				Movement2.SetAnimationOn(false);
+				Movement2.SetGoNormal(true);//recall to revisit this later for because of the walking speed.
+				FrameCounter = 0;
+				Movement2.SetAnimationCounter(Movement2.GetAnimationCounter() + 1);
 			}
 		}
 	
