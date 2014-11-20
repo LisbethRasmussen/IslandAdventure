@@ -39,10 +39,11 @@ public class TestStart : MonoBehaviour {
 			if(GUI.Button (new Rect(Screen.width/2-100, Screen.height/2-100, 200, 200), "Enter a test number!\n\nClick to start test!")){	// Makes a button to click on!
 				startSettings = false;	// Sets the settings to false and the game can then start!
 				DialogObj01.SetActive(true);		// (Dialogue) Activates the (empty) object containing a dialogue script
-				GUIDialogue.SetDialogueON(true);	// (Dialogue) Sets a bool inside the dialogue script to be true which will show dialogue
+				//GUIDialogue.SetDialogueON(true);	// (Dialogue) Sets a bool inside the dialogue script to be true which will show dialogue
 				//Choices.SetDecisionToBeMade(true);// (Choice) Makes the program know that a choice shall be made
 				//Choices.SetChoiceNumber(6);		// (Choice) Sets what choice shall be made
 				LetUsGoInvisible.SetFogBegin(true);
+				Movement2.SetAnimationOn(true);
 			}
 		}
 	}

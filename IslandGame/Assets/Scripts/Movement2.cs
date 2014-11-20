@@ -24,11 +24,6 @@ public class Movement2 : MonoBehaviour {
 	public GameObject CWallR;
 	public GameObject CWallB;
 
-	/*public GameObject FoodAreaWallF;
-	public GameObject FoodAreaWallL;
-	public GameObject FoodAreaWallR;
-	public GameObject FoodAreaWallB;*/ //set to inactive to avoid error untill tomorrow.
-
 	private static bool AnimationON = false;
 
 	private static float playerPosX;
@@ -41,18 +36,11 @@ public class Movement2 : MonoBehaviour {
 	//the code in the java script for this is after line 190 and consists of three if statements checking for the objects' active status.
 	//The objects needs to be placed out of sight at all times. They are not part of the graphics.
 
-	//------------------------------------------As the java script and C# did not want to work together
-	/*//This wall makes the player stop moving.
-	public GameObject GoNoFurtherWall;//this is not needed anymore, delete tomorrow.
-	public static bool CanPlayerMove = true;
-	private bool WallIsThere = false;
+	public static bool GoNormal = false;
+	public static bool GoFaster = false;
+	public static void SetGoNormal(bool x){ GoNormal = x;}
+	public static void SetGoFaster(bool x){ GoFaster = x;}
 
-	public static bool GetCanPlayerMove(){ //this sends a message to the script on the wall, making sure it can be destroyed
-		return CanPlayerMove;
-	}
-	public static void SetCanPlayerMove (bool x){ //we need the conversation script/decision script/cutscene script to tamper with this.
-		CanPlayerMove = x; //setting the bool to the value of x, which can be accessed from other scripts.
-	}*/
 	//---------------------------------------The Carl getter------------------------------------
 	public static bool GetCarlActive(){ 
 		return CarlActive;
@@ -109,7 +97,7 @@ public class Movement2 : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//needs to be changed later since we start with an animation
-		NormalSpeed.SetActive (true); //to false
+		NormalSpeed.SetActive (false); //to false
 		FasterSpeed.SetActive (false);
 		SlowerSpeed.SetActive (false); //to true
 		MouseLook.SetMouseLookLock(true); //to false
@@ -139,37 +127,37 @@ public class Movement2 : MonoBehaviour {
 
 		//----------------------------------------Java c# coorperation cheat
 		if (Choices.GetChoice(3) == false && GUIDialogue.GetDialogueON() == false && AnimationON == false){
-			NormalSpeed.SetActive (true);
-			FasterSpeed.SetActive (false);
-			SlowerSpeed.SetActive (false);
+			GoNormal = true
 		}
-		if (Choices.GetChoice(1) == false && GUIDialogue.GetDialogueON() == false && AnimationON == false){ //If they chose to eat - we move faster!
-			NormalSpeed.SetActive (false);
-			FasterSpeed.SetActive (true);
-			SlowerSpeed.SetActive (false);
+		if (Choices.GetChoice(1) == false){ //If they chose to eat - we move faster!
+			GoFaster = true;
 		}*/
-		if(GUIDialogue.GetDialogueON() == true || AnimationON == true || TestStart.GetStartSettings() == true){
+		if(GUIDialogue.GetDialogueON() == true || AnimationON == true){
 			NormalSpeed.SetActive (false); //this is the speed in which they walk not so fast, as they lack energy.
 			FasterSpeed.SetActive (false); //this is the speed after they've aten something, or if they are well rested.
 			SlowerSpeed.SetActive (true); //this value needs to be checked in the java script, it should be 0
 			MouseLook.SetMouseLookLock(true);
+
+		}
+		if (GoNormal == true){
+			NormalSpeed.SetActive (true);
+			FasterSpeed.SetActive (false);
+			SlowerSpeed.SetActive (false);
+			MouseLook.SetMouseLookLock(false);
+		}
+		if (GoFaster == true){
+			NormalSpeed.SetActive (false);
+			FasterSpeed.SetActive (true);
+			SlowerSpeed.SetActive (false);
+			MouseLook.SetMouseLookLock(false);
+		}
+		if (AnimationON == true){
+
+		}
+		if (AnimationON == false){
+			
 		}
 		//------------------------------------------------------------------------------------------------
-
-		/*if (Input.GetKey(KeyCode.V)){ //needs to be deleted later on
-			CanPlayerMove = true;
-		}
-		if (Input.GetKey(KeyCode.C)){
-			CanPlayerMove = false;
-		}*/
-
-		/*if (CanPlayerMove == false && WallIsThere == false){ //if the player should not be able to move, and we don't have a wall yet
-			GameObject.Instantiate(GoNoFurtherWall, new Vector3(playerPosX,playerPosY,playerPosZ), transform.rotation);
-			WallIsThere = true; //we don't want this function to run more than one time.
-		}
-		if (CanPlayerMove == true && WallIsThere == true){
-			WallIsThere = false; // Now the upper function is ready again to spawn the wall when needed.
-		}*/
 
 		//------------------------------------------minibox game components
 
