@@ -92,6 +92,7 @@ public class GUIDialogue : MonoBehaviour {
 			}
 			if (NumberOfDialogue == 2){
 				Movement2.SetMiniGameOn(true);
+				Movement2.SetGoNormal(true);
 			}
 			gameObject.SetActive(false);
 			DialogueON = false;

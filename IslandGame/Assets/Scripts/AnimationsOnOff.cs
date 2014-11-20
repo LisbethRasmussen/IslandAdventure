@@ -5,14 +5,15 @@ public class AnimationsOnOff : MonoBehaviour {
 
 	public GameObject Carl;
 	private int FrameCounter = 0;
+	public static bool Conversation2Active = false;
 
 	public float animSpeed = 1.5f;
 	private static bool AnimON = true;
 	public Animator anim;
 
 	private AnimatorStateInfo currentBaseState;
-	//static int PlayerStartState = Animator.StringToHash("Base Layer.PlayerStart");
-	//static int PlayerStartState = Animator.StringToHash("Base Layer.PlayerStart");
+
+	public static bool GetConversation2Active(){return Conversation2Active;}
 
 	// Use this for initialization
 	void Start () {
@@ -43,8 +44,8 @@ public class AnimationsOnOff : MonoBehaviour {
 			if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("BoatWater") && this.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1){
 				Movement2.SetAnimationOn(false);
 				Movement2.SetGoNormal(true);
-				print ("hej");
 				Movement2.SetAnimationCounter(Movement2.GetAnimationCounter() + 1);
+				Conversation2Active = true;
 			}
 		}
 		if (Movement2.GetAnimationCounter() == 3 && Movement2.GetAnimationOn() == true){

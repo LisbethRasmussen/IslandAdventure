@@ -63,9 +63,7 @@ public class Movement2 : MonoBehaviour {
 	public static bool MiniGameOn = false; //Is the box game even on?
 
 	public static bool GetMiniGameOn(){return MiniGameOn;}
-	public static void SetMiniGameOn(bool x){//this value is to changed in the conversation script, so when I has asked the player
-		MiniGameOn = x;
-	}
+	public static void SetMiniGameOn(bool x){MiniGameOn = x;} //this is set to true in the GUIDialogue script when the end of dialogue 2 has been reached.
 	//----------------------------------------------------------------------------------------------------
 	//code for sending the number of food items picked up to the backpack script
 	public static int GetFoodCount(){return foodCount;}
@@ -123,14 +121,14 @@ public class Movement2 : MonoBehaviour {
 			GoFaster = false;
 
 		}
-		if (GoNormal == true){
+		if (GoNormal == true && GUIDialogue.GetDialogueON() == false && AnimationON == false){
 			NormalSpeed.SetActive (true);
 			FasterSpeed.SetActive (false);
 			SlowerSpeed.SetActive (false);
 			MouseLook.SetMouseLookLock(false);
 			Anim.enabled = false;
 		}
-		if (GoFaster == true){
+		if (GoFaster == true && GUIDialogue.GetDialogueON() == false && AnimationON == false){
 			NormalSpeed.SetActive (false);
 			FasterSpeed.SetActive (true);
 			SlowerSpeed.SetActive (false);

@@ -40,5 +40,14 @@ public class DialogueOn : MonoBehaviour {
 			Dialogue1.SetActive(true);
 			Trigger[1-1] = false;
 		}
+		if (AnimationsOnOff.GetConversation2Active() == true && Trigger [2-1] == true){
+			GUIDialogue.SetDialogueON(true);
+			Dialogue2.SetActive(true);
+			Trigger[2-1] = false;
+		}
+		if (Hook.GetBoxesOnLand() == 3 && Movement2.GetFoodCount() == 2 && Trigger [3-1] == true)
+			GUIDialogue.SetDialogueON(true);
+			Dialogue3.SetActive(true);
+			Trigger[3-1] = false;
 	}
 }
