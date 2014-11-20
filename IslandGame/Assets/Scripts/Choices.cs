@@ -16,6 +16,7 @@ public class Choices : MonoBehaviour {
 
 	private static bool DecisionToBeMade;	// A bool stating of we are currently making a choice or not
 	private static bool[] Choice;			// An array of bools there contains all the answers from the choices (is used for change of dialogue and for the final test results)
+	private static bool[] WasChoiceMade;	// An array there checks if a chocie was made during testing (used for the timer)
 	private static int ChoiceNumber = 0;	// A counter for what choice there shall be made.
 	private string[] RationalChoice = {		// An array of strings there contain all the rational decisions
 		"No. We should save them for later.",
@@ -46,6 +47,10 @@ public class Choices : MonoBehaviour {
 		return Choice[index-1];	// -1 as an array starts with 0 and it is not to confuse people when we look back at the code
 	}
 
+	public static bool GetWasChoiceMade(int index){
+		return WasChoiceMade[index];
+	}
+
 	public static void SetChoiceNumber(int Num){
 		ChoiceNumber = Num-1;
 	}
@@ -53,6 +58,10 @@ public class Choices : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Choice = new bool[6];			// Stores 6 bools in our choice array, these will be the answers for our test!
+		WasChoiceMade = new bool[6];	// Stores 6 bools in our was choice made? aray, this is need to get a "No answer" if people don't get to answer
+		for (int i = 0; i < 6; i++){
+			WasChoiceMade[i] = true;	// Sets every entry in the array to be true for now (so we don't have to code it below
+		}
 		timeBarBACK.enabled = false;	
 		timeBarFRONT.enabled = false;
 		timeBarBACK.pixelInset = new Rect (0-160, -180-20, 320, 40);
@@ -69,8 +78,8 @@ public class Choices : MonoBehaviour {
 				timeBarFRONT.enabled = true;
 				timeBarFRONT.pixelInset = new Rect (0-lengthOfBar/2, -180-10, lengthOfBar, 20);
 				
-				if (lengthOfBar <= 0.1f){
-					ResetTimer();
+				if (lengthOfBar <= 0.1f){	// If the timer runs out then:
+					ChoiceNOTMade(ChoiceNumber);
 				}
 			}
 		}
@@ -107,19 +116,37 @@ public class Choices : MonoBehaviour {
 	}
 
 	private void ChoiceMade(int index, bool result){
-		Choice[index] = result;
-		DecisionToBeMade = false;
-		GUIDialogue.SetChoiceIsMade(true);
+		Choice[index] = result;		// Sets the result into the current index of the choice array
+		DecisionToBeMade = false;	// A decision was made, so this should be set to false now
+
 		if (TestStart.GetTimeOn() == true)
-			ResetTimer();
-		if (index == 1-1)
-			GUIDialogue.NextDialogue();
+			ResetTimer();						// If time was on shall the timer be reseted now
+		if (index == 1-1){						// for choice 1 shall:
+			GUIDialogue.SetChoiceIsMade(true);	// We return to the dialogue so this shall be set to true now
+			GUIDialogue.NextDialogue();			// Makes us go to the next slide of dialogue
+		}
+	}
+
+	private void ChoiceNOTMade(int index){
+		int RandomResult = Random.Range(0,2);	// Assings a random number between 0 and 1 to an int (have to set the max value to 2 otherwise will "1" never happen)
+		if (RandomResult == 0)
+			Choice[index] = true;		// if that number is 0 then will the choice be rational
+		else if (RandomResult == 1)
+			Choice[index] = false;		// if that number is 1 then will the choice be emotional
+		DecisionToBeMade = false;		// A decision was "kinda" made, so this should be set to false now
+		WasChoiceMade[index] = false;	// Sets the index of the Was choice made? variable to false, this is used for the results later
+
+		if (TestStart.GetTimeOn() == true)
+			ResetTimer();						// If time was on shall the timer be reseted now
+		if (index == 1-1){						// for choice 1 shall:
+			GUIDialogue.SetChoiceIsMade(true);	// We return to the dialogue so this shall be set to true now
+			GUIDialogue.NextDialogue();			// Makes us go to the next slide of dialogue
+		}
 	}
 
 	private void ResetTimer(){
-		timeBarBACK.enabled = false;
+		timeBarBACK.enabled = false;	// Disables the timer GUI (also with the line below)
 		timeBarFRONT.enabled = false;
-		lengthOfBar = 300;
-		DecisionToBeMade = false;
+		lengthOfBar = 300;				// Resets the length of the timer bar
 	}
 }
