@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Ib : MonoBehaviour { //don't be fooled by the name, this is Carl's script.
@@ -8,12 +8,17 @@ public class Ib : MonoBehaviour { //don't be fooled by the name, this is Carl's 
 	private float playerDistanceX;			// The distance between Ib and the player (X (Z is below))
 	private float playerDistanceZ;
 	private static bool pauseMovement = true;		// Shall Ib be moving? This bool states it!
+	private static bool DialogueTrigger1 = false;		// A trigger for the first dialogue
 	private float movementRange = 4.0f; 	// The range between the player and Ib before he moves towards the player ("skewed" walking)
 	private float maxMovementRange = 7.0f;	// Needed this as if you stood directly on Ib's X or Z axies wouldn't he move
 	public GameObject myStick;			// I need mah stick!
 
 	public static bool GetPauseMovement(){
 		return pauseMovement;
+	}
+
+	public static bool GetDialogueTrigger1(){
+		return DialogueTrigger1;
 	}
 
 	// Use this for initialization
@@ -43,6 +48,8 @@ public class Ib : MonoBehaviour { //don't be fooled by the name, this is Carl's 
 				pauseMovement = true;	// Then lets move closer to our friend!
 			} else {
 				pauseMovement = false;	// I am close enough... don't want things to become weird!
+				if (DialogueTrigger1 == false)
+					DialogueTrigger1 = true;	// Triggers the first dialogue in the "DialogueOn" script
 			}
 		}
 		if(pauseMovement == true){

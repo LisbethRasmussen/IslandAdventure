@@ -6,7 +6,7 @@ public class GUIDialogue : MonoBehaviour {
 	/*To start a dialogue is there 2 lines of code be used:
 	 But first make a public GameObject object in the script there shall activate the dialogue (like "DialogueObj01") This empty GameObject shall be deactivated from the start!
 	 GUIDialogue.SetDialogueON(true);	(Makes the program know that a dialogue shall play now)
-	 DialogObj01.SetActive(true); 		(This activates the deactivated object there holds the script)
+	 Dialogue1.SetActive(true); 		(This activates the deactivated object there holds the script)
 	 */
 
 	public int NumberOfDialogue;// This is necessary for dialogue number 2, 4, 5, 8, 13 and 14, the rest really dosn't need this input 
@@ -87,6 +87,11 @@ public class GUIDialogue : MonoBehaviour {
 			DialogueON = false;
 			lastDialogue = 16; 		// Just to make sure that no bugs happen!
 			currentDialogue = 0;	// To reset the variable, no clue if it will change on all "GUIDialogue" scripts)
+			if (NumberOfDialogue == 1){
+				Movement2.SetAnimationOn(true);
+			}
+			gameObject.SetActive(false);
+			DialogueON = false;
 		}
 	}
 
@@ -110,7 +115,7 @@ public class GUIDialogue : MonoBehaviour {
 					BackPack2.SetHaveBackpack(true);
 				}
 			}
-			// For dialogue 7 !!! (ABC choice9
+			// For dialogue 7 !!! (ABC choice)
 			if (NumberOfDialogue == 7 && currentDialogue == 0){
 				if (GUI.Button (new Rect(Screen.width/2-235, Screen.height/2+150, 470, 25), "Yes. I suggest that we should split up and search in either directions for food.")){
 					currentDialogue++;

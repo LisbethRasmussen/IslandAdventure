@@ -3,7 +3,7 @@ using System.Collections;
 //This script needs to be on the player character. For further information about the code, check CarlMovement scriptet
 public class AnimationsOnOff : MonoBehaviour {
 
-	public GameObject Player;
+	public GameObject Carl;
 	private int FrameCounter = 0;
 
 	public float animSpeed = 1.5f;
@@ -46,10 +46,12 @@ public class AnimationsOnOff : MonoBehaviour {
 			anim.SetInteger("NumberOfAnimation", 2);
 			FrameCounter++;
 			print (FrameCounter);
-			if (FrameCounter >= 260){
+			if (FrameCounter >= 500){
 				Animation1 = true;
 				Movement2.SetAnimationOn(false);
 				Movement2.SetGoNormal(true);
+				Carl.SetActive(true);
+				Movement2.SetCarlActive(true);
 				FrameCounter = 0;
 			}
 		}
@@ -70,3 +72,4 @@ public class AnimationsOnOff : MonoBehaviour {
 	
 	}
 }
+

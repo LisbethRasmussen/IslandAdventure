@@ -47,6 +47,9 @@ public class Movement2 : MonoBehaviour {
 	public static bool GetCarlActive(){ 
 		return CarlActive;
 	}
+	public static void SetCarlActive(bool x){ 
+		CarlActive = x;
+	}
 
 	//---------------------------------Cave Wall setters--------------------------------------
 	public static void SetGatherFood(bool x){
@@ -121,17 +124,9 @@ public class Movement2 : MonoBehaviour {
 		playerPosZ = transform.position.z;
 		playerPosY = transform.position.y;
 
-		//--------------------------------------Setting Carl to active and inactive.
-		/*Something like:
-		if (animation 1 == false && NormalSpeed.selfActive(true){
-			Carl.SetActive(true);
-			CarlActive = true;
-		}
-
-
 		//----------------------------------------Java c# coorperation cheat
-		if (Choices.GetChoice(3) == false && GUIDialogue.GetDialogueON() == false && AnimationON == false){
-			GoNormal = true
+		/*if (Choices.GetChoice(3) == false && GUIDialogue.GetDialogueON() == false && AnimationON == false){
+			GoNormal = true;
 		}
 		if (Choices.GetChoice(1) == false){ //If they chose to eat - we move faster!
 			GoFaster = true;
@@ -141,6 +136,8 @@ public class Movement2 : MonoBehaviour {
 			FasterSpeed.SetActive (false); //this is the speed after they've aten something, or if they are well rested.
 			SlowerSpeed.SetActive (true); //this value needs to be checked in the java script, it should be 0
 			MouseLook.SetMouseLookLock(true);
+			GoNormal = false;
+			GoFaster = false;
 
 		}
 		if (GoNormal == true){
@@ -149,20 +146,17 @@ public class Movement2 : MonoBehaviour {
 			SlowerSpeed.SetActive (false);
 			MouseLook.SetMouseLookLock(false);
 			Anim.enabled = false;
-			print ("heya");
 		}
 		if (GoFaster == true){
 			NormalSpeed.SetActive (false);
 			FasterSpeed.SetActive (true);
 			SlowerSpeed.SetActive (false);
 			MouseLook.SetMouseLookLock(false);
+			Anim.enabled = false;
 		}
-		/*if (AnimationON == true){
-			AnimatorObject.transform.parent = null;
+		if (AnimationON == true){
+			Anim.enabled = true;
 		}
-		if (AnimationON == false){
-			AnimatorObject.transform.parent = transform;
-		}*/
 		//------------------------------------------------------------------------------------------------
 
 		//------------------------------------------minibox game components
