@@ -38,6 +38,9 @@ public class AnimationsOnOff : MonoBehaviour {
 		if (PhotoAnimation.GetPhotoAnim()==2){
 			ValueHolder = true;
 		}
+		/*if (Input.GetKey(KeyCode.W)){
+			anim.SetInteger("NumberOfAnimation", 0);
+		}*/
 
 		if (Movement2.GetAnimationOn() == true && Idlle == true){
 			anim.SetInteger("NumberOfAnimation", 0);
