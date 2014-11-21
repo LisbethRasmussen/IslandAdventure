@@ -116,23 +116,29 @@ public class GUIDialogue : MonoBehaviour {
 
 			// For dialogue 2 !!! (ABC choice)
 			if (NumberOfDialogue == 2 && currentDialogue == 0){
+				ChoiceIsMade = true;
 				if (GUI.Button (new Rect(Screen.width/2-50, Screen.height/2+150, 100, 25), "What now?") || GUI.Button (new Rect(Screen.width/2-85, Screen.height/2+175, 170, 25), "Right. Let's just move on.")){
+					ChoiceIsMade = false;
 					currentDialogue++;
 					lastDialogue = 2;	// Will set the last Dialogue to 2 (3rd image) as the last part of the array is not needed
 					BackPack2.SetHaveBackpack(true);
 				}
 				else if (GUI.Button (new Rect(Screen.width/2-85, Screen.height/2+200, 170, 25), "No shit Sherlock.")){
+					ChoiceIsMade = false;
 					currentDialogue = 2;	// Skips a part of the dialogue which is not needed
 					BackPack2.SetHaveBackpack(true);
 				}
 			}
 			// For dialogue 7 !!! (ABC choice)
 			if (NumberOfDialogue == 7 && currentDialogue == 0){
+				ChoiceIsMade = true;
 				if (GUI.Button (new Rect(Screen.width/2-235, Screen.height/2+150, 470, 25), "Yes. I suggest that we should split up and search in either directions for food.")){
+					ChoiceIsMade = false;
 					currentDialogue++;
 					lastDialogue = 3;	// Will set the last Dialogue to 2 (3rd image) as the last part of the array is not needed
 				}
 				else if (GUI.Button (new Rect(Screen.width/2-235, Screen.height/2+175, 470, 25), "Yes. I suggest that we both go out looking for food together.") || GUI.Button (new Rect(Screen.width/2-235, Screen.height/2+200, 470, 25), "Yes. I suggest that you head out while I watch the fire.")){
+					ChoiceIsMade = false;
 					currentDialogue = 3;	// Skips a part of the dialogue which is not needed
 				}
 			}
