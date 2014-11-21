@@ -24,6 +24,8 @@ public class Movement2 : MonoBehaviour {
 	public GameObject CWallR;
 	public GameObject CWallB;
 
+	public GameObject IslandWall;
+
 	private static bool AnimationON = false;
 	//public GameObject AnimatorObject;
 	public Animator Anim;
@@ -157,6 +159,24 @@ public class Movement2 : MonoBehaviour {
 		}
 		if (AnimationON == false){
 			Anim.enabled = false;
+		}
+		/*if (Choices.GetWasChoiceMade(2) == true && Choices.GetChoice(2) == false) {
+			AnimationON = true;
+			IslandWall.SetActive (false);
+		}
+		if (Choices.GetWasChoiceMade(2) == true && Choices.GetChoice(2) == true && playerPosY <= 22) {
+			AnimationON = true;
+			IslandWall.SetActive (false);
+		}*/
+		if (Choices.GetWasChoiceMade(2) == true){
+			AnimationsOnOff.SetIdlle(false);
+			if (Choices.GetChoice(2) == false){
+				IslandWall.SetActive (false);
+			}
+			if (Choices.GetChoice(2) == true && playerPosY <= 22){
+				AnimationCounter = 4;
+				IslandWall.SetActive (false);
+			}
 		}
 		//------------------------------------------------------------------------------------------------
 

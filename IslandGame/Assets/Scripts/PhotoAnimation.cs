@@ -23,11 +23,14 @@ public class PhotoAnimation : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
 		if (ThePictureFlyAway.GetPhotoActive() == true && ActivateAnimationOne == false){
 			anim.SetInteger("AnimationNumber", 1);
 			if(this.anim.GetCurrentAnimatorStateInfo(0).IsName("Picture1") && this.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1){
+				Movement2.SetAnimationOn(true);
+				AnimationsOnOff.SetIdlle(true);
 				ActivateAnimationOne = true;
+				Choices.SetDecisionToBeMade(true);
+				Choices.SetChoiceNumber(2);
 			}
 		}
 		if (ActivateAnimationOne == true){

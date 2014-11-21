@@ -29,7 +29,7 @@ public class TestResultManager : MonoBehaviour {
     {
 		TestResult Data = new TestResult();	// A new set of "TestResults" (See its script) called "Data"
 		for (int i = 0; i < 6; i++){
-			if(Choices.GetWasChoiceMade(i) == true){	// If the test participant was able to answer on time then:
+			if(Choices.GetTimerRanOut(i) == false){	// If the test participant was able to answer on time then:
 				if(Choices.GetChoice(i+1) == true)
 					Data.choice[i] = "Rational";	// Insets the data from the test into the "Data"set
 				else if(Choices.GetChoice(i+1) == false)

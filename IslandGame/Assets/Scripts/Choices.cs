@@ -16,7 +16,8 @@ public class Choices : MonoBehaviour {
 
 	private static bool DecisionToBeMade;	// A bool stating of we are currently making a choice or not
 	private static bool[] Choice;			// An array of bools there contains all the answers from the choices (is used for change of dialogue and for the final test results)
-	private static bool[] WasChoiceMade;	// An array there checks if a chocie was made during testing (used for the timer)
+	private static bool[] TimerRanOut;		// An array there checks if a chocie was made during testing (used for the timer)
+	private static bool[] WasChoiceMade;	// Checks if a certain choice have been made
 	private static int ChoiceNumber = 0;	// A counter for what choice there shall be made.
 	private string[] RationalChoice = {		// An array of strings there contain all the rational decisions
 		"No. We should save them for later.",
@@ -47,8 +48,12 @@ public class Choices : MonoBehaviour {
 		return Choice[index-1];	// -1 as an array starts with 0 and it is not to confuse people when we look back at the code
 	}
 
+	public static bool GetTimerRanOut(int index){
+		return TimerRanOut[index];
+	}
+
 	public static bool GetWasChoiceMade(int index){
-		return WasChoiceMade[index];
+		return WasChoiceMade[index-1];
 	}
 
 	public static void SetChoiceNumber(int Num){
@@ -58,9 +63,11 @@ public class Choices : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Choice = new bool[6];			// Stores 6 bools in our choice array, these will be the answers for our test!
-		WasChoiceMade = new bool[6];	// Stores 6 bools in our was choice made? aray, this is need to get a "No answer" if people don't get to answer
+		TimerRanOut = new bool[6];	// Stores 6 bools in our was choice made? aray, this is need to get a "No answer" if people don't get to answer
+		WasChoiceMade = new bool[6];
 		for (int i = 0; i < 6; i++){
-			WasChoiceMade[i] = true;	// Sets every entry in the array to be true for now (so we don't have to code it below
+			TimerRanOut[i] = false;	// Sets every entry in the array to be true for now (so we don't have to code it below
+			WasChoiceMade[i] = false;
 		}
 		timeBarBACK.enabled = false;	
 		timeBarFRONT.enabled = false;
@@ -118,6 +125,7 @@ public class Choices : MonoBehaviour {
 	private void ChoiceMade(int index, bool result){
 		Choice[index] = result;		// Sets the result into the current index of the choice array
 		DecisionToBeMade = false;	// A decision was made, so this should be set to false now
+		WasChoiceMade [index] = true;	// Sets that a current choice have been made
 
 		if (TestStart.GetTimeOn() == true)
 			ResetTimer();						// If time was on shall the timer be reseted now
@@ -134,7 +142,8 @@ public class Choices : MonoBehaviour {
 		else if (RandomResult == 1)
 			Choice[index] = false;		// if that number is 1 then will the choice be emotional
 		DecisionToBeMade = false;		// A decision was "kinda" made, so this should be set to false now
-		WasChoiceMade[index] = false;	// Sets the index of the Was choice made? variable to false, this is used for the results later
+		WasChoiceMade[index] = true;			// Sets that a current choice have been made
+		TimerRanOut[index] = true;	// Sets the index of the Was choice made? variable to false, this is used for the results later
 
 		if (TestStart.GetTimeOn() == true)
 			ResetTimer();						// If time was on shall the timer be reseted now
