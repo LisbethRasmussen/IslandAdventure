@@ -15,6 +15,7 @@ var useFixedUpdate : boolean = true;
 var SpeedBoxNormal : GameObject; //this is some psheudo way of getting C# and java to interact.
 var SpeedBoxSlow : GameObject; //because both scripts can check and set if an object is active or not
 var SpeedBoxFaster : GameObject; //so If a C# script sets an object to active/passive, the java should be able to respond.
+var SpeedBoxBrokenLeg : GameObject;
 //--------------------------------------------not working yet-------------------------------------------------
 
 
@@ -195,7 +196,7 @@ function Awake () {
 //-----------------------------------------------------------------------------------------------------
 private function UpdateFunction () {
 	if (SpeedBoxNormal.activeSelf == true){
-		Speed = 10.0f;
+		Speed = 6.0f;
 		movement.maxForwardSpeed = Speed;
 		movement.maxSidewaysSpeed = Speed;
 		movement.maxBackwardsSpeed = Speed;
@@ -207,7 +208,13 @@ private function UpdateFunction () {
 		movement.maxBackwardsSpeed = Speed;
 	}
 	if (SpeedBoxFaster.activeSelf == true){
-		Speed = 100.0f;
+		Speed = 10.0f;
+		movement.maxForwardSpeed = Speed;
+		movement.maxSidewaysSpeed = Speed;
+		movement.maxBackwardsSpeed = Speed;
+	}
+	if (SpeedBoxBrokenLeg.activeSelf == true){
+		Speed = 4.0f;
 		movement.maxForwardSpeed = Speed;
 		movement.maxSidewaysSpeed = Speed;
 		movement.maxBackwardsSpeed = Speed;

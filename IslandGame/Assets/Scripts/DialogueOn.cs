@@ -45,9 +45,10 @@ public class DialogueOn : MonoBehaviour {
 			Dialogue2.SetActive(true);
 			Trigger[2-1] = false;
 		}
-		if (Hook.GetBoxesOnLand() == 3 && Movement2.GetFoodCount() == 2 && Trigger [3-1] == true)
-			GUIDialogue.SetDialogueON(true);
-			Dialogue3.SetActive(true);
-			Trigger[3-1] = false;
+		if (Hook.GetBoxesOnLand () == 3 && Movement2.GetFoodCount () == 3 && Trigger [3 - 1] == true){
+			GUIDialogue.SetDialogueON (true);
+			Dialogue3.SetActive (true);
+			Trigger [3 - 1] = false;
+		}
 	}
 }

@@ -94,6 +94,13 @@ public class GUIDialogue : MonoBehaviour {
 				Movement2.SetMiniGameOn(true);
 				Movement2.SetGoNormal(true);
 			}
+			if (NumberOfDialogue == 3 && Choices.GetChoice(1) == false){
+				Movement2.SetGoFaster(true);
+				Movement2.SetFoodCount(0);
+			}
+			if (NumberOfDialogue == 3 && Choices.GetChoice(1) == true){
+				Movement2.SetGoNormal(true);
+			}
 			gameObject.SetActive(false);
 			DialogueON = false;
 		}

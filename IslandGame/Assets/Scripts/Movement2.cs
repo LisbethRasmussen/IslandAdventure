@@ -38,13 +38,16 @@ public class Movement2 : MonoBehaviour {
 	public GameObject NormalSpeed;//these game objects creates a bridge to the java script characterMotor. As we were unsuccessfull to make the scripts interact
 	public GameObject FasterSpeed;//the middle way was to create these objects, and make the c# script set them active or not active, and then let the javascript
 	public GameObject SlowerSpeed;//detect which object is active and set the speed to a certain value, if a certain object is active on the scene.
+	public GameObject BrokenLegSpeed;
 	//the code in the java script for this is after line 190 and consists of three if statements checking for the objects' active status.
 	//The objects needs to be placed out of sight at all times. They are not part of the graphics.
 
 	public static bool GoNormal = false;
 	public static bool GoFaster = false;
+	public static bool LegBroken = false;
 	public static void SetGoNormal(bool x){ GoNormal = x;}
 	public static void SetGoFaster(bool x){ GoFaster = x;}
+	public static void SetLegBroken(bool x){ LegBroken = x;}
 
 	//---------------------------------------The Carl getter------------------------------------
 	public static bool GetCarlActive(){ return CarlActive;}
@@ -67,6 +70,7 @@ public class Movement2 : MonoBehaviour {
 	//----------------------------------------------------------------------------------------------------
 	//code for sending the number of food items picked up to the backpack script
 	public static int GetFoodCount(){return foodCount;}
+	public static void SetFoodCount(int x){foodCount = x;}
 	public static int GetFireWood(){ return FireWood;}
 	//--------------------------------------code for sending the information about the players positions
 	public static float GetPlayerX() {
@@ -86,6 +90,7 @@ public class Movement2 : MonoBehaviour {
 		NormalSpeed.SetActive (false); //to false
 		FasterSpeed.SetActive (false);
 		SlowerSpeed.SetActive (false); //to true
+		BrokenLegSpeed.SetActive (false);
 		MouseLook.SetMouseLookLock(true); //to false
 
 		CWallF.SetActive (true);
@@ -119,12 +124,15 @@ public class Movement2 : MonoBehaviour {
 			MouseLook.SetMouseLookLock(true);
 			GoNormal = false;
 			GoFaster = false;
+			LegBroken = false;
+
 
 		}
 		if (GoNormal == true && GUIDialogue.GetDialogueON() == false && AnimationON == false){
 			NormalSpeed.SetActive (true);
 			FasterSpeed.SetActive (false);
 			SlowerSpeed.SetActive (false);
+			BrokenLegSpeed.SetActive (false);
 			MouseLook.SetMouseLookLock(false);
 			Anim.enabled = false;
 		}
@@ -132,6 +140,15 @@ public class Movement2 : MonoBehaviour {
 			NormalSpeed.SetActive (false);
 			FasterSpeed.SetActive (true);
 			SlowerSpeed.SetActive (false);
+			BrokenLegSpeed.SetActive (false);
+			MouseLook.SetMouseLookLock(false);
+			Anim.enabled = false;
+		}
+		if (LegBroken == true && GUIDialogue.GetDialogueON() == false && AnimationON == false){
+			NormalSpeed.SetActive (false);
+			FasterSpeed.SetActive (false);
+			SlowerSpeed.SetActive (false);
+			BrokenLegSpeed.SetActive (true);
 			MouseLook.SetMouseLookLock(false);
 			Anim.enabled = false;
 		}
