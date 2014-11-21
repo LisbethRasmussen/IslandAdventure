@@ -13,6 +13,10 @@ public class ThePictureFlyAway : MonoBehaviour {
 	private float SPZ; //Z
 	public GameObject InvisibleWall; //We need to disable the invisible wall as well.
 
+	public static bool PhotoActive = false;
+
+	public static bool GetPhotoActive(){return PhotoActive;}
+
 	// Use this for initialization
 	void Start () {
 
@@ -28,9 +32,10 @@ public class ThePictureFlyAway : MonoBehaviour {
 
 		Destroy(gameObject); //destroying the trigger object so we don't suddenly get multiple pictures
 
-		GameObject.Instantiate(ThePhoto, new Vector3(SPX += 1.0f,SPY += 1.0f,SPZ += 1.0f), transform.rotation); //spawn the photo!
+		GameObject.Instantiate(ThePhoto, new Vector3(SPX -= 1243.6f,SPY -= 35.7f,SPZ -= 1438.7f), transform.rotation); //spawn the photo!
 
 		InvisibleWall.SetActive (false);//we need to allow the player to go in the water after loosing the picture.
+		PhotoActive = true;
 
 		BackPack2.SetHaveBackpack (false);
 	}
