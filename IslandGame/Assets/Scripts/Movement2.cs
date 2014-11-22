@@ -131,7 +131,8 @@ public class Movement2 : MonoBehaviour {
 
 
 		}
-		if (GoNormal == true && GUIDialogue.GetDialogueON() == false && AnimationON == false && DoNotMove == false){
+		if (GoNormal == true && GUIDialogue.GetDialogueON() == false/* && AnimationON == false && DoNotMove == false*/){
+			print ("i walk normal");
 			NormalSpeed.SetActive (true);
 			FasterSpeed.SetActive (false);
 			SlowerSpeed.SetActive (false);
@@ -139,7 +140,8 @@ public class Movement2 : MonoBehaviour {
 			MouseLook.SetMouseLookLock(false);
 			Anim.enabled = false;
 		}
-		if (GoFaster == true && GUIDialogue.GetDialogueON() == false && AnimationON == false && DoNotMove == false){
+		if (GoFaster == true && GUIDialogue.GetDialogueON() == false/* && AnimationON == false && DoNotMove == false*/){
+			print ("i go faster");
 			NormalSpeed.SetActive (false);
 			FasterSpeed.SetActive (true);
 			SlowerSpeed.SetActive (false);
@@ -147,7 +149,7 @@ public class Movement2 : MonoBehaviour {
 			MouseLook.SetMouseLookLock(false);
 			Anim.enabled = false;
 		}
-		if (LegBroken == true && GUIDialogue.GetDialogueON() == false && AnimationON == false && DoNotMove == false){
+		if (LegBroken == true && GUIDialogue.GetDialogueON() == false/* && AnimationON == false && DoNotMove == false*/){
 			NormalSpeed.SetActive (false);
 			FasterSpeed.SetActive (false);
 			SlowerSpeed.SetActive (false);
@@ -182,9 +184,7 @@ public class Movement2 : MonoBehaviour {
 				IslandWall.SetActive (false);
 				AnimationON = true;
 			}
-			if (Choices.GetChoice(2) == true && playerPosY <= 22){
-				AnimationON = true;
-				AnimationCounter = 4;
+			if (Choices.GetChoice(2) == true){
 				IslandWall.SetActive (false);
 			}
 		}

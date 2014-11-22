@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//this script will be used to trigger every single pice of dialogue, but it will be called from many different scripts.
+
 public class DialogueOn : MonoBehaviour {
 
 	public GameObject Dialogue1;	// The game objects there shall contain each dialogue empty objects
@@ -49,6 +51,11 @@ public class DialogueOn : MonoBehaviour {
 			GUIDialogue.SetDialogueON (true);
 			Dialogue3.SetActive (true);
 			Trigger [3 - 1] = false;
+		}
+		if (AnimationsOnOff.GetConversation4Active() == true && Trigger [4 - 1] == true){
+			GUIDialogue.SetDialogueON (true);
+			Dialogue4.SetActive (true);
+			Trigger [4 - 1] = false;
 		}
 	}
 }
