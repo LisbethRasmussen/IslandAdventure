@@ -23,6 +23,10 @@ public class Movement2 : MonoBehaviour {
 	public GameObject CWallL;
 	public GameObject CWallR;
 	public GameObject CWallB;
+	private bool GoSearch = true;
+	public GameObject CampFire;
+	private static bool CampfireOn = false;
+	public static bool GetCampfireOn(){return CampfireOn;}
 
 	public GameObject IslandWall;
 
@@ -70,6 +74,9 @@ public class Movement2 : MonoBehaviour {
 
 	public static bool GetMiniGameOn(){return MiniGameOn;}
 	public static void SetMiniGameOn(bool x){MiniGameOn = x;} //this is set to true in the GUIDialogue script when the end of dialogue 2 has been reached.
+	//---------------------------------------------------------------------------We need to drink stuff----------
+	private float GoDownCount = 0;
+
 	//----------------------------------------------------------------------------------------------------
 	//code for sending the number of food items picked up to the backpack script
 	public static int GetFoodCount(){return foodCount;}
@@ -100,6 +107,8 @@ public class Movement2 : MonoBehaviour {
 		CWallL.SetActive (true);
 		CWallR.SetActive (true);
 		CWallB.SetActive (false);
+
+		CampFire.SetActive (false);
 
 		Carl.SetActive (false); //We don't want him to be there at first!!!
 		CarlActive = false;
@@ -132,7 +141,7 @@ public class Movement2 : MonoBehaviour {
 
 		}
 		if (GoNormal == true && GUIDialogue.GetDialogueON() == false/* && AnimationON == false && DoNotMove == false*/){
-			print ("i walk normal");
+			//print ("i walk normal");
 			NormalSpeed.SetActive (true);
 			FasterSpeed.SetActive (false);
 			SlowerSpeed.SetActive (false);
@@ -141,7 +150,7 @@ public class Movement2 : MonoBehaviour {
 			Anim.enabled = false;
 		}
 		if (GoFaster == true && GUIDialogue.GetDialogueON() == false/* && AnimationON == false && DoNotMove == false*/){
-			print ("i go faster");
+			//print ("i go faster");
 			NormalSpeed.SetActive (false);
 			FasterSpeed.SetActive (true);
 			SlowerSpeed.SetActive (false);
@@ -212,14 +221,35 @@ public class Movement2 : MonoBehaviour {
 			MiniGameOn = false; //just to be sure that the stick does not respawn.
 		}
 		//------------------------------------------mingame code stop-----------------------------------
+		//-------------------------------------------------------------------We need a drink!------------
+
+		if (LetUsDrink.GetDrink() == true && Input.GetKey(KeyCode.E)){
+			/*GoDownCount-= 0.1f;
+			transform.position.y -= 0.1f;
+			if (GoDownCount <= -1.5f){
+				GoDownCount += 0.1f;
+				transform.position.y += 0.1f;
+				if (GoDownCount >= 0.1){*/
+			LetUsDrink.SetDrink(false);
+			LetUsDrink.SetDoneDrinking(true);
+				/*}
+			}*/
+
+		}
+
+		//---------------------------------------------------------We have now been drinking-----------
+
 
 		//-------------------------------------------------------------walls around the cave
-		if (playerPosX >= 1040 && playerPosX <= 1020 && playerPosZ >= 1334 && playerPosZ <= 1320 && arrivedFirstTime == false){
+		if (playerPosX >= 1042 && playerPosX <= 1069 && playerPosZ >= 1330 && playerPosZ <= 1348 && arrivedFirstTime == false){
 			CWallB.SetActive (true);
 			arrivedFirstTime = true;
+			CampFire.SetActive(true);//when Carl have his animation, this needs to be put somewhere else
 		}
-		if (GatherFood == true){
+		if (GatherFood == true && GoSearch == true){
 			CWallL.SetActive(false);
+			Carl.SetActive(false);
+			GoSearch = false;
 		}
 		if (FindCarl == true){
 			CWallR.SetActive(false);
@@ -228,15 +258,14 @@ public class Movement2 : MonoBehaviour {
 		if (ProceedFromTheCave == true){
 			CWallF.SetActive(false);
 		}
-
-
-		/*if (playerPosX >= 2000 && playerPosX <= 3000 && playerPosZ >= 2000 && playerPosZ <= 3000 && GatherFood == true){
-				FoodAreaWallF.SetActive (true); //the above values needs to be adjusted.
-				FoodAreaWallL.SetActive (true);
-				FoodAreaWallR.SetActive (true);
-				FoodAreaWallB.SetActive (true);
+		if (playerPosX >= 1080 && playerPosZ >= 1272 && playerPosZ <= 1359 && GatherFood == true){
+			CWallL.SetActive(true);
 		}
-		if (foodCount == 7.0f){
+		if (foodCount == 4){
+			GatherFood = false;
+			CWallL.SetActive(false);
+		}
+		/*if (foodCount == 7.0f){
 			FoodAreaWallF.SetActive (false);
 			FoodAreaWallL.SetActive (false);
 			FoodAreaWallR.SetActive (false);

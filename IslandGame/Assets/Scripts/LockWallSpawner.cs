@@ -9,21 +9,28 @@ public class LockWallSpawner : MonoBehaviour {
 	private float DistanceZ;
 
 	public GameObject objectiveOne;
-	public GameObject objectiveTwo;
-	public GameObject objectiveThree;
+	/*public GameObject objectiveTwo;
+	//public GameObject objectiveThree; //this and its followers is not needed, as these are set in the movement script.
 	public GameObject objectiveFour;
 	public GameObject objectiveFive;
-	public GameObject objectiveSix;
+	public GameObject objectiveSix;*/
 
 	private bool objectiveOneB = false; //ultimately these values should be obtained from another script by the use of a getter.
 	private bool objectiveTwoB = false; //they should be linked to the choice script.
-	private bool objectiveThreeB = false;
+	//private bool objectiveThreeB = false;
 	private bool objectiveFourB = false;
 	private bool objectiveFiveB = false;
 	private bool objectiveSixB = false;
 
 	// Use this for initialization
 	void Start () {
+
+		objectiveOne.SetActive (false);
+		/*objectiveTwo.SetActive (false);
+		//objectiveThree.SetActive (false);
+		objectiveFour.SetActive (false);
+		objectiveFive.SetActive (false);
+		objectiveSix.SetActive (false);*/
 	
 	}
 	
@@ -33,22 +40,20 @@ public class LockWallSpawner : MonoBehaviour {
 		DistanceX = Mathf.Abs (Movement2.GetPlayerX()); //setting the values to the player values. It is not really necessary, but it looks prettyer not writing mathf. abs constantly
 		DistanceZ = Mathf.Abs (Movement2.GetPlayerZ());
 
-		if (DistanceX >= 1 && DistanceZ >= 1){
-			if (objectiveOneB == true){
-				GameObject.Instantiate(objectiveOne, new Vector3(1f,0f,1f), transform.rotation);
-			}
+		if (DistanceX >= 1197f){
+				objectiveOne.SetActive(true);
 		}
-		if (DistanceX >= 2 && DistanceZ >= 2){
+		/*if (DistanceX >= 2 && DistanceZ >= 2){
 			if (objectiveTwoB == true){
 				GameObject.Instantiate(objectiveTwo, new Vector3(1f,0f,1f), transform.rotation);
 			}
-		}
-		if (DistanceX >= 2 && DistanceZ >= 2){
+		}*/
+		/*if (DistanceX >= 2 && DistanceZ >= 2){
 			if (objectiveThreeB == true){
 				GameObject.Instantiate(objectiveThree, new Vector3(1f,0f,1f), transform.rotation);
 			}
-		}
-		if (DistanceX >= 2 && DistanceZ >= 2){
+		}*/
+		/*if (DistanceX >= 2 && DistanceZ >= 2){
 			if (objectiveFourB == true){
 				GameObject.Instantiate(objectiveFour, new Vector3(1f,0f,1f), transform.rotation);
 			}
@@ -62,7 +67,7 @@ public class LockWallSpawner : MonoBehaviour {
 			if (objectiveSixB == true){
 				GameObject.Instantiate(objectiveSix, new Vector3(1f,0f,1f), transform.rotation);
 			}
-		}
+		}*/
 	
 	}
 }

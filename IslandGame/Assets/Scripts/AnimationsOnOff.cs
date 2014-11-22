@@ -64,7 +64,7 @@ public class AnimationsOnOff : MonoBehaviour {
 			LetUsGoInvisible.SetBlackMyScreen(true);
 			anim.SetInteger("NumberOfAnimation", 2);//animation: player looks over water and jumps back
 			if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("BoatWater") && this.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1){
-				print ("Hello fucking world!");
+				//print ("Hello fucking world!");
 				Movement2.SetAnimationOn(false);
 				Movement2.SetGoNormal(true);
 				Movement2.SetAnimationCounter(Movement2.GetAnimationCounter() + 1);
@@ -89,20 +89,22 @@ public class AnimationsOnOff : MonoBehaviour {
 				LetUsGoInvisible.SetHowManyBlackFrames(10);
 				LetUsGoInvisible.SetBlackMyScreen(true);
 			}
-			print ("anim 4");
+			//print ("anim 4");
 			anim.SetInteger("NumberOfAnimation", 4);//swim around in panic!
 			Movement2.SetGoNormal(true);
 			if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("InWater") && this.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1){
 				Movement2.SetAnimationCounter(Movement2.GetAnimationCounter() + 1);
-				print ("anim 4 done");
+				//print ("anim 4 done");
 				if (Choices.GetChoice(1) == true){
-					print ("normal");
+					//print ("normal");
 					Movement2.SetAnimationOn(false);
 					Movement2.SetGoNormal(true);
 					Carl.SetActive(true);
 					LetUsGoInvisible.SetGetReadyAgainBlackMyScreen(false);
 					LetUsGoInvisible.SetBlackMyScreen(false);
 					Movement2.SetDoNotMove(false);
+					Conversation4Active = true;
+					Movement2.SetFoodCount(0);
 				}
 				if (Choices.GetChoice(1) == false){
 					print ("faster");
@@ -112,6 +114,7 @@ public class AnimationsOnOff : MonoBehaviour {
 					LetUsGoInvisible.SetGetReadyAgainBlackMyScreen(false);
 					LetUsGoInvisible.SetBlackMyScreen(false);
 					Movement2.SetDoNotMove(false);
+					Conversation4Active = true;
 
 				}
 			}

@@ -3,6 +3,11 @@ using System.Collections;
 
 public class GUIDialogue : MonoBehaviour {
 
+	//new stuff--------------
+	private static bool DrinkCarl = false;
+	private static bool GetDrinkCarl(){return DrinkCarl;}
+	//---------------------
+
 	/*To start a dialogue is there 2 lines of code be used:
 	 But first make a public GameObject object in the script there shall activate the dialogue (like "DialogueObj01") This empty GameObject shall be deactivated from the start!
 	 GUIDialogue.SetDialogueON(true);	(Makes the program know that a dialogue shall play now)
@@ -100,6 +105,12 @@ public class GUIDialogue : MonoBehaviour {
 			}
 			if (NumberOfDialogue == 3 && Choices.GetChoice(1) == true){
 				Movement2.SetGoNormal(true);
+			}
+			if (NumberOfDialogue == 5){
+				//set carl Active = false;
+			}
+			if (NumberOfDialogue == 7){
+				Movement2.SetGatherFood(true);
 			}
 			gameObject.SetActive(false);
 			DialogueON = false;

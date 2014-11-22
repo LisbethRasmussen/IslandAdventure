@@ -27,6 +27,10 @@ public class DialogueOn : MonoBehaviour {
 
 	private bool[] Trigger;	// A trigger for letting a dialogue only trigger once
 
+	private float PlayerX;
+	private float PlayerY;
+	private float PlayerZ;
+
 	// Use this for initialization
 	void Start () {
 		Trigger = new bool[19];
@@ -37,6 +41,13 @@ public class DialogueOn : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		PlayerX = Movement2.GetPlayerX();
+		PlayerY = Movement2.GetPlayerY();
+		PlayerZ = Movement2.GetPlayerZ();
+
+
+
 		if (Ib.GetDialogueTrigger1() == true && Trigger[1-1] == true) {
 			GUIDialogue.SetDialogueON(true);
 			Dialogue1.SetActive(true);
@@ -56,6 +67,21 @@ public class DialogueOn : MonoBehaviour {
 			GUIDialogue.SetDialogueON (true);
 			Dialogue4.SetActive (true);
 			Trigger [4 - 1] = false;
+		}
+		if (PlayerZ >= 1403f && PlayerZ <= 1472 && PlayerX <= 1124 && Trigger [5 - 1] == true){
+			GUIDialogue.SetDialogueON (true);
+			Dialogue5.SetActive (true);
+			Trigger [5 - 1] = false;
+		}
+		if (PlayerZ >= 1348f && PlayerZ <= 1428 && PlayerX <= 1086 && Trigger [6 - 1] == true){
+			GUIDialogue.SetDialogueON (true);
+			Dialogue6.SetActive (true);
+			Trigger [6 - 1] = false;
+		}
+		if (Movement2.GetCampfireOn() == true && Trigger [7 - 1] == true){
+			GUIDialogue.SetDialogueON (true);
+			Dialogue7.SetActive (true);
+			Trigger [7 - 1] = false;
 		}
 	}
 }
