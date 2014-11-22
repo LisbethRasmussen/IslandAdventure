@@ -23,14 +23,16 @@ public class LetUsGoInvisible : MonoBehaviour {
 
 	private int FadedTooManyTimes = 0; //we only want the scene to fade a certain number of times.
 	private static bool BlackMyScreen = false; //we need a "glitch" so the player knows that a cutscene is happening
+	private static int HowManyBlackFrames = 0; //because different animations take different times to set themselves in position.
 	private static bool Sleeping = false; //not matter what a sleeping scene occures, so the screen also needs to be black there.
+	private bool PrivateBlackMyScreen = false;
+	private static bool GetReadyAgainBlackMyScreen = true;
 
-	public static void SetFogBegin(bool x){//this value is to be set outside.
-		HasGameStarted = x;
-	}
-	public static void SetBlackMyScreen (bool x){//same same
-		BlackMyScreen = x;
-	}
+	public static void SetFogBegin(bool x){HasGameStarted = x;}
+	public static void SetBlackMyScreen (bool x){BlackMyScreen = x;}
+	public static void SetHowManyBlackFrames (int x){HowManyBlackFrames = x;}
+	public static void SetGetReadyAgainBlackMyScreen (bool x){GetReadyAgainBlackMyScreen = x;}
+
 	public static bool SetSleep (){//need a returner to send a message to a sound script with snorring (maybe not necessary).
 		return Sleeping;
 	}
@@ -73,21 +75,28 @@ public class LetUsGoInvisible : MonoBehaviour {
 			FadedTooManyTimes = 0;
 		}
 
-		if (BlackMyScreen == true && Movement2.GetAnimationOn() == true) {
+		if (BlackMyScreen == true && Movement2.GetAnimationOn() == true && PrivateBlackMyScreen == false) {
 			renderer.material.color = new Color(0,0,0,1);
 			fadeCounter ++;
-			if (fadeCounter == 48){
+			if (fadeCounter >= HowManyBlackFrames){
 				renderer.material.color = new Color(0,0,0,0);
-				BlackMyScreen = false;
+				PrivateBlackMyScreen = true;
+				fadeCounter = 0;
+				print ("stop this");
 			}
-
+		}
+		if (GetReadyAgainBlackMyScreen == false){
+			PrivateBlackMyScreen = false;
+			GetReadyAgainBlackMyScreen = true;
+			print ("get ready");
 		}
 		if (Sleeping == true) { //change this with the GUI dialogue script and the Choices script
 			renderer.material.color = new Color(0,0,0,1); //the 1 stands for not being transparent at all
 			fadeCounter ++;
-			if (fadeCounter == 100){
+			if (fadeCounter >= 100){
 				renderer.material.color = new Color(0,0,0,0); //while the 0 is totally transparent
 				Sleeping = false;
+				fadeCounter = 0;
 			}
 			
 		}

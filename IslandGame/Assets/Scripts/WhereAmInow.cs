@@ -4,6 +4,7 @@ using System.Collections;
 public class WhereAmInow : MonoBehaviour {
 
 	private float DistanceX;
+	private float DistanceY;
 	private float DistanceZ;
 
 	public GUIText WhereIam;
@@ -17,9 +18,10 @@ public class WhereAmInow : MonoBehaviour {
 	void Update () {
 
 		DistanceX = Mathf.Abs (Movement2.GetPlayerX());
+		DistanceY = Mathf.Abs (Movement2.GetPlayerY());
 		DistanceZ = Mathf.Abs (Movement2.GetPlayerZ());
 
-		WhereIam.text = DistanceX + "   " + DistanceZ;
+		WhereIam.text = DistanceX + "   " + DistanceY + "   " + DistanceZ;
 	
 	}
 }

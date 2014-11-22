@@ -34,7 +34,7 @@ public class AnimationsOnOff : MonoBehaviour {
 		//startPosition = transform.localPosition += new Vector3(1263f, 35f, 1421f);;
 
 
-		print (Movement2.GetAnimationCounter ());
+		//print (Movement2.GetAnimationCounter ());
 		if (PhotoAnimation.GetPhotoAnim()==2){
 			ValueHolder = true;
 		}
@@ -58,6 +58,8 @@ public class AnimationsOnOff : MonoBehaviour {
 		}
 
 		if (Movement2.GetAnimationCounter() == 2 && Movement2.GetAnimationOn() == true && Idlle == false){
+			LetUsGoInvisible.SetHowManyBlackFrames(48);
+			LetUsGoInvisible.SetBlackMyScreen(true);
 			anim.SetInteger("NumberOfAnimation", 2);//animation: player looks over water and jumps back
 			if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("BoatWater") && this.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1){
 				print ("Hello fucking world!");
@@ -65,11 +67,14 @@ public class AnimationsOnOff : MonoBehaviour {
 				Movement2.SetGoNormal(true);
 				Movement2.SetAnimationCounter(Movement2.GetAnimationCounter() + 1);
 				Conversation2Active = true;
+				LetUsGoInvisible.SetGetReadyAgainBlackMyScreen(false);
+				LetUsGoInvisible.SetBlackMyScreen(false);
 			}
 		}
 		if (Movement2.GetAnimationCounter() == 3 && Movement2.GetAnimationOn() == true && ValueHolder == true && Choices.GetChoice(2) == false && Choices.GetWasChoiceMade(2) == true && Idlle == false){
+			LetUsGoInvisible.SetHowManyBlackFrames(10);
+			LetUsGoInvisible.SetBlackMyScreen(true);
 			anim.SetInteger("NumberOfAnimation", 3); //player jumps into water
-
 			if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("JumpWater") && this.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1){
 				Movement2.SetAnimationCounter(Movement2.GetAnimationCounter() + 1);
 				BackPack2.SetHaveBackpack(false);
@@ -77,19 +82,31 @@ public class AnimationsOnOff : MonoBehaviour {
 				JumpInWater = true;
 			}
 		}
-		if ((Movement2.GetAnimationOn() == true && JumpInWater == true) || (Movement2.GetAnimationOn() == true && Choices.GetChoice(2) == true && Movement2.GetPlayerY() <=21) && Idlle == false){
-			anim.SetInteger("NumberOfAnimation", 4);
+		if ((Movement2.GetAnimationOn() == true && JumpInWater == true) || (Movement2.GetAnimationOn() == true && Choices.GetChoice(2) == true && Movement2.GetPlayerY() <=21)){
+			if(Choices.GetChoice(2) == true){
+				LetUsGoInvisible.SetHowManyBlackFrames(10);
+				LetUsGoInvisible.SetBlackMyScreen(true);
+			}
+			//print ("anim 4");
+			anim.SetInteger("NumberOfAnimation", 4);//swim around in panic!
 			if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("InWater") && this.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1){
 				Movement2.SetAnimationCounter(Movement2.GetAnimationCounter() + 1);
-				if (Choices.GetChoice(2) == true){
+				if (Choices.GetChoice(1) == true){
 					Movement2.SetAnimationOn(false);
 					Movement2.SetGoNormal(true);
 					Carl.SetActive(true);
+					LetUsGoInvisible.SetGetReadyAgainBlackMyScreen(false);
+					LetUsGoInvisible.SetBlackMyScreen(false);
+					Movement2.SetDoNotMove(false);
 				}
-				if (Choices.GetChoice(2) == false){
+				if (Choices.GetChoice(1) == false){
 					Movement2.SetAnimationOn(false);
 					Movement2.SetGoFaster(true);
 					Carl.SetActive(true);
+					LetUsGoInvisible.SetGetReadyAgainBlackMyScreen(false);
+					LetUsGoInvisible.SetBlackMyScreen(false);
+					Movement2.SetDoNotMove(false);
+
 				}
 			}
 		}

@@ -27,6 +27,7 @@ public class Movement2 : MonoBehaviour {
 	public GameObject IslandWall;
 
 	private static bool AnimationON = false;
+	private static bool DoNotMove = false;
 	//public GameObject AnimatorObject;
 	public Animator Anim;
 	public static int AnimationCounter = 1;
@@ -62,7 +63,7 @@ public class Movement2 : MonoBehaviour {
 	//------------------------------------------------------------------------------don't move!
 	public static bool GetAnimationOn(){return AnimationON;} //this is to make sure that the animator script only does something when this is turned true
 	public static void SetAnimationOn(bool x){AnimationON = x;} //several different scripts can be used to trigger the animation accoring to time and place, therefore we need a setter.
-	
+	public static void SetDoNotMove(bool x){DoNotMove = x;}
 	//------------------------------------------minigame code-----------------------------------------
 	public GameObject myStick;			// I need mah stick!
 	public static bool MiniGameOn = false; //Is the box game even on?
@@ -119,7 +120,7 @@ public class Movement2 : MonoBehaviour {
 		if (Choices.GetChoice(1) == false){ //If they chose to eat - we move faster!
 			GoFaster = true;
 		}*/
-		if(GUIDialogue.GetDialogueON() == true || AnimationON == true){
+		if(GUIDialogue.GetDialogueON() == true || AnimationON == true || DoNotMove == true){
 			NormalSpeed.SetActive (false); //this is the speed in which they walk not so fast, as they lack energy.
 			FasterSpeed.SetActive (false); //this is the speed after they've aten something, or if they are well rested.
 			SlowerSpeed.SetActive (true); //this value needs to be checked in the java script, it should be 0
@@ -130,7 +131,7 @@ public class Movement2 : MonoBehaviour {
 
 
 		}
-		if (GoNormal == true && GUIDialogue.GetDialogueON() == false && AnimationON == false){
+		if (GoNormal == true && GUIDialogue.GetDialogueON() == false && AnimationON == false && DoNotMove == false){
 			NormalSpeed.SetActive (true);
 			FasterSpeed.SetActive (false);
 			SlowerSpeed.SetActive (false);
@@ -138,7 +139,7 @@ public class Movement2 : MonoBehaviour {
 			MouseLook.SetMouseLookLock(false);
 			Anim.enabled = false;
 		}
-		if (GoFaster == true && GUIDialogue.GetDialogueON() == false && AnimationON == false){
+		if (GoFaster == true && GUIDialogue.GetDialogueON() == false && AnimationON == false && DoNotMove == false){
 			NormalSpeed.SetActive (false);
 			FasterSpeed.SetActive (true);
 			SlowerSpeed.SetActive (false);
@@ -146,7 +147,7 @@ public class Movement2 : MonoBehaviour {
 			MouseLook.SetMouseLookLock(false);
 			Anim.enabled = false;
 		}
-		if (LegBroken == true && GUIDialogue.GetDialogueON() == false && AnimationON == false){
+		if (LegBroken == true && GUIDialogue.GetDialogueON() == false && AnimationON == false && DoNotMove == false){
 			NormalSpeed.SetActive (false);
 			FasterSpeed.SetActive (false);
 			SlowerSpeed.SetActive (false);
@@ -169,11 +170,20 @@ public class Movement2 : MonoBehaviour {
 			IslandWall.SetActive (false);
 		}*/
 		if (Choices.GetWasChoiceMade(2) == true){
-			AnimationsOnOff.SetIdlle(false);
+			DoNotMove = false;
+			if (Choices.GetChoice(1) == false){
+				GoFaster = true;
+			}
+			if (Choices.GetChoice(1) == true){
+				GoNormal = true;
+			}
+			//AnimationsOnOff.SetIdlle(false);
 			if (Choices.GetChoice(2) == false){
 				IslandWall.SetActive (false);
+				AnimationON = true;
 			}
 			if (Choices.GetChoice(2) == true && playerPosY <= 22){
+				AnimationON = true;
 				AnimationCounter = 4;
 				IslandWall.SetActive (false);
 			}

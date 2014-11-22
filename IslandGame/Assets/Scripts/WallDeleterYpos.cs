@@ -16,11 +16,16 @@ public class WallDeleterYpos : MonoBehaviour {
 
 		Ypos = Movement2.GetPlayerY();
 
-		if (Ypos <= 22.0f){
-			Destroy(gameObject);
+
+		if (Choices.GetWasChoiceMade(2) == true){
+			if (Choices.GetChoice(2) == true && Ypos <= 21f){
+				Destroy(gameObject);
+			}
 		}
-		if (Choices.GetChoice(1) == false){
-			Destroy(gameObject);
+		if (Choices.GetWasChoiceMade(2) == true){
+			if (Choices.GetChoice(2) == false){
+				Destroy(gameObject);
+			}
 		}
 	
 	}

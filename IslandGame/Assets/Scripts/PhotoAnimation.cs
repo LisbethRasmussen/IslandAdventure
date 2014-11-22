@@ -29,13 +29,14 @@ public class PhotoAnimation : MonoBehaviour {
 	void Update () {
 		if (ThePictureFlyAway.GetPhotoActive() == true && ActivateAnimationOne == false){
 			anim.SetInteger("AnimationNumber", 1);
-			Carl.SetActive(false);
 			if(this.anim.GetCurrentAnimatorStateInfo(0).IsName("Picture1") && this.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1){
-				Movement2.SetAnimationOn(true);
-				AnimationsOnOff.SetIdlle(true);
+				/*Movement2.SetAnimationOn(true);
+				AnimationsOnOff.SetIdlle(true);*/
 				ActivateAnimationOne = true;
 				Choices.SetDecisionToBeMade(true);
 				Choices.SetChoiceNumber(2);
+				Movement2.SetDoNotMove(true);
+				Carl.SetActive(false);
 			}
 		}
 		if (ActivateAnimationOne == true && ActivateAnimationTwo == false){
