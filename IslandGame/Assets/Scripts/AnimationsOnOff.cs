@@ -42,9 +42,9 @@ public class AnimationsOnOff : MonoBehaviour {
 			anim.SetInteger("NumberOfAnimation", 0);
 		}*/
 
-		if (Movement2.GetAnimationOn() == true && Idlle == true){
+		/*if (Movement2.GetAnimationOn() == true && Idlle == true){
 			anim.SetInteger("NumberOfAnimation", 0);
-		}
+		}*/
 		if (Movement2.GetAnimationCounter() == 1 && Movement2.GetAnimationOn() == true && Idlle == false){
 			anim.SetInteger("NumberOfAnimation", 1); //animation: player wakes up and stands
 			//if (this.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !anim.IsInTransition(0)){
@@ -84,10 +84,12 @@ public class AnimationsOnOff : MonoBehaviour {
 				if (Choices.GetChoice(2) == true){
 					Movement2.SetAnimationOn(false);
 					Movement2.SetGoNormal(true);
+					Carl.SetActive(true);
 				}
 				if (Choices.GetChoice(2) == false){
 					Movement2.SetAnimationOn(false);
 					Movement2.SetGoFaster(true);
+					Carl.SetActive(true);
 				}
 			}
 		}
