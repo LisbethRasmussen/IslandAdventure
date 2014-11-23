@@ -64,7 +64,9 @@
      <Compile Include="Assets\Scripts\AnimationsOnOff.cs" />
      <Compile Include="Assets\Scripts\BackPack2.cs" />
      <Compile Include="Assets\Scripts\Box.cs" />
+     <Compile Include="Assets\Scripts\CampFireScript.cs" />
      <Compile Include="Assets\Scripts\CarlMovement.cs" />
+     <Compile Include="Assets\Scripts\CaveTrigger.cs" />
      <Compile Include="Assets\Scripts\Choices.cs" />
      <Compile Include="Assets\Scripts\Conversations.cs" />
      <Compile Include="Assets\Scripts\DestroyYourselfe.cs" />
@@ -76,10 +78,10 @@
      <Compile Include="Assets\Scripts\Hook.cs" />
      <Compile Include="Assets\Scripts\IDeleteMySelfe.cs" />
      <Compile Include="Assets\Scripts\Ib.cs" />
+     <Compile Include="Assets\Scripts\LetUsDrink.cs" />
      <Compile Include="Assets\Scripts\LetUsGoInvisible.cs" />
      <Compile Include="Assets\Scripts\LockWallSpawner.cs" />
      <Compile Include="Assets\Scripts\Movement2.cs" />
-     <Compile Include="Assets\Scripts\OpeningSequence.cs" />
      <Compile Include="Assets\Scripts\PhotoAnimation.cs" />
      <Compile Include="Assets\Scripts\PickUp.cs" />
      <Compile Include="Assets\Scripts\PickUpSound2.cs" />
@@ -91,7 +93,6 @@
      <Compile Include="Assets\Scripts\SharkBait\SharkBait4.cs" />
      <Compile Include="Assets\Scripts\SharkBait\SharkBait5.cs" />
      <Compile Include="Assets\Scripts\SharkBait\SharkBait6.cs" />
-     <Compile Include="Assets\Scripts\ShowText.cs" />
      <Compile Include="Assets\Scripts\Subtitles.cs" />
      <Compile Include="Assets\Scripts\TestResultManager.cs" />
      <Compile Include="Assets\Scripts\TestStart.cs" />
@@ -99,6 +100,7 @@
      <Compile Include="Assets\Scripts\WalkingSound2.cs" />
      <Compile Include="Assets\Scripts\WallDeleterYpos.cs" />
      <Compile Include="Assets\Scripts\WhereAmInow.cs" />
+     <Compile Include="Assets\Scripts\stupidball.cs" />
      <Compile Include="Assets\Scripts\testResult.cs" />
      <Compile Include="Assets\Scripts\testResultData.cs" />
      <Compile Include="Assets\Scripts\underwaterRenderingSettings.cs" />
