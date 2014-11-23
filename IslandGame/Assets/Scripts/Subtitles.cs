@@ -5,26 +5,37 @@ public class Subtitles : MonoBehaviour {
 
 	private float DistanceX;
 	private float DistanceZ;
+	private bool displaying;	//When true, text is displayed each frame, when off it iss't displayed
+	private bool SubTrigger = true;
 
 	public string text;
-
-	//Name this variable "ShowText" then drag the "ShowText" script into the variable through the inspector.
-	public ShowText textDisplayingScript;
+	public GUIStyle myStyle;	//This text style can can be easily changed in the inspector
 
 	void Update () {
-		
-			DistanceX = Mathf.Abs (transform.position.x) - Mathf.Abs (Movement2.GetPlayerX ());
-			DistanceZ = Mathf.Abs (transform.position.z) - Mathf.Abs (Movement2.GetPlayerZ ());
-
-			if (DistanceX <= 4 && DistanceZ <= 4 && DistanceX >= -4 && DistanceZ >= -4 && this.gameObject.name == "Subtitle") {
-					
-					//Shows one line of text at the bottom left of the screen (10 pixels from the left and 50 from the bottom).
-					//The text lasts for 5 seconds before it disappears.
-
-					textDisplayingScript.DisplayTextHereFor (text, 10, 50, 5);
-			}
+		DistanceX = Mathf.Abs (transform.position.x - Movement2.GetPlayerX ());
+		DistanceZ = Mathf.Abs (transform.position.z - Movement2.GetPlayerZ ());
 	
+		if (DistanceX <= 4 && DistanceZ <= 4 && SubTrigger == true) {
+			//The text lasts for 5 seconds before it disappears.
+			displaying = true;
+			SubTrigger = false; // Makes the subtitle only show up once
+			Invoke ("StopDisplaying", 5);
 		}
+	
+	}
+
+	//Draws the text on the GUI while "displaying" is true
+	void OnGUI() {
+		if (displaying) {
+			GUI.Label(new Rect(10, Screen.height - 100, 0, 0), text, myStyle);
+		}
+		
+	}
+
+	//Simply says to stop displaying
+	void StopDisplaying () {
+		displaying = false;
+	}
 
 }
 
