@@ -29,11 +29,12 @@ public class LetUsDrink : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		PlayerDistanceX = Mathf.Abs (transform.position.x) - Mathf.Abs (Movement2.GetPlayerX());
-		PlayerDistanceY = Mathf.Abs (transform.position.y) - Mathf.Abs (Movement2.GetPlayerY());
-		PlayerDistanceZ = Mathf.Abs (transform.position.z) - Mathf.Abs (Movement2.GetPlayerZ());
+		PlayerDistanceX = Mathf.Abs ((Movement2.GetPlayerX()) - (transform.position.x));
+		PlayerDistanceY = Mathf.Abs ((Movement2.GetPlayerY()) - (transform.position.y));
+		PlayerDistanceZ = Mathf.Abs ((Movement2.GetPlayerZ()) - (transform.position.z));
 
 		if (PlayerDistanceX <= 16 && PlayerDistanceZ <= 16){
+			print ("nu er du tæt nok på");
 			PersonalInRange = true;
 			Drink = true;
 		}

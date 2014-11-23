@@ -23,7 +23,7 @@ public class PickUp : MonoBehaviour {
 		DistanceX = Mathf.Abs (transform.position.x) - Mathf.Abs (Movement2.GetPlayerX());
 		DistanceZ = Mathf.Abs (transform.position.z) - Mathf.Abs (Movement2.GetPlayerZ());
 		
-		if (DistanceX <= 2 && DistanceZ <= 2 && DistanceX >= -2 && DistanceZ >= -2){
+		if (DistanceX <= 1 && DistanceZ <= 1 && DistanceX >= -1 && DistanceZ >= -1){
 			PersonalInRange = true;
 		}
 		else{

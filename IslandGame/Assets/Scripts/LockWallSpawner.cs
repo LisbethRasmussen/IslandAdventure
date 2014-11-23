@@ -7,6 +7,8 @@ public class LockWallSpawner : MonoBehaviour {
 
 	private float DistanceX;
 	private float DistanceZ;
+	private float CarlDistanceX;
+	private float CarlDistanceZ;
 
 	public GameObject objectiveOne;
 	/*public GameObject objectiveTwo;
@@ -40,7 +42,12 @@ public class LockWallSpawner : MonoBehaviour {
 		DistanceX = Mathf.Abs (Movement2.GetPlayerX()); //setting the values to the player values. It is not really necessary, but it looks prettyer not writing mathf. abs constantly
 		DistanceZ = Mathf.Abs (Movement2.GetPlayerZ());
 
-		if (DistanceX >= 1197f){
+		CarlDistanceX = Mathf.Abs (Ib.GetPosX ());
+		CarlDistanceZ = Mathf.Abs (Ib.GetPosZ ());
+
+
+
+		if (DistanceX <= 1197f && CarlDistanceX <= 1195f){
 				objectiveOne.SetActive(true);
 		}
 		/*if (DistanceX >= 2 && DistanceZ >= 2){

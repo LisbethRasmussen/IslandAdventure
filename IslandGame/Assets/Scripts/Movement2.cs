@@ -25,8 +25,16 @@ public class Movement2 : MonoBehaviour {
 	public GameObject CWallB;
 	private bool GoSearch = true;
 	public GameObject CampFire;
+	public GameObject Fire;
+	private bool FireFed = false;
 	private static bool CampfireOn = false;
 	public static bool GetCampfireOn(){return CampfireOn;}
+	public static void SetCampfireOn(bool x){CampfireOn = x;}
+	private static bool GatherFireWood = false;
+	public static bool GetGatherFireWood(){return GatherFireWood;}
+	private static bool secondGatherFirewood = false;
+	private static bool Slept = false;
+	private bool doneWithFoodCollect = false;
 
 	public GameObject IslandWall;
 
@@ -61,6 +69,7 @@ public class Movement2 : MonoBehaviour {
 	public static void SetCarlActive(bool x){ CarlActive = x;}
 
 	//---------------------------------Cave Wall setters--------------------------------------
+	public static bool GetGatherFood (){return GatherFood;}
 	public static void SetGatherFood(bool x){GatherFood = x;}
 	public static void SetFindCarl(bool x){FindCarl = x;}
 	public static void SetProceedFromTheCave(bool x){ProceedFromTheCave = x;}
@@ -82,6 +91,7 @@ public class Movement2 : MonoBehaviour {
 	public static int GetFoodCount(){return foodCount;}
 	public static void SetFoodCount(int x){foodCount = x;}
 	public static int GetFireWood(){ return FireWood;}
+	public static void SetFireWood(int x){FireWood = x;}
 	//--------------------------------------code for sending the information about the players positions
 	public static float GetPlayerX() {
 		return playerPosX;
@@ -241,14 +251,17 @@ public class Movement2 : MonoBehaviour {
 
 
 		//-------------------------------------------------------------walls around the cave
-		if (playerPosX >= 1042 && playerPosX <= 1069 && playerPosZ >= 1330 && playerPosZ <= 1348 && arrivedFirstTime == false){
+		if (CaveTrigger.GetBothAreAtCave() == true && arrivedFirstTime == false){
 			CWallB.SetActive (true);
-			arrivedFirstTime = true;
-			CampFire.SetActive(true);//when Carl have his animation, this needs to be put somewhere else
+			if (CampfireOn == true){
+				arrivedFirstTime = true;
+				CampFire.SetActive(true);
+			}
 		}
 		if (GatherFood == true && GoSearch == true){
 			CWallL.SetActive(false);
-			Carl.SetActive(false);
+			CWallR.SetActive(false);
+			//Carl.SetActive(false);
 			GoSearch = false;
 		}
 		if (FindCarl == true){
@@ -260,10 +273,27 @@ public class Movement2 : MonoBehaviour {
 		}
 		if (playerPosX >= 1080 && playerPosZ >= 1272 && playerPosZ <= 1359 && GatherFood == true){
 			CWallL.SetActive(true);
+			CWallR.SetActive(true);
 		}
-		if (foodCount == 4){
+		if (foodCount == 4 && doneWithFoodCollect == true){
 			GatherFood = false;
 			CWallL.SetActive(false);
+		}
+		if (GatherFood == false && foodCount >= 4 && playerPosX <= 1072f && playerPosZ >= 1300 && playerPosZ <= 1332f && FireFed == false){
+			CWallL.SetActive(true);
+			GatherFireWood = true;
+			Fire.SetActive(false);
+			doneWithFoodCollect = true;
+			if (CampFireScript.GetFedXtimes() == 3){
+				Fire.SetActive(true);
+				GatherFireWood = false;
+				FireFed = true;
+			}
+		}
+		if (Slept == true && secondGatherFirewood == true){
+			Fire.SetActive(false);
+			GatherFireWood = true;
+
 		}
 		/*if (foodCount == 7.0f){
 			FoodAreaWallF.SetActive (false);
