@@ -155,7 +155,7 @@ public class GUIDialogue : MonoBehaviour {
 			}
 
 			// The normal "Next" button
-			if (ChoiceIsMade == false){
+			if (ChoiceIsMade == false && Choices.GetDecisionToBeMade() == false){
 				if (GUI.Button (new Rect(Screen.width/2- 50, Screen.height/2+100, 100, 25), "Next")){
 					if (NumberOfDialogue == 3 && currentDialogue == 2){
 						Choices.SetDecisionToBeMade(true);
