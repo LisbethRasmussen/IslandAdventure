@@ -48,6 +48,9 @@ public class Movement2 : MonoBehaviour {
 	private static bool ChoiceScreenOn = false;
 	public static void SetChoiceScreenOn(bool x){ChoiceScreenOn = x;}
 
+	private static bool ExitedTheCaveArea = false;
+	public static void SetExitedTheCaveArea(bool x){ExitedTheCaveArea = x;}
+
 	public GameObject IslandWall;
 
 	private static bool AnimationON = false;
@@ -143,6 +146,8 @@ public class Movement2 : MonoBehaviour {
 		playerPosX = transform.position.x; //setting the floats to the players position in world.
 		playerPosZ = transform.position.z;
 		playerPosY = transform.position.y;
+
+		//print (GUIDialogue.GetDialogueON () + " " + AnimationON + " " + DoNotMove + " " + ChoiceScreenOn);
 
 		//----------------------------------------Java c# coorperation cheat
 		/*if (Choices.GetChoice(3) == false && GUIDialogue.GetDialogueON() == false && AnimationON == false){
@@ -294,8 +299,11 @@ public class Movement2 : MonoBehaviour {
 			//need some gui text describing what happens after the player go to find Carl
 			LegBroken = true;
 		}
-		if (ProceedFromTheCave == true){
+		if (ProceedFromTheCave == true && ExitedTheCaveArea == false){
 			CWallF.SetActive(false);
+		}
+		if (ExitedTheCaveArea == true){
+			CWallF.SetActive(true);
 		}
 		if (playerPosX >= 1080 && playerPosZ >= 1272 && playerPosZ <= 1359 && GatherFood == true){
 			CWallL.SetActive(true);
@@ -311,11 +319,12 @@ public class Movement2 : MonoBehaviour {
 			GatherFireWood = true;
 			Fire.SetActive(false);
 			doneWithFoodCollect = true;
-			if (CampFireScript.GetFedXtimes() == 3){
-				Fire.SetActive(true);
-				GatherFireWood = false;
-				FireFed = true;
-			}
+			foodCount = foodCount/2;
+		}
+		if (CampFireScript.GetFedXtimes() == 3 && foodCount >= 1){
+			Fire.SetActive(true);
+			GatherFireWood = false;
+			FireFed = true;
 		}
 		if (Slept == true && secondGatherFirewood == true){
 			Fire.SetActive(false);

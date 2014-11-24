@@ -58,6 +58,11 @@ public class Ib : MonoBehaviour { //don't be fooled by the name, this is Carl's 
 		else{
 			myStick.SetActive(true);
 		}
+
+		if (PosX <= 1049 && PosZ <= 1300){
+			Movement2.SetExitedTheCaveArea(true);
+		}
+
 		//-----------------------------------------------------------------------------------
 		playerDistanceX = Mathf.Abs(PosX - Movement2.GetPlayerX());	// Calculates the distance from Ib and the player (X (Z is below))
 		playerDistanceZ = Mathf.Abs(PosZ - Movement2.GetPlayerZ());

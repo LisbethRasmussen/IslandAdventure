@@ -132,78 +132,80 @@ public class GUIDialogue : MonoBehaviour {
 				Movement2.SetGoFaster(true);
 			}
 
-			if (NumberOfDialogue == 8 && Choices.GetChoice(1) == true){
-				Movement2.SetGoNormal(true);
+			if (NumberOfDialogue == 8 && Choices.GetChoice(3) == true && LetUsGoInvisible.GetCarlHasCookedHisFood() == false){
+				LetUsGoInvisible.SetWeDidNotSaveCarl(true);
+				print ("dialogue 8 has been played");
 			}
-			if (NumberOfDialogue == 8 && Choices.GetChoice(1) == false){
-				Movement2.SetLegBroken(true);
-			}
-			if (NumberOfDialogue == 9 && Choices.GetChoice(1) == true){
-				Movement2.SetGoNormal(true);
-			}
-			if (NumberOfDialogue == 9 && Choices.GetChoice(1) == false){
-				Movement2.SetLegBroken(true);
-			}
-			if (NumberOfDialogue == 10 && Choices.GetChoice(1) == true){
-				Movement2.SetGoNormal(true);
-			}
-			if (NumberOfDialogue == 10 && Choices.GetChoice(1) == false){
+
+			if (NumberOfDialogue == 8 && Choices.GetChoice(3) == false){
 				Movement2.SetLegBroken(true);
 			}
 
-			if (NumberOfDialogue == 11 && Choices.GetChoice(1) == true){
-				Movement2.SetGoNormal(true);
+			if (NumberOfDialogue == 9 && Choices.GetChoice(3) == true){
+				Movement2.SetGoFaster(true);
+				Movement2.SetProceedFromTheCave(true);
 			}
-			if (NumberOfDialogue == 11 && Choices.GetChoice(1) == false){
-				Movement2.SetLegBroken(true);
+
+			if (NumberOfDialogue == 10 && Choices.GetChoice(3) == true){
+				Movement2.SetGoFaster(true);
 			}
-			if (NumberOfDialogue == 12 && Choices.GetChoice(1) == true){
-				Movement2.SetGoNormal(true);
-			}
-			if (NumberOfDialogue == 12 && Choices.GetChoice(1) == false){
-				Movement2.SetLegBroken(true);
-			}
-			if (NumberOfDialogue == 13 && Choices.GetChoice(1) == true){
-				Movement2.SetGoNormal(true);
-			}
-			if (NumberOfDialogue == 13 && Choices.GetChoice(1) == false){
-				Movement2.SetLegBroken(true);
-			}
-			if (NumberOfDialogue == 14 && Choices.GetChoice(1) == true){
-				Movement2.SetGoNormal(true);
-			}
-			if (NumberOfDialogue == 14 && Choices.GetChoice(1) == false){
-				Movement2.SetLegBroken(true);
-			}
-			if (NumberOfDialogue == 15 && Choices.GetChoice(1) == true){
-				Movement2.SetGoNormal(true);
-			}
-			if (NumberOfDialogue == 15 && Choices.GetChoice(1) == false){
-				Movement2.SetLegBroken(true);
-			}
-			if (NumberOfDialogue == 16 && Choices.GetChoice(1) == true){
-				Movement2.SetGoNormal(true);
-			}
-			if (NumberOfDialogue == 16 && Choices.GetChoice(1) == false){
+			if (NumberOfDialogue == 10 && Choices.GetChoice(3) == false){
 				Movement2.SetLegBroken(true);
 			}
 
-			if (NumberOfDialogue == 17 && Choices.GetChoice(1) == true){
-				Movement2.SetGoNormal(true);
+			if (NumberOfDialogue == 11 && Choices.GetChoice(3) == true){
+				Movement2.SetGoFaster(true);
 			}
-			if (NumberOfDialogue == 17 && Choices.GetChoice(1) == false){
+			if (NumberOfDialogue == 11 && Choices.GetChoice(3) == false){
 				Movement2.SetLegBroken(true);
 			}
-			if (NumberOfDialogue == 18 && Choices.GetChoice(1) == true){
-				Movement2.SetGoNormal(true);
+			if (NumberOfDialogue == 12 && Choices.GetChoice(3) == true){
+				Movement2.SetGoFaster(true);
 			}
-			if (NumberOfDialogue == 18 && Choices.GetChoice(1) == false){
+			if (NumberOfDialogue == 12 && Choices.GetChoice(3) == false){
 				Movement2.SetLegBroken(true);
 			}
-			if (NumberOfDialogue == 19 && Choices.GetChoice(1) == true){
-				Movement2.SetGoNormal(true);
+			if (NumberOfDialogue == 13 && Choices.GetChoice(3) == true){
+				Movement2.SetGoFaster(true);
 			}
-			if (NumberOfDialogue == 19 && Choices.GetChoice(1) == false){
+			if (NumberOfDialogue == 13 && Choices.GetChoice(3) == false){
+				Movement2.SetLegBroken(true);
+			}
+			if (NumberOfDialogue == 14 && Choices.GetChoice(3) == true){
+				Movement2.SetGoFaster(true);
+			}
+			if (NumberOfDialogue == 14 && Choices.GetChoice(3) == false){
+				Movement2.SetLegBroken(true);
+			}
+			if (NumberOfDialogue == 15 && Choices.GetChoice(3) == true){
+				Movement2.SetGoFaster(true);
+			}
+			if (NumberOfDialogue == 15 && Choices.GetChoice(3) == false){
+				Movement2.SetLegBroken(true);
+			}
+			if (NumberOfDialogue == 16 && Choices.GetChoice(3) == true){
+				Movement2.SetGoFaster(true);
+			}
+			if (NumberOfDialogue == 16 && Choices.GetChoice(3) == false){
+				Movement2.SetLegBroken(true);
+			}
+
+			if (NumberOfDialogue == 17 && Choices.GetChoice(3) == true){
+				Movement2.SetGoFaster(true);
+			}
+			if (NumberOfDialogue == 17 && Choices.GetChoice(3) == false){
+				Movement2.SetLegBroken(true);
+			}
+			if (NumberOfDialogue == 18 && Choices.GetChoice(3) == true){
+				Movement2.SetGoFaster(true);
+			}
+			if (NumberOfDialogue == 18 && Choices.GetChoice(3) == false){
+				Movement2.SetLegBroken(true);
+			}
+			if (NumberOfDialogue == 19 && Choices.GetChoice(3) == true){
+				Movement2.SetGoFaster(true);
+			}
+			if (NumberOfDialogue == 19 && Choices.GetChoice(3) == false){
 				Movement2.SetLegBroken(true);
 			}
 

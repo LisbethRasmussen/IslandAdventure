@@ -16,6 +16,12 @@ using System.Collections;
 
 public class LetUsGoInvisible : MonoBehaviour {
 
+	private bool RunOnce = false;
+
+	private static bool WeDidNotSaveCarl = false;
+	private static bool CarlHasCookedHisFood = false;
+	public static void SetWeDidNotSaveCarl(bool x){WeDidNotSaveCarl = x;}
+	public static bool GetCarlHasCookedHisFood(){return CarlHasCookedHisFood;}
 	private static bool WeSaveCarl = false;
 	public static bool GetWeSaveCarl(){return WeSaveCarl;}
 	private static bool WeHaveSavedCarl = false;
@@ -57,6 +63,8 @@ public class LetUsGoInvisible : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		print ("We did not " + WeDidNotSaveCarl + ", run once " + RunOnce + ", has he cooked yet? " + CarlHasCookedHisFood);
 
 		if (HasGameStarted == true && FadeOut == true){ //we want to start with this one, which is why it has already been set to true in the beginning (before the start function)
 			fadeCounter -= 0.01f;
@@ -124,8 +132,17 @@ public class LetUsGoInvisible : MonoBehaviour {
 			renderer.material.color = new Color(0,0,0,1);
 			WeSaveCarl = true;
 		}
-		if (WeHaveSavedCarl == true){
+		if (WeHaveSavedCarl == true && RunOnce == false){
 			renderer.material.color = new Color(0,0,0,0);
+			RunOnce = true;
+		}
+		if (WeDidNotSaveCarl == true && RunOnce == false){
+			renderer.material.color = new Color(0,0,0,1);
+			if (CarlHasCookedHisFood == true){
+				renderer.material.color = new Color(0,0,0,0);
+				RunOnce = true;
+				Movement2.SetGoFaster(true);
+			}
 		}
 
 		//renderer.material.color -= new Color(0,0,0,0.01f);//basically just telling the object, that the material to be rendered should be set to a new color.
@@ -135,10 +152,56 @@ public class LetUsGoInvisible : MonoBehaviour {
 
 	void OnGUI(){
 		if (WeSaveCarl == true && WeHaveSavedCarl == false){
-			print ("Haj");
-			GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600), "Hello your piece of shit");
+			//print ("Haj");
+			GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600),
+
+			         "\n\n\n\n"
+			         + "You go out to look for Carl and move down the path in which he disappeared."
+			         + "\n"
+			         + "Moving forward the sounds of a fight reaches your ear and around the corner"
+			         + "\n"
+			         + "of the next cliff Carl is seen fighting a young wild boar. HELP ME, shouts"
+			         + "\n"
+			         + "Carl and you rush in to get the boar away. Disturbed by your presence the"
+			         + "\n"
+			         + "wild boar charges towards you instead, leaving Carl unharmed. The boar slams"
+			         + "\n"
+			         + "into your leg, throwing you on your back. Meanwhile Carl is now on his feet,"
+			         + "\n"
+			         + "rushing in with the hooked stick and slams the hook down in the head of the boar."
+			         + "\n"
+			         + "Rageing, Carl keeps slamming the boars head untill the beast stops moving."
+			         + "\n\n"
+			         + "You congratulate each other for surviving the beast's attack and head back"
+			         + "\n"
+			         + "to the cave, where you sleep untill morning."
+
+			         );
+			Carl.SetActive(true);
 			if (GUI.Button (new Rect(Screen.width/2-50, Screen.height-100, 100, 25), "Next")){
 				WeHaveSavedCarl = true;
+				Movement2.SetLegBroken(true); //may not even need this here, as I've set so many if'ies in the GUIDialogue script.
+				Movement2.SetProceedFromTheCave(true);
+				GUIDialogue.SetDialogueON(false);
+				Movement2.SetDoNotMove(false);
+				Movement2.SetChoiceScreenOn(false);
+				Movement2.SetAnimationOn(false);
+				Ib.SetBallIsActive1(false);
+				Movement2.SetCarlActive(true);
+
+			}
+		}
+		if (WeDidNotSaveCarl == true && CarlHasCookedHisFood == false){
+			GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600),
+			         "\n\n\n\n"
+			         + "Carl cooks the small animal he found and eats it all by himself,"
+			         + "not leaving anything for you!");
+			if (GUI.Button (new Rect(Screen.width/2-50, Screen.height-100, 100, 25), "Next")){
+				CarlHasCookedHisFood = true;
+				Movement2.SetDoNotMove(false);
+				Movement2.SetChoiceScreenOn(false);
+				Movement2.SetAnimationOn(false);
+				Movement2.SetGoFaster(true);
 			}
 		}
 	}

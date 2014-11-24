@@ -88,5 +88,15 @@ public class DialogueOn : MonoBehaviour {
 			Dialogue8.SetActive (true);
 			Trigger [8 - 1] = false;
 		}
+		if (LetUsGoInvisible.GetCarlHasCookedHisFood() == true && Trigger [9 - 1] == true){
+			GUIDialogue.SetDialogueON (true);
+			Dialogue9.SetActive (true);
+			Trigger [9 - 1] = false;
+		}
+		if (LetUsGoInvisible.GetWeHaveSavedCarl() == true && Trigger [11 - 1] == true){
+			GUIDialogue.SetDialogueON (true);
+			Dialogue11.SetActive (true);
+			Trigger [11 - 1] = false;
+		}
 	}
 }
