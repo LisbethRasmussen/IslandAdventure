@@ -98,5 +98,10 @@ public class DialogueOn : MonoBehaviour {
 			Dialogue11.SetActive (true);
 			Trigger [11 - 1] = false;
 		}
+		if (DeadGirl.GetDeadGirlInRange() == true && Trigger [12 - 1] == true){
+			GUIDialogue.SetDialogueON (true);
+			Dialogue12.SetActive (true);
+			Trigger [12 - 1] = false;
+		}
 	}
 }

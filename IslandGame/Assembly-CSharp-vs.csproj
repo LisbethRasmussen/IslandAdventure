@@ -69,6 +69,7 @@
      <Compile Include="Assets\Scripts\CaveTrigger.cs" />
      <Compile Include="Assets\Scripts\Choices.cs" />
      <Compile Include="Assets\Scripts\Conversations.cs" />
+     <Compile Include="Assets\Scripts\DeadGirl.cs" />
      <Compile Include="Assets\Scripts\DestroyYourselfe.cs" />
      <Compile Include="Assets\Scripts\DialogueOn.cs" />
      <Compile Include="Assets\Scripts\DustExplotion2.cs" />

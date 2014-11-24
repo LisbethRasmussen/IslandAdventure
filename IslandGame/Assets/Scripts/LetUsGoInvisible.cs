@@ -49,6 +49,10 @@ public class LetUsGoInvisible : MonoBehaviour {
 	public static void SetHowManyBlackFrames (int x){HowManyBlackFrames = x;}
 	public static void SetGetReadyAgainBlackMyScreen (bool x){GetReadyAgainBlackMyScreen = x;}
 
+	private static bool GirlBuriedYet = false;
+	public static bool GetGirlBuriedYet(){return GirlBuriedYet;}
+	private bool RunOnce2 = false;
+
 	public static bool GetSleep (){//need a returner to send a message to a sound script with snorring (maybe not necessary).
 		return Sleeping;
 	}
@@ -144,6 +148,23 @@ public class LetUsGoInvisible : MonoBehaviour {
 				Movement2.SetGoFaster(true);
 			}
 		}
+		if (Choices.GetWasChoiceMade(4) == true && Choices.GetChoice(4) == false && GirlBuriedYet == false){
+			renderer.material.color = new Color(0,0,0,1);
+			Movement2.SetDoNotMove (true);
+		}
+		if (GirlBuriedYet == true && RunOnce2 == false){
+			renderer.material.color = new Color(0,0,0,0);
+			Movement2.SetDoNotMove (false);
+			Choices.SetDecisionToBeMade(false);
+			if (Choices.GetChoice(3) == true){
+				Movement2.SetGoFaster(true);
+				RunOnce2 = true;
+			}
+			if (Choices.GetChoice(3) == false){
+				Movement2.SetLegBroken(true);
+				RunOnce2 = true;
+			}
+		}
 
 		//renderer.material.color -= new Color(0,0,0,0.01f);//basically just telling the object, that the material to be rendered should be set to a new color.
 		//that color then has it's alpha channel changed as the only thing.
@@ -202,6 +223,30 @@ public class LetUsGoInvisible : MonoBehaviour {
 				Movement2.SetChoiceScreenOn(false);
 				Movement2.SetAnimationOn(false);
 				Movement2.SetGoFaster(true);
+			}
+		}
+		if (Choices.GetWasChoiceMade(4) == true && Choices.GetChoice(4) == false && Choices.GetChoice(3) == true && GirlBuriedYet == false){
+			GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600),
+			         "\n\n\n\n"
+			         + "You manage to dig a hole which is almost 1 meter deep and put the girl in."
+			         + "\n"
+			         + "Carl dos nothing to help you and wathces while you push the sandpil in the hole."
+			         + "\n"
+			         + "For a moment you stand still and glance over the sand grave.");
+			if (GUI.Button (new Rect(Screen.width/2-50, Screen.height-100, 100, 25), "Next")){
+				GirlBuriedYet = true;
+			}
+		}
+		if (Choices.GetWasChoiceMade(4) == true && Choices.GetChoice(4) == false && Choices.GetChoice(3) == false && GirlBuriedYet == false){
+			GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600),
+			         "\n\n\n\n"
+			         + "Together you manage to dig a hole about 1 meter deep and put the girl in."
+			         + "\n"
+			         + "It is easy to pushe the sand over the girl and afterwards you stand still"
+			         + "\n"
+			         + "while you wathces the grave for a bit.");
+			if (GUI.Button (new Rect(Screen.width/2-50, Screen.height-100, 100, 25), "Next")){
+				GirlBuriedYet = true;
 			}
 		}
 	}
