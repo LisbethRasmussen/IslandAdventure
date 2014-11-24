@@ -12,7 +12,7 @@ using System.Collections;
 
 public class CarlMovement : MonoBehaviour {
 
-	public float animSpeed = 1.5f; 				// a public setting for overall animator animation speed
+	public float animSpeed = 10.0f; 				// a public setting for overall animator animation speed
 
 	private Animator anim;						// a reference to the animator on the character
 	private AnimatorStateInfo currentBaseState;	// a reference to the current state of the animator, used for base layer

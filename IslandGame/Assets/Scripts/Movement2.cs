@@ -7,6 +7,12 @@ using System.Collections;
 
 public class Movement2 : MonoBehaviour {
 
+	private static int SubtitleCounter = 0;
+	public static int GetSubtitleCounter(){return SubtitleCounter;}
+	public static void SetSubtitleCounter(int x){SubtitleCounter = x;}
+
+	private bool Choie2Made = false;
+
 	private bool messageON = false;
 	private int messageTimer = 0;
 	private static int foodCount = 0;
@@ -17,7 +23,7 @@ public class Movement2 : MonoBehaviour {
 
 	private bool arrivedFirstTime = false;
 	public static bool GatherFood = false;
-	public static bool FindCarl = false;
+	//public static bool FindCarl = false;
 	public static bool ProceedFromTheCave = false;
 	public GameObject CWallF;
 	public GameObject CWallL;
@@ -34,7 +40,13 @@ public class Movement2 : MonoBehaviour {
 	public static bool GetGatherFireWood(){return GatherFireWood;}
 	private static bool secondGatherFirewood = false;
 	private static bool Slept = false;
+	private bool SleepDone = false;
 	private bool doneWithFoodCollect = false;
+	public GameObject Subtitle03;
+	public GameObject Subtitle04;
+	private bool choice3MadeYet = false;
+	private static bool ChoiceScreenOn = false;
+	public static void SetChoiceScreenOn(bool x){ChoiceScreenOn = x;}
 
 	public GameObject IslandWall;
 
@@ -71,7 +83,7 @@ public class Movement2 : MonoBehaviour {
 	//---------------------------------Cave Wall setters--------------------------------------
 	public static bool GetGatherFood (){return GatherFood;}
 	public static void SetGatherFood(bool x){GatherFood = x;}
-	public static void SetFindCarl(bool x){FindCarl = x;}
+	//public static void SetFindCarl(bool x){FindCarl = x;}
 	public static void SetProceedFromTheCave(bool x){ProceedFromTheCave = x;}
 	//------------------------------------------------------------------------------don't move!
 	public static bool GetAnimationOn(){return AnimationON;} //this is to make sure that the animator script only does something when this is turned true
@@ -139,7 +151,7 @@ public class Movement2 : MonoBehaviour {
 		if (Choices.GetChoice(1) == false){ //If they chose to eat - we move faster!
 			GoFaster = true;
 		}*/
-		if(GUIDialogue.GetDialogueON() == true || AnimationON == true || DoNotMove == true){
+		if(GUIDialogue.GetDialogueON() == true || AnimationON == true || DoNotMove == true || ChoiceScreenOn == true){
 			NormalSpeed.SetActive (false); //this is the speed in which they walk not so fast, as they lack energy.
 			FasterSpeed.SetActive (false); //this is the speed after they've aten something, or if they are well rested.
 			SlowerSpeed.SetActive (true); //this value needs to be checked in the java script, it should be 0
@@ -182,16 +194,10 @@ public class Movement2 : MonoBehaviour {
 		if (AnimationON == false){
 			Anim.enabled = false;
 		}
-		/*if (Choices.GetWasChoiceMade(2) == true && Choices.GetChoice(2) == false) {
-			AnimationON = true;
-			IslandWall.SetActive (false);
-		}
-		if (Choices.GetWasChoiceMade(2) == true && Choices.GetChoice(2) == true && playerPosY <= 22) {
-			AnimationON = true;
-			IslandWall.SetActive (false);
-		}*/
-		if (Choices.GetWasChoiceMade(2) == true){
+
+		if (Choices.GetWasChoiceMade(2) == true && Choie2Made == false){
 			DoNotMove = false;
+			IslandWall.SetActive (false);
 			if (Choices.GetChoice(1) == false){
 				GoFaster = true;
 			}
@@ -200,11 +206,11 @@ public class Movement2 : MonoBehaviour {
 			}
 			//AnimationsOnOff.SetIdlle(false);
 			if (Choices.GetChoice(2) == false){
-				IslandWall.SetActive (false);
 				AnimationON = true;
+				Choie2Made = true;
 			}
 			if (Choices.GetChoice(2) == true){
-				IslandWall.SetActive (false);
+				Choie2Made = true;
 			}
 		}
 		//------------------------------------------------------------------------------------------------
@@ -261,12 +267,32 @@ public class Movement2 : MonoBehaviour {
 		if (GatherFood == true && GoSearch == true){
 			CWallL.SetActive(false);
 			CWallR.SetActive(false);
-			//Carl.SetActive(false);
 			GoSearch = false;
 		}
-		if (FindCarl == true){
+		if (SubtitleCounter == 4){
+			// Noms on food
+			Subtitle04.SetActive(true);
+		}
+		if (SubtitleCounter == 8 && choice3MadeYet == false){
+			Choices.SetDecisionToBeMade(true);
+			Choices.SetChoiceNumber(3);
+			choice3MadeYet = true;
+			ChoiceScreenOn = true;
+
+		}
+		if (Choices.GetChoice(3) == true && Choices.GetWasChoiceMade(3) && SleepDone == false){
+			LetUsGoInvisible.SetSleep(true);
+			GoNormal = true;
+			GoFaster = false;
+			CWallR.SetActive(false);
+			SleepDone = true;
+		}
+
+		if (/*FindCarl == true*/Choices.GetChoice(3) == false && Choices.GetWasChoiceMade(3)){
 			CWallR.SetActive(false);
 			CWallL.SetActive(true);
+			//need some gui text describing what happens after the player go to find Carl
+			LegBroken = true;
 		}
 		if (ProceedFromTheCave == true){
 			CWallF.SetActive(false);
@@ -275,11 +301,12 @@ public class Movement2 : MonoBehaviour {
 			CWallL.SetActive(true);
 			CWallR.SetActive(true);
 		}
-		if (foodCount == 4 && doneWithFoodCollect == true){
+		if (foodCount >= 4 && doneWithFoodCollect == false){
 			GatherFood = false;
 			CWallL.SetActive(false);
+			Subtitle03.SetActive(true);
 		}
-		if (GatherFood == false && foodCount >= 4 && playerPosX <= 1072f && playerPosZ >= 1300 && playerPosZ <= 1332f && FireFed == false){
+		if (GatherFood == false && foodCount >= 4 && playerPosX <= 1072.0f && playerPosZ >= 1300.0f && playerPosZ <= 1332.0f && FireFed == false){
 			CWallL.SetActive(true);
 			GatherFireWood = true;
 			Fire.SetActive(false);
@@ -295,17 +322,9 @@ public class Movement2 : MonoBehaviour {
 			GatherFireWood = true;
 
 		}
-		/*if (foodCount == 7.0f){
-			FoodAreaWallF.SetActive (false);
-			FoodAreaWallL.SetActive (false);
-			FoodAreaWallR.SetActive (false);
-			FoodAreaWallB.SetActive (false);
-			GatherFood = false;
-		}*/ //set this active when the other stuff is active as well.
-
 
 		//------------------------------------------------------------------------------------------
-		if (messageON == false){
+		//if (messageON == false){
 			// Basic movements for testing
 			
 			
@@ -320,16 +339,16 @@ public class Movement2 : MonoBehaviour {
 			if (PickUpSound2.GetFireWoodPicked () == true){//sending a message to the script PickUpSound, thereby it will make a sound!
 				FireWood++; //And the food count goes up.
 			}
-		}
+		//}
 		
-		if (messageON == true){	// A custom timer there avoid bugs (running forward while you keep being pushed back dosn't look very good)
+		/*if (messageON == true){	// A custom timer there avoid bugs (running forward while you keep being pushed back dosn't look very good)
 			messageTimer++;
 			if (messageTimer == 24){
 				transform.position -= transform.forward * 25 * Time.deltaTime; // This line shall just be changed so we go "backwards" depending on the player's position
 				messageON = false;
 				messageTimer = 0;
 			}
-		}
+		}*/
 		
 	}
 }

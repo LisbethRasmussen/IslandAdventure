@@ -3,9 +3,7 @@ using System.Collections;
 
 public class stupidball : MonoBehaviour {
 
-	private bool LightFire = false;
-	private bool FindFood = false;
-	private bool CookFood = false;
+	private static bool LightFire = false;
 
 	private bool GoNow = false;
 
@@ -18,6 +16,7 @@ public class stupidball : MonoBehaviour {
 	public static float GetPosZ(){
 		return PosZ;
 	}
+	public static bool GetLightFire(){return LightFire;}
 	// Use this for initialization
 	void Start () {
 	
@@ -31,31 +30,14 @@ public class stupidball : MonoBehaviour {
 
 		if (LightFire == false && Ib.GetBallIsActive() == true){
 			Movement2.SetCarlActive(false);
-			transform.position += new Vector3 (-0.5f,0,-0.1f);
-			if (PosX <= 1031 && PosZ <= 1331){
+			//transform.position += new Vector3 (-0.07f,0,-0.02f);
+			if (/*PosX <= 1031 && PosZ <= 1331*/ Ib.GetPauseMovement()== false){
 				LightFire = true;
 				Movement2.SetCampfireOn(true);
 				Movement2.SetCarlActive(true);
 				Ib.SetBallIsActive(false);
+				//Destroy(gameObject);
 			}
 		}
-		if (FindFood == false && LightFire == true && Movement2.GetGatherFood() == true){
-			Movement2.SetCarlActive(false);
-			Ib.SetBallIsActive(true);
-			if (GoNow = false){
-				transform.position = new Vector3 (1030,43,1346);
-				GoNow = true;
-			}
-			if (GoNow == true){
-				transform.position += new Vector3 (-0.5f,0,+0.5f);
-				if (PosX <= 1010 && PosZ >= 1370){
-					transform.position += new Vector3 (-0.5f,0,0);
-					if (PosX <= 978){
-						FindFood = true;
-					}
-				}
-			}
-		}
-	
 	}
 }

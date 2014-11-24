@@ -3,6 +3,7 @@ using System.Collections;
 //This script needs to be on the player character. For further information about the code, check CarlMovement scriptet
 public class AnimationsOnOff : MonoBehaviour {
 
+	public GameObject IslandWall;
 	public GameObject Carl;
 	public static bool Conversation2Active = false;
 	public static bool Conversation4Active = false;
@@ -60,6 +61,7 @@ public class AnimationsOnOff : MonoBehaviour {
 		}
 
 		if (Movement2.GetAnimationCounter() == 2 && Movement2.GetAnimationOn() == true){
+			Carl.SetActive(false);
 			LetUsGoInvisible.SetHowManyBlackFrames(48);
 			LetUsGoInvisible.SetBlackMyScreen(true);
 			anim.SetInteger("NumberOfAnimation", 2);//animation: player looks over water and jumps back
@@ -71,6 +73,7 @@ public class AnimationsOnOff : MonoBehaviour {
 				Conversation2Active = true;
 				LetUsGoInvisible.SetGetReadyAgainBlackMyScreen(false);
 				LetUsGoInvisible.SetBlackMyScreen(false);
+				Carl.SetActive(true);
 			}
 		}
 		if (Movement2.GetAnimationCounter() == 3 && Movement2.GetAnimationOn() == true && ValueHolder == true && Choices.GetChoice(2) == false && Choices.GetWasChoiceMade(2) == true){
@@ -105,6 +108,7 @@ public class AnimationsOnOff : MonoBehaviour {
 					Movement2.SetDoNotMove(false);
 					Conversation4Active = true;
 					Movement2.SetFoodCount(0);
+					IslandWall.SetActive(true);
 				}
 				if (Choices.GetChoice(1) == false){
 					print ("faster");
@@ -115,6 +119,7 @@ public class AnimationsOnOff : MonoBehaviour {
 					LetUsGoInvisible.SetBlackMyScreen(false);
 					Movement2.SetDoNotMove(false);
 					Conversation4Active = true;
+					IslandWall.SetActive(true);
 
 				}
 			}

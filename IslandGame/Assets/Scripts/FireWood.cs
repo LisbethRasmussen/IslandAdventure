@@ -23,7 +23,7 @@ public class FireWood : MonoBehaviour {
 		DistanceX = Mathf.Abs (transform.position.x) - Mathf.Abs (Movement2.GetPlayerX());
 		DistanceZ = Mathf.Abs (transform.position.z) - Mathf.Abs (Movement2.GetPlayerZ());
 		
-		if (DistanceX <= 2 && DistanceZ <= 2 && DistanceX >= -2 && DistanceZ >= -2){
+		if (DistanceX <= 2 && DistanceZ <= 2 && DistanceX >= -2 && DistanceZ >= -2 && Movement2.GetFireWood()<=3){
 			PersonalInRange = true;
 		}
 		else{

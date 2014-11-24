@@ -88,6 +88,7 @@ public class GUIDialogue : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		//print ("WeSaveCarl (True) = "+LetUsGoInvisible.GetWeSaveCarl ()+", HaveSavedCarl (False) = "+LetUsGoInvisible.GetWeHaveSavedCarl ());
 		if (currentDialogue > totalNumOfDia-1 || currentDialogue > lastDialogue-1){	// -1 as the entries in an array starts at 0
 			DialogueON = false;
 			lastDialogue = 16; 		// Just to make sure that no bugs happen!
@@ -106,9 +107,106 @@ public class GUIDialogue : MonoBehaviour {
 			if (NumberOfDialogue == 3 && Choices.GetChoice(1) == true){
 				Movement2.SetGoNormal(true);
 			}
-			if (NumberOfDialogue == 5){
-				//set carl Active = false;
+			if (NumberOfDialogue == 4 && Choices.GetChoice(1) == true){
+				Movement2.SetGoNormal(true);
 			}
+			if (NumberOfDialogue == 4 && Choices.GetChoice(1) == false){
+				Movement2.SetGoFaster(true);
+			}
+			if (NumberOfDialogue == 5 && Choices.GetChoice(1) == true){
+				Movement2.SetGoNormal(true);
+			}
+			if (NumberOfDialogue == 5 && Choices.GetChoice(1) == false){
+				Movement2.SetGoFaster(true);
+			}
+			if (NumberOfDialogue == 6 && Choices.GetChoice(1) == true){
+				Movement2.SetGoNormal(true);
+			}
+			if (NumberOfDialogue == 6 && Choices.GetChoice(1) == false){
+				Movement2.SetGoFaster(true);
+			}
+			if (NumberOfDialogue == 7 && Choices.GetChoice(1) == true){
+				Movement2.SetGoNormal(true);
+			}
+			if (NumberOfDialogue == 7 && Choices.GetChoice(1) == false){
+				Movement2.SetGoFaster(true);
+			}
+
+			if (NumberOfDialogue == 8 && Choices.GetChoice(1) == true){
+				Movement2.SetGoNormal(true);
+			}
+			if (NumberOfDialogue == 8 && Choices.GetChoice(1) == false){
+				Movement2.SetLegBroken(true);
+			}
+			if (NumberOfDialogue == 9 && Choices.GetChoice(1) == true){
+				Movement2.SetGoNormal(true);
+			}
+			if (NumberOfDialogue == 9 && Choices.GetChoice(1) == false){
+				Movement2.SetLegBroken(true);
+			}
+			if (NumberOfDialogue == 10 && Choices.GetChoice(1) == true){
+				Movement2.SetGoNormal(true);
+			}
+			if (NumberOfDialogue == 10 && Choices.GetChoice(1) == false){
+				Movement2.SetLegBroken(true);
+			}
+
+			if (NumberOfDialogue == 11 && Choices.GetChoice(1) == true){
+				Movement2.SetGoNormal(true);
+			}
+			if (NumberOfDialogue == 11 && Choices.GetChoice(1) == false){
+				Movement2.SetLegBroken(true);
+			}
+			if (NumberOfDialogue == 12 && Choices.GetChoice(1) == true){
+				Movement2.SetGoNormal(true);
+			}
+			if (NumberOfDialogue == 12 && Choices.GetChoice(1) == false){
+				Movement2.SetLegBroken(true);
+			}
+			if (NumberOfDialogue == 13 && Choices.GetChoice(1) == true){
+				Movement2.SetGoNormal(true);
+			}
+			if (NumberOfDialogue == 13 && Choices.GetChoice(1) == false){
+				Movement2.SetLegBroken(true);
+			}
+			if (NumberOfDialogue == 14 && Choices.GetChoice(1) == true){
+				Movement2.SetGoNormal(true);
+			}
+			if (NumberOfDialogue == 14 && Choices.GetChoice(1) == false){
+				Movement2.SetLegBroken(true);
+			}
+			if (NumberOfDialogue == 15 && Choices.GetChoice(1) == true){
+				Movement2.SetGoNormal(true);
+			}
+			if (NumberOfDialogue == 15 && Choices.GetChoice(1) == false){
+				Movement2.SetLegBroken(true);
+			}
+			if (NumberOfDialogue == 16 && Choices.GetChoice(1) == true){
+				Movement2.SetGoNormal(true);
+			}
+			if (NumberOfDialogue == 16 && Choices.GetChoice(1) == false){
+				Movement2.SetLegBroken(true);
+			}
+
+			if (NumberOfDialogue == 17 && Choices.GetChoice(1) == true){
+				Movement2.SetGoNormal(true);
+			}
+			if (NumberOfDialogue == 17 && Choices.GetChoice(1) == false){
+				Movement2.SetLegBroken(true);
+			}
+			if (NumberOfDialogue == 18 && Choices.GetChoice(1) == true){
+				Movement2.SetGoNormal(true);
+			}
+			if (NumberOfDialogue == 18 && Choices.GetChoice(1) == false){
+				Movement2.SetLegBroken(true);
+			}
+			if (NumberOfDialogue == 19 && Choices.GetChoice(1) == true){
+				Movement2.SetGoNormal(true);
+			}
+			if (NumberOfDialogue == 19 && Choices.GetChoice(1) == false){
+				Movement2.SetLegBroken(true);
+			}
+
 			if (NumberOfDialogue == 7){
 				Movement2.SetGatherFood(true);
 			}
@@ -151,6 +249,14 @@ public class GUIDialogue : MonoBehaviour {
 				else if (GUI.Button (new Rect(Screen.width/2-235, Screen.height/2+175, 470, 25), "Yes. I suggest that we both go out looking for food together.") || GUI.Button (new Rect(Screen.width/2-235, Screen.height/2+200, 470, 25), "Yes. I suggest that you head out while I watch the fire.")){
 					ChoiceIsMade = false;
 					currentDialogue = 3;	// Skips a part of the dialogue which is not needed
+				}
+			}
+			// For dialogue 8 !!! (ABC choice)
+			if (NumberOfDialogue == 8 && currentDialogue == 0){
+				ChoiceIsMade = true;
+				if (GUI.Button (new Rect(Screen.width/2-235, Screen.height/2+150, 470, 25), "Carl! You’re back! What happened?") || GUI.Button (new Rect(Screen.width/2-235, Screen.height/2+175, 470, 25), "Carl! I’m glad you’re back!") || GUI.Button (new Rect(Screen.width/2-235, Screen.height/2+200, 470, 25), "Carl! You’re back! I’m happy to see that you found more food!")){
+					ChoiceIsMade = false;
+					currentDialogue++;
 				}
 			}
 
@@ -225,6 +331,14 @@ public class GUIDialogue : MonoBehaviour {
 				}
 			}
 
+		}
+
+		if (/*Choices.GetChoice(3) == false && Choices.GetWasChoiceMade(3) && */LetUsGoInvisible.GetWeSaveCarl() == true && LetUsGoInvisible.GetWeHaveSavedCarl() == false){
+			print ("Haj");
+			GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600), "Hello your piece of shit");
+			if (GUI.Button (new Rect(Screen.width/2-50, Screen.height/2+350, 100, 25), "Next")){
+				LetUsGoInvisible.SetWeHaveSavedCarl(true);
+			}
 		}
 	}
 }

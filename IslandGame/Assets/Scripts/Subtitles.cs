@@ -39,6 +39,7 @@ public class Subtitles : MonoBehaviour {
 	//Simply says to stop displaying
 	void StopDisplaying () {
 		displaying = false;
+		Movement2.SetSubtitleCounter(Movement2.GetSubtitleCounter() +1);
 	}
 
 }

@@ -12,13 +12,21 @@ public class Ib : MonoBehaviour { //don't be fooled by the name, this is Carl's 
 	private float movementRange = 4.0f; 	// The range between the player and Ib before he moves towards the player ("skewed" walking)
 	private float maxMovementRange = 7.0f;	// Needed this as if you stood directly on Ib's X or Z axies wouldn't he move
 	public GameObject myStick;			// I need mah stick!
+	//-----------------------------------------------first ball-----------------------------------
 	private float StupidBallDistanceX;
 	private float StupidBallDistanceZ;
 	private static bool BallIsActive = false;
 
 	public static bool GetBallIsActive (){return BallIsActive;}
 	public static void SetBallIsActive (bool x){BallIsActive = x;}
-
+	//-----------------------------------------------second ball------------------------------------
+	private float StupidBallDistanceX1;
+	private float StupidBallDistanceZ1;
+	private static bool BallIsActive1 = false;
+	
+	public static bool GetBallIsActive1 (){return BallIsActive1;}
+	public static void SetBallIsActive1 (bool x){BallIsActive1 = x;}
+	//---------------------------------------------------------------------------------------------
 	public static float GetPosX(){
 		return PosX;
 	}
@@ -50,13 +58,16 @@ public class Ib : MonoBehaviour { //don't be fooled by the name, this is Carl's 
 		else{
 			myStick.SetActive(true);
 		}
-
+		//-----------------------------------------------------------------------------------
 		playerDistanceX = Mathf.Abs(PosX - Movement2.GetPlayerX());	// Calculates the distance from Ib and the player (X (Z is below))
 		playerDistanceZ = Mathf.Abs(PosZ - Movement2.GetPlayerZ());
-
+		//------------------------------------------------------------------------------------
 		StupidBallDistanceX = Mathf.Abs (PosX - stupidball.GetPosX ());
 		StupidBallDistanceZ = Mathf.Abs (PosZ - stupidball.GetPosZ ());
-
+		//------------------------------------------------------------------------------
+		StupidBallDistanceX1 = Mathf.Abs (PosX - stupidball1.GetPosX ());
+		StupidBallDistanceZ1 = Mathf.Abs (PosZ - stupidball1.GetPosZ ());
+		//--------------------------------------------------Follow player----------------------------------------
 		if (Movement2.GetCarlActive () == true) {
 			transform.LookAt (GameObject.Find ("Player").transform);	// This makes Ib look directly at the player all the time! Creepy D:
 		
@@ -68,16 +79,26 @@ public class Ib : MonoBehaviour { //don't be fooled by the name, this is Carl's 
 					DialogueTrigger1 = true;	// Triggers the first dialogue in the "DialogueOn" script
 			}
 		}
-		if(pauseMovement == true){
+		if(pauseMovement == true){//Carl will move
 			//transform.position += transform.forward * 10 * Time.deltaTime;	// This so far controls the movement, just moves towards the player
 			//This if statement is not needed, but I'm not gonna delete it yet, as I have to tell that the animation
 			//which sets on walking when this statement is true, also takes care of getting the character to move forward.
 		}
-
+		//------------------------------------------------follow first ball-------------------------------------
 		if (BallIsActive == true) {
 			transform.LookAt (GameObject.Find ("StupidBall").transform);	// This makes Ib look directly at the player all the time! Creepy D:
 			
 			if ((StupidBallDistanceX >= movementRange && StupidBallDistanceZ >= movementRange) || StupidBallDistanceX >= maxMovementRange || StupidBallDistanceZ >= maxMovementRange) {	
+				pauseMovement = true;	// Then lets move closer to our friend!
+			} else {
+				pauseMovement = false;	// I am close enough... don't want things to become weird!
+			}
+		}
+		//------------------------------------------------follow second ball--------------------------------------
+		if (BallIsActive1 == true) {
+			transform.LookAt (GameObject.Find ("StupidBall1").transform);	// This makes Ib look directly at the player all the time! Creepy D:
+			
+			if ((StupidBallDistanceX1 >= movementRange && StupidBallDistanceZ1 >= movementRange) || StupidBallDistanceX1 >= maxMovementRange || StupidBallDistanceZ1 >= maxMovementRange) {	
 				pauseMovement = true;	// Then lets move closer to our friend!
 			} else {
 				pauseMovement = false;	// I am close enough... don't want things to become weird!

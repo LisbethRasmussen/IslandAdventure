@@ -83,5 +83,10 @@ public class DialogueOn : MonoBehaviour {
 			Dialogue7.SetActive (true);
 			Trigger [7 - 1] = false;
 		}
+		if (LetUsGoInvisible.GetSleep() == false && Choices.GetChoice(3) == true && Choices.GetWasChoiceMade(3) && Ib.GetPauseMovement() == false && Movement2.GetSubtitleCounter() == 9 && Trigger [8 - 1] == true){
+			GUIDialogue.SetDialogueON (true);
+			Dialogue8.SetActive (true);
+			Trigger [8 - 1] = false;
+		}
 	}
 }
