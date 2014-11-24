@@ -123,7 +123,6 @@ public class LetUsGoInvisible : MonoBehaviour {
 		if (Choices.GetChoice(3) == false && Choices.GetWasChoiceMade(3) && WeSaveCarl == false){
 			renderer.material.color = new Color(0,0,0,1);
 			WeSaveCarl = true;
-			print (WeSaveCarl);
 		}
 		if (WeHaveSavedCarl == true){
 			renderer.material.color = new Color(0,0,0,0);
@@ -132,5 +131,15 @@ public class LetUsGoInvisible : MonoBehaviour {
 		//renderer.material.color -= new Color(0,0,0,0.01f);//basically just telling the object, that the material to be rendered should be set to a new color.
 		//that color then has it's alpha channel changed as the only thing.
 	
+	}
+
+	void OnGUI(){
+		if (WeSaveCarl == true && WeHaveSavedCarl == false){
+			print ("Haj");
+			GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600), "Hello your piece of shit");
+			if (GUI.Button (new Rect(Screen.width/2-50, Screen.height-100, 100, 25), "Next")){
+				WeHaveSavedCarl = true;
+			}
+		}
 	}
 }

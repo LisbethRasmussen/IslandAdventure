@@ -332,13 +332,5 @@ public class GUIDialogue : MonoBehaviour {
 			}
 
 		}
-
-		if (/*Choices.GetChoice(3) == false && Choices.GetWasChoiceMade(3) && */LetUsGoInvisible.GetWeSaveCarl() == true && LetUsGoInvisible.GetWeHaveSavedCarl() == false){
-			print ("Haj");
-			GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600), "Hello your piece of shit");
-			if (GUI.Button (new Rect(Screen.width/2-50, Screen.height/2+350, 100, 25), "Next")){
-				LetUsGoInvisible.SetWeHaveSavedCarl(true);
-			}
-		}
 	}
 }
