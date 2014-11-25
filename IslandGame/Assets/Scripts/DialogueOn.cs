@@ -83,7 +83,7 @@ public class DialogueOn : MonoBehaviour {
 			Dialogue7.SetActive (true);
 			Trigger [7 - 1] = false;
 		}
-		if (LetUsGoInvisible.GetSleep() == false && Choices.GetChoice(3) == true && Choices.GetWasChoiceMade(3) && Ib.GetPauseMovement() == false && Movement2.GetSubtitleCounter() == 9 && Trigger [8 - 1] == true){
+		if (LetUsGoInvisible.GetSleep() == false && Choices.GetChoice(3) == true && Choices.GetWasChoiceMade(3) && Ib.GetPauseMovement() == false && Movement2.GetSubtitleCounter() == 11 && Trigger [8 - 1] == true){
 			GUIDialogue.SetDialogueON (true);
 			Dialogue8.SetActive (true);
 			Trigger [8 - 1] = false;
@@ -102,6 +102,11 @@ public class DialogueOn : MonoBehaviour {
 			GUIDialogue.SetDialogueON (true);
 			Dialogue12.SetActive (true);
 			Trigger [12 - 1] = false;
+		}
+		if (Choices.GetWasChoiceMade(5) == false && DyingMale.GetCloseEnoughToDyingMale() == true && Trigger [13 - 1] == true){
+			GUIDialogue.SetDialogueON (true);
+			Dialogue13.SetActive (true);
+			Trigger [13 - 1] = false;
 		}
 	}
 }

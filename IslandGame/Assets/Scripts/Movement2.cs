@@ -47,6 +47,7 @@ public class Movement2 : MonoBehaviour {
 	private bool choice3MadeYet = false;
 	private static bool ChoiceScreenOn = false;
 	public static void SetChoiceScreenOn(bool x){ChoiceScreenOn = x;}
+	private bool YourLegIsBroken = false;
 
 	private static bool ExitedTheCaveArea = false;
 	public static void SetExitedTheCaveArea(bool x){ExitedTheCaveArea = x;}
@@ -143,19 +144,14 @@ public class Movement2 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (Input.GetKey(KeyCode.M)){
+			foodCount = 6;
+		}
 		playerPosX = transform.position.x; //setting the floats to the players position in world.
 		playerPosZ = transform.position.z;
 		playerPosY = transform.position.y;
 
-		//print (GUIDialogue.GetDialogueON () + " " + AnimationON + " " + DoNotMove + " " + ChoiceScreenOn);
-
-		//----------------------------------------Java c# coorperation cheat
-		/*if (Choices.GetChoice(3) == false && GUIDialogue.GetDialogueON() == false && AnimationON == false){
-			GoNormal = true;
-		}
-		if (Choices.GetChoice(1) == false){ //If they chose to eat - we move faster!
-			GoFaster = true;
-		}*/
 		if(GUIDialogue.GetDialogueON() == true || AnimationON == true || DoNotMove == true || ChoiceScreenOn == true){
 			NormalSpeed.SetActive (false); //this is the speed in which they walk not so fast, as they lack energy.
 			FasterSpeed.SetActive (false); //this is the speed after they've aten something, or if they are well rested.
@@ -255,7 +251,18 @@ public class Movement2 : MonoBehaviour {
 			LetUsDrink.SetDoneDrinking(true);
 				/*}
 			}*/
-
+		}
+		if (Letusdrink2.GetDrink() == true && Input.GetKey(KeyCode.E)){
+			/*GoDownCount-= 0.1f;
+			transform.position.y -= 0.1f;
+			if (GoDownCount <= -1.5f){
+				GoDownCount += 0.1f;
+				transform.position.y += 0.1f;
+				if (GoDownCount >= 0.1){*/
+			Letusdrink2.SetDrink(false);
+			Letusdrink2.SetDoneDrinking(true);
+			/*}
+			}*/
 		}
 
 		//---------------------------------------------------------We have now been drinking-----------
@@ -274,11 +281,12 @@ public class Movement2 : MonoBehaviour {
 			CWallR.SetActive(false);
 			GoSearch = false;
 		}
-		if (SubtitleCounter == 4){
+
+		if (SubtitleCounter == 6){
 			// Noms on food
 			Subtitle04.SetActive(true);
 		}
-		if (SubtitleCounter == 8 && choice3MadeYet == false){
+		if (SubtitleCounter == 10 && choice3MadeYet == false){
 			Choices.SetDecisionToBeMade(true);
 			Choices.SetChoiceNumber(3);
 			choice3MadeYet = true;
@@ -293,11 +301,12 @@ public class Movement2 : MonoBehaviour {
 			SleepDone = true;
 		}
 
-		if (/*FindCarl == true*/Choices.GetChoice(3) == false && Choices.GetWasChoiceMade(3)){
+		if (/*FindCarl == true*/Choices.GetChoice(3) == false && Choices.GetWasChoiceMade(3) && YourLegIsBroken == false){
 			CWallR.SetActive(false);
 			CWallL.SetActive(true);
 			//need some gui text describing what happens after the player go to find Carl
 			LegBroken = true;
+			YourLegIsBroken = true;
 		}
 		if (ProceedFromTheCave == true && ExitedTheCaveArea == false){
 			CWallF.SetActive(false);

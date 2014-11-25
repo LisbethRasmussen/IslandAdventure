@@ -73,6 +73,7 @@
      <Compile Include="Assets\Scripts\DestroyYourselfe.cs" />
      <Compile Include="Assets\Scripts\DialogueOn.cs" />
      <Compile Include="Assets\Scripts\DustExplotion2.cs" />
+     <Compile Include="Assets\Scripts\DyingMale.cs" />
      <Compile Include="Assets\Scripts\FireWood.cs" />
      <Compile Include="Assets\Scripts\FoggyVisionBeginning.cs" />
      <Compile Include="Assets\Scripts\GUIDialogue.cs" />
@@ -81,6 +82,7 @@
      <Compile Include="Assets\Scripts\Ib.cs" />
      <Compile Include="Assets\Scripts\LetUsDrink.cs" />
      <Compile Include="Assets\Scripts\LetUsGoInvisible.cs" />
+     <Compile Include="Assets\Scripts\Letusdrink2.cs" />
      <Compile Include="Assets\Scripts\LockWallSpawner.cs" />
      <Compile Include="Assets\Scripts\Movement2.cs" />
      <Compile Include="Assets\Scripts\PhotoAnimation.cs" />

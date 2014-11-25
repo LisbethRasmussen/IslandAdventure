@@ -11,14 +11,14 @@ public class LockWallSpawner : MonoBehaviour {
 	private float CarlDistanceZ;
 
 	public GameObject objectiveOne;
-	/*public GameObject objectiveTwo;
+	//public GameObject objectiveTwo;
 	//public GameObject objectiveThree; //this and its followers is not needed, as these are set in the movement script.
 	public GameObject objectiveFour;
-	public GameObject objectiveFive;
-	public GameObject objectiveSix;*/
+	//public GameObject objectiveFive;
+	//public GameObject objectiveSix;
 
 	private bool objectiveOneB = false; //ultimately these values should be obtained from another script by the use of a getter.
-	private bool objectiveTwoB = false; //they should be linked to the choice script.
+	//private bool objectiveTwoB = false; //they should be linked to the choice script.
 	//private bool objectiveThreeB = false;
 	private bool objectiveFourB = false;
 	private bool objectiveFiveB = false;
@@ -28,11 +28,11 @@ public class LockWallSpawner : MonoBehaviour {
 	void Start () {
 
 		objectiveOne.SetActive (false);
-		/*objectiveTwo.SetActive (false);
+		//objectiveTwo.SetActive (false);
 		//objectiveThree.SetActive (false);
 		objectiveFour.SetActive (false);
-		objectiveFive.SetActive (false);
-		objectiveSix.SetActive (false);*/
+		//objectiveFive.SetActive (false);
+		//objectiveSix.SetActive (false);
 	
 	}
 	
@@ -54,18 +54,16 @@ public class LockWallSpawner : MonoBehaviour {
 			if (objectiveTwoB == true){
 				GameObject.Instantiate(objectiveTwo, new Vector3(1f,0f,1f), transform.rotation);
 			}
-		}*/
-		/*if (DistanceX >= 2 && DistanceZ >= 2){
+		}
+		if (DistanceX >= 2 && DistanceZ >= 2){
 			if (objectiveThreeB == true){
 				GameObject.Instantiate(objectiveThree, new Vector3(1f,0f,1f), transform.rotation);
 			}
 		}*/
-		/*if (DistanceX >= 2 && DistanceZ >= 2){
-			if (objectiveFourB == true){
-				GameObject.Instantiate(objectiveFour, new Vector3(1f,0f,1f), transform.rotation);
-			}
+		if (CarlDistanceX >= 897 && CarlDistanceX <= 918 && CarlDistanceZ >=1054 && CarlDistanceZ <= 1060){
+			objectiveFour.SetActive(true);
 		}
-		if (DistanceX >= 2 && DistanceZ >= 2){
+		/*if (DistanceX >= 2 && DistanceZ >= 2){
 			if (objectiveFiveB == true){
 				GameObject.Instantiate(objectiveFive, new Vector3(1f,0f,1f), transform.rotation);
 			}
