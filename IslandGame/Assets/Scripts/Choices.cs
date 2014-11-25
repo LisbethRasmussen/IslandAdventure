@@ -111,7 +111,7 @@ public class Choices : MonoBehaviour {
 					ChoiceMade(ChoiceNumber, true);
 				}
 			}
-			if (ChoiceNumber == 3-1 || ChoiceNumber == 4-1 || ChoiceNumber == 6-1){	// For these choices shall the rational choice be the first the eye would see
+			else if (ChoiceNumber == 3-1 || ChoiceNumber == 4-1 || ChoiceNumber == 6-1){	// For these choices shall the rational choice be the first the eye would see
 				if (GUI.Button (new Rect(Screen.width/2-225, Screen.height/2+100, 220, 50), RationalChoice[ChoiceNumber])){
 					ChoiceMade(ChoiceNumber, true);
 				}
