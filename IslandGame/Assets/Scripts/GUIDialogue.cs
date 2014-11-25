@@ -202,9 +202,11 @@ public class GUIDialogue : MonoBehaviour {
 
 			if (NumberOfDialogue == 17 && Choices.GetChoice(3) == true){
 				Movement2.SetGoFaster(true);
+				LetUsGoInvisible.SetWePullCarlUpNow(true);
 			}
 			if (NumberOfDialogue == 17 && Choices.GetChoice(3) == false){
 				Movement2.SetLegBroken(true);
+				LetUsGoInvisible.SetWePullCarlUpNow(true);
 			}
 			if (NumberOfDialogue == 18 && Choices.GetChoice(3) == true){
 				Movement2.SetGoFaster(true);
