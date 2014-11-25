@@ -171,9 +171,13 @@ public class GUIDialogue : MonoBehaviour {
 			}
 			if (NumberOfDialogue == 13 && Choices.GetChoice(3) == true){
 				Movement2.SetGoFaster(true);
+				Choices.SetDecisionToBeMade(true);
+				Choices.SetChoiceNumber(5);
 			}
 			if (NumberOfDialogue == 13 && Choices.GetChoice(3) == false){
 				Movement2.SetLegBroken(true);
+				Choices.SetDecisionToBeMade(true);
+				Choices.SetChoiceNumber(5);
 			}
 			if (NumberOfDialogue == 14 && Choices.GetChoice(3) == true){
 				Movement2.SetGoFaster(true);

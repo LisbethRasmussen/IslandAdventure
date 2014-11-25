@@ -16,7 +16,7 @@ public class Subtitles : MonoBehaviour {
 		DistanceX = Mathf.Abs (transform.position.x - Movement2.GetPlayerX ());
 		DistanceZ = Mathf.Abs (transform.position.z - Movement2.GetPlayerZ ());
 	
-		if (DistanceX <= 4 && DistanceZ <= 4 && SubTrigger && !TestStart.GetStartSettings()) {
+		if (DistanceX <= 8 && DistanceZ <= 8 && SubTrigger && !TestStart.GetStartSettings()) {
 			SubTrigger = false;
 			Invoke ("StartDisplaying", StartLine);
 		}

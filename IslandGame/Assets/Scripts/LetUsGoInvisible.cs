@@ -68,8 +68,6 @@ public class LetUsGoInvisible : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		print ("We did not " + WeDidNotSaveCarl + ", run once " + RunOnce + ", has he cooked yet? " + CarlHasCookedHisFood);
-
 		if (HasGameStarted == true && FadeOut == true){ //we want to start with this one, which is why it has already been set to true in the beginning (before the start function)
 			fadeCounter -= 0.01f;
 			renderer.material.color = new Color(0,0,0,fadeCounter); //as this runs every fram, the counter runs down in value, which makes the cube more transparent.
@@ -104,13 +102,11 @@ public class LetUsGoInvisible : MonoBehaviour {
 				renderer.material.color = new Color(0,0,0,0);
 				PrivateBlackMyScreen = true;
 				fadeCounter = 0;
-				print ("stop this");
 			}
 		}
 		if (GetReadyAgainBlackMyScreen == false){
 			PrivateBlackMyScreen = false;
 			GetReadyAgainBlackMyScreen = true;
-			print ("get ready");
 		}
 		if (Sleeping == true) { //change this with the GUI dialogue script and the Choices script
 			fadeCounter += 0.03f;
@@ -127,7 +123,7 @@ public class LetUsGoInvisible : MonoBehaviour {
 				}
 			}
 		}
-		if (Movement2.GetSubtitleCounter() == 9){
+		if (Movement2.GetSubtitleCounter() == 11){
 			Ib.SetBallIsActive1(false);
 			Movement2.SetCarlActive(true);
 			Carl.SetActive(true);
@@ -173,7 +169,6 @@ public class LetUsGoInvisible : MonoBehaviour {
 
 	void OnGUI(){
 		if (WeSaveCarl == true && WeHaveSavedCarl == false){
-			//print ("Haj");
 			GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600),
 
 			         "\n\n\n\n"

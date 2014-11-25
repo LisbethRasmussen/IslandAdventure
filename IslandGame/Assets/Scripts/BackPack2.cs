@@ -26,7 +26,6 @@ public class BackPack2 : MonoBehaviour {
 
 						if (Input.GetKey (KeyCode.B) && Bpressed == false && CloseMe == false) {
 								Bpressed = true;
-				print ("jeg har min rygsæk");
 						}
 						if (Input.GetKey (KeyCode.B) && Bpressed == true && CloseMe == true) {
 								Bpressed = false;
