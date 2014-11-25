@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<Total_x0020_Results xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Data_x0020_List>
+    <TestResult>
+      <choice>
+        <string>Emotional</string>
+        <string>Emotional</string>
+        <string>Rational</string>
+        <string>Rational</string>
+        <string>Rational</string>
+        <string>Rational</string>
+      </choice>
+    </TestResult>
+  </Data_x0020_List>
+</Total_x0020_Results>

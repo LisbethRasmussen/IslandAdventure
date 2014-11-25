@@ -80,7 +80,7 @@ public class Choices : MonoBehaviour {
 
 
 			if (TestStart.GetTimeOn() == true){	// If a timer shall be set on the choice
-				lengthOfBar -= 1.1f;			// This shall be changed to illustrate around 7 seconds of time
+				lengthOfBar -= 0.8f;			// This shall be changed to illustrate around 7 seconds of time
 				timeBarBACK.enabled = true;
 				timeBarFRONT.enabled = true;
 				timeBarFRONT.pixelInset = new Rect (0-lengthOfBar/2, -180-10, lengthOfBar, 20);
@@ -133,6 +133,9 @@ public class Choices : MonoBehaviour {
 			GUIDialogue.SetChoiceIsMade(true);	// We return to the dialogue so this shall be set to true now
 			GUIDialogue.NextDialogue();			// Makes us go to the next slide of dialogue
 		}
+		if (index == 6-1){						// After choice 6 shall:
+			TestResultManager.SaveResult();		// Saves the test results!
+		}
 	}
 
 	private void ChoiceNOTMade(int index){
@@ -150,6 +153,9 @@ public class Choices : MonoBehaviour {
 		if (index == 1-1){						// for choice 1 shall:
 			GUIDialogue.SetChoiceIsMade(true);	// We return to the dialogue so this shall be set to true now
 			GUIDialogue.NextDialogue();			// Makes us go to the next slide of dialogue
+		}
+		if (index == 6-1){						// After choice 6 shall:
+			TestResultManager.SaveResult();		// Saves the test results!
 		}
 	}
 

@@ -293,53 +293,52 @@ public class GUIDialogue : MonoBehaviour {
 				}
 			}
 
-			if (ChoiceIsMade == true){
-				// For dialogue 3 !!! (1 choice)
-				if (NumberOfDialogue == 3){
-					if (Choices.GetChoice(1) == true){
-						lastDialogue = 4;
+			// For dialogue 3 !!! (1 choice)
+			if (NumberOfDialogue == 3){
+				if (Choices.GetChoice(1) == true){
+					lastDialogue = 4;
 						ChoiceIsMade = false;
-					}
-					else if (Choices.GetChoice(1) == false){
-						currentDialogue = 4;
-						ChoiceIsMade = false;
-					}
 				}
-				// For dialogue 4 !!! (how the outcome of 1 choice was)
-				if (NumberOfDialogue == 4 && currentDialogue == 2){
-					if (Choices.GetChoice(1) == true){
-						lastDialogue = 5;
-						ChoiceIsMade = false;
-					}
-					else if (Choices.GetChoice(1) == false){
-						currentDialogue = 5;
-						ChoiceIsMade = false;
-					}
+				else if (Choices.GetChoice(1) == false){
+					currentDialogue = 4;
+					ChoiceIsMade = false;
 				}
-				// For dialogue 12 !!! (how the outcome of 3 choice was)
-				if (NumberOfDialogue == 12 && currentDialogue == 2){
-					if (Choices.GetChoice(3) == true){
+			}
+			// For dialogue 4 !!! (how the outcome of 1 choice was)
+			if (NumberOfDialogue == 4 && currentDialogue == 2){
+				if (Choices.GetChoice(1) == false){
+					lastDialogue = 5;
+					ChoiceIsMade = false;
+				}
+				else if (Choices.GetChoice(1) == true){
+					currentDialogue = 5;
+					ChoiceIsMade = false;
+				}
+			}
+			// For dialogue 12 !!! (how the outcome of 3 choice was)
+			if (NumberOfDialogue == 12 && currentDialogue == 2){
+				if (Choices.GetChoice(3) == true){
+					lastDialogue = 3;
+					ChoiceIsMade = false;
+				}
+				else if (Choices.GetChoice(3) == false){
+					currentDialogue = 3;
+					ChoiceIsMade = false;
+				}
+			}
+			// For dialogue 13 !!! (how the outcome of 3 and 4 choices was)
+			if (NumberOfDialogue == 13 && currentDialogue == 1){
+				if (Choices.GetChoice(3) == true){
+					lastDialogue = 2;
+					ChoiceIsMade = false;
+				}
+				else if (Choices.GetChoice(3) == false){
+					if (Choices.GetChoice(4) == true){
+						currentDialogue = 2;
 						lastDialogue = 3;
-						ChoiceIsMade = false;
 					}
-					else if (Choices.GetChoice(3) == false){
+					else if (Choices.GetChoice(4) == false){
 						currentDialogue = 3;
-						ChoiceIsMade = false;
-					}
-				}
-				// For dialogue 13 !!! (how the outcome of 3 and 4 choices was)
-				if (NumberOfDialogue == 13 && currentDialogue == 1){
-					if (Choices.GetChoice(3) == true){
-						lastDialogue = 2;
-						ChoiceIsMade = false;
-					}
-					else if (Choices.GetChoice(3) == false){
-						if (Choices.GetChoice(4) == true){
-							currentDialogue = 2;
-							lastDialogue = 3;
-						}
-						else if (Choices.GetChoice(4) == false)
-							currentDialogue = 3;
 						ChoiceIsMade = false;
 					}
 				}
