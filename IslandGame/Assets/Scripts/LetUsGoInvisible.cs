@@ -17,6 +17,7 @@ using System.Collections;
 public class LetUsGoInvisible : MonoBehaviour {
 
 	private bool RunOnce = false;
+	private bool RunOnce3 = false;
 
 	private static bool WeDidNotSaveCarl = false;
 	private static bool CarlHasCookedHisFood = false;
@@ -36,6 +37,8 @@ public class LetUsGoInvisible : MonoBehaviour {
 	private float frameCounter = 0;
 	private bool SleepNow = false;
 	public GameObject Subtitle05;
+	public GameObject Subtitle071;
+	public GameObject Subtitle081;
 
 	private int FadedTooManyTimes = 0; //we only want the scene to fade a certain number of times.
 	private static bool BlackMyScreen = false; //we need a "glitch" so the player knows that a cutscene is happening
@@ -161,6 +164,13 @@ public class LetUsGoInvisible : MonoBehaviour {
 				RunOnce2 = true;
 			}
 		}
+		if (Choices.GetWasChoiceMade(5) == true){
+			Subtitle081.SetActive(true);
+		}
+		if (triggerCarlFallInHole.GetCarlHasFallen() == true && RunOnce3 == false){
+			renderer.material.color = new Color(0,0,0,1);
+			Movement2.SetDoNotMove (true);
+		}
 
 		//renderer.material.color -= new Color(0,0,0,0.01f);//basically just telling the object, that the material to be rendered should be set to a new color.
 		//that color then has it's alpha channel changed as the only thing.
@@ -230,6 +240,7 @@ public class LetUsGoInvisible : MonoBehaviour {
 			         + "For a moment you stand still and glance over the sand grave.");
 			if (GUI.Button (new Rect(Screen.width/2-50, Screen.height-100, 100, 25), "Next")){
 				GirlBuriedYet = true;
+				Subtitle071.SetActive(true);
 			}
 		}
 		if (Choices.GetWasChoiceMade(4) == true && Choices.GetChoice(4) == false && Choices.GetChoice(3) == false && GirlBuriedYet == false){
@@ -242,6 +253,28 @@ public class LetUsGoInvisible : MonoBehaviour {
 			         + "while you wathces the grave for a bit.");
 			if (GUI.Button (new Rect(Screen.width/2-50, Screen.height-100, 100, 25), "Next")){
 				GirlBuriedYet = true;
+				Subtitle071.SetActive(true);
+			}
+		}
+		if (triggerCarlFallInHole.GetCarlHasFallen() == true && RunOnce3 == false){
+			GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600),
+			         "\n\n\n\n"
+			         + "Oh no! Carl has fallen!"
+			         + "\n"
+			         + "Do I want to save that basterd"
+			         + "\n"
+			         + "lololoolol");
+			if (GUI.Button (new Rect(Screen.width/2-50, Screen.height-100, 100, 25), "Next")){
+				RunOnce3 = true;
+				renderer.material.color = new Color(0,0,0,0);
+				Choices.SetDecisionToBeMade(true);
+				Movement2.SetDoNotMove(false);
+				if (Choices.GetChoice(3) == true){
+					Movement2.SetGoFaster(true);
+				}
+				if (Choices.GetChoice(3) == false){
+					Movement2.SetGoNormal(true);
+				}
 			}
 		}
 	}

@@ -89,6 +89,7 @@
      <Compile Include="Assets\Scripts\PickUp.cs" />
      <Compile Include="Assets\Scripts\PickUpSound2.cs" />
      <Compile Include="Assets\Scripts\PlayerHolderScript.cs" />
+     <Compile Include="Assets\Scripts\PointerArrow.cs" />
      <Compile Include="Assets\Scripts\Shark.cs" />
      <Compile Include="Assets\Scripts\SharkBait\SharkBait1.cs" />
      <Compile Include="Assets\Scripts\SharkBait\SharkBait2.cs" />
@@ -107,6 +108,7 @@
      <Compile Include="Assets\Scripts\stupidball1.cs" />
      <Compile Include="Assets\Scripts\testResult.cs" />
      <Compile Include="Assets\Scripts\testResultData.cs" />
+     <Compile Include="Assets\Scripts\triggerCarlFallInHole.cs" />
      <Compile Include="Assets\Scripts\underwaterRenderingSettings.cs" />
      <Compile Include="Assets\SkyProject System\SkyProject\Scenes\Assets (Scene)\Standard Assets\Water (Basic)\Sources\Scripts\Water.cs" />
      <Compile Include="Assets\SkyProject System\SkyProject\Scripts\Other\DisableMouse.cs" />

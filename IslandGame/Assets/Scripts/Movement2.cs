@@ -48,11 +48,14 @@ public class Movement2 : MonoBehaviour {
 	private static bool ChoiceScreenOn = false;
 	public static void SetChoiceScreenOn(bool x){ChoiceScreenOn = x;}
 	private bool YourLegIsBroken = false;
+	private bool ThisIsFirstRun = false;
 
 	private static bool ExitedTheCaveArea = false;
 	public static void SetExitedTheCaveArea(bool x){ExitedTheCaveArea = x;}
 
 	public GameObject IslandWall;
+	public GameObject SaveCarlWall;
+	public GameObject DontSaveCarlWall;
 
 	private static bool AnimationON = false;
 	private static bool DoNotMove = false;
@@ -139,11 +142,16 @@ public class Movement2 : MonoBehaviour {
 		Carl.SetActive (false); //We don't want him to be there at first!!!
 		CarlActive = false;
 
+		SaveCarlWall.SetActive (false);
+		DontSaveCarlWall.SetActive (false);
+
 		Anim = gameObject.GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		print ("GoNormal " + GoNormal + " GoFaster " + GoFaster + " Dig " + GUIDialogue.GetDialogueON () + " AnimON " + AnimationON + " do not move " + DoNotMove + " choiches " + ChoiceScreenOn);
 
 		if (Input.GetKey(KeyCode.M)){
 			foodCount = 6;
@@ -340,6 +348,19 @@ public class Movement2 : MonoBehaviour {
 			GatherFireWood = true;
 
 		}
+		//--------------------------------------------------------------Carll will fall now!
+
+		if (triggerCarlFallInHole.GetCarlHasFallen() == true && ThisIsFirstRun == false){
+			Carl.SetActive(false);
+			ThisIsFirstRun = true;
+		}
+		if (Choices.GetWasChoiceMade(6) == true && Choices.GetChoice(6) == true){
+			DontSaveCarlWall.SetActive(true);
+		}
+		if (Choices.GetWasChoiceMade(6) == true && Choices.GetChoice(6) == false){
+			SaveCarlWall.SetActive(true);
+		}
+		//-----------------------------------------------------die potato nooooooooooooooooooooooo.
 
 		//------------------------------------------------------------------------------------------
 		//if (messageON == false){

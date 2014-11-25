@@ -8,28 +8,35 @@ public class DustExplotion2 : MonoBehaviour {
 	private bool RunBefore1 = false;
 	private bool RunBefore2 = false;
 	private bool RunBefore3 = false;
+
+	private static bool TheFirstDustCloudeIsSeen = false;
+	public static bool GetTheFirstDustCloudeIsSeen(){return TheFirstDustCloudeIsSeen;}
 	
-	
-	public GameObject invisibleDustcube; //recall, when this script is pulled onto something, the object in question needs to be added in the inspector.
-	
+	public GameObject invisibleDustcube1; //recall, when this script is pulled onto something, the object in question needs to be added in the inspector.
+	public GameObject invisibleDustcube2;
+	public GameObject invisibleDustcube3;
 	
 	void Start () {
+		invisibleDustcube1.SetActive (false);
+		invisibleDustcube2.SetActive (false);
+		invisibleDustcube3.SetActive (false);
 	}
 	
 	void Update () {
 		DistanceX = Movement2.GetPlayerX();
 		DistanceZ = Movement2.GetPlayerZ();
 		
-		if (DistanceZ >= 7 && DistanceX >= 0 && RunBefore1 == false){
-			GameObject.Instantiate(invisibleDustcube, new Vector3(10f,0f,11f), transform.rotation);
+		if (DistanceZ >= 764 && DistanceZ <= 781 && DistanceX >= 1073 && DistanceX <= 1090 && RunBefore1 == false){
+			invisibleDustcube1.SetActive (true);
 			RunBefore1 = true;
+
 		}
-		if (DistanceZ >= 8 && DistanceX >= 0 && RunBefore2 == false){
-			GameObject.Instantiate(invisibleDustcube, new Vector3(11f,0f,11f), transform.rotation);
+		if (DistanceZ >= 753 && DistanceZ <= 758 && DistanceX >= 1043 && DistanceX <= 1062 && RunBefore2 == false){
+			invisibleDustcube2.SetActive (true);
 			RunBefore2 = true;
 		}
-		if (DistanceZ >= 9 && DistanceX >= 0 && RunBefore3 == false){
-			GameObject.Instantiate(invisibleDustcube, new Vector3(12f,0f,11f), transform.rotation);
+		if (DistanceZ >= 654 && DistanceZ <= 675 && DistanceX >= 1039 && DistanceX <= 1053 && RunBefore3 == false){
+			invisibleDustcube3.SetActive (true);
 			RunBefore3 = true;
 		}
 	}

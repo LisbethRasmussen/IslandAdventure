@@ -99,6 +99,8 @@ public class GUIDialogue : MonoBehaviour {
 			if (NumberOfDialogue == 2){
 				Movement2.SetMiniGameOn(true);
 				Movement2.SetGoNormal(true);
+				Movement2.SetAnimationOn(false);
+				Movement2.SetDoNotMove(false);
 			}
 			if (NumberOfDialogue == 3 && Choices.GetChoice(1) == false){
 				Movement2.SetGoFaster(true);

@@ -28,7 +28,7 @@ public class DyingMale : MonoBehaviour {
 		if (PlayerDistanceX <= 7 && PlayerDistanceZ <= 7) {
 			CloseEnoughToDyingMale = true;
 		}
-		if (PlayerDistanceX >= 14 && PlayerDistanceZ >= 14 && Choices.GetWasChoiceMade(5) == true){
+		if ((PlayerDistanceX >= 14 || PlayerDistanceZ >= 14) && Choices.GetWasChoiceMade(5) == true){
 			SittingMale.SetActive(false);
 			LyingMale.SetActive(true);
 		}

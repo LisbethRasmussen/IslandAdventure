@@ -108,5 +108,10 @@ public class DialogueOn : MonoBehaviour {
 			Dialogue13.SetActive (true);
 			Trigger [13 - 1] = false;
 		}
+		if (DustExplotion2.GetTheFirstDustCloudeIsSeen() == true && Trigger [14 - 1] == true){
+			GUIDialogue.SetDialogueON (true);
+			Dialogue14.SetActive (true);
+			Trigger [14 - 1] = false;
+		}
 	}
 }

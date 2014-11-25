@@ -15,7 +15,7 @@ public class IDeleteMySelfe : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		saftyCounter++;
-		if (saftyCounter == 200) {
+		if (saftyCounter == 300) {
 			Destroy (gameObject);
 			saftyCounter = 0;
 		}//maybe need to use *deltatime, to make sure that the smoke comes at the same speed on all comsputers
