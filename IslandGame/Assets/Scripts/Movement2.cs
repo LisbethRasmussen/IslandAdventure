@@ -49,6 +49,7 @@ public class Movement2 : MonoBehaviour {
 	public static void SetChoiceScreenOn(bool x){ChoiceScreenOn = x;}
 	private bool YourLegIsBroken = false;
 	private bool ThisIsFirstRun = false;
+	private bool HaveWeFedTheMan = false;
 
 	private static bool ExitedTheCaveArea = false;
 	public static void SetExitedTheCaveArea(bool x){ExitedTheCaveArea = x;}
@@ -151,7 +152,7 @@ public class Movement2 : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		print ("GoNormal " + GoNormal + " GoFaster " + GoFaster + " Dig " + GUIDialogue.GetDialogueON () + " AnimON " + AnimationON + " do not move " + DoNotMove + " choiches " + ChoiceScreenOn);
+		//print ("GoNormal " + GoNormal + " GoFaster " + GoFaster + " Dig " + GUIDialogue.GetDialogueON () + " AnimON " + AnimationON + " do not move " + DoNotMove + " choiches " + ChoiceScreenOn);
 
 		if (Input.GetKey(KeyCode.M)){
 			foodCount = 6;
@@ -347,6 +348,11 @@ public class Movement2 : MonoBehaviour {
 			Fire.SetActive(false);
 			GatherFireWood = true;
 
+		}
+		//-------------------------------------------------if we feed the man
+		if (Choices.GetWasChoiceMade(5) == true && Choices.GetChoice(5) == false && HaveWeFedTheMan == false){
+			foodCount = foodCount/2;
+			HaveWeFedTheMan = true;
 		}
 		//--------------------------------------------------------------Carll will fall now!
 

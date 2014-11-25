@@ -63,6 +63,8 @@
      <Compile Include="Assets\Scripts\AnimationPositionTest.cs" />
      <Compile Include="Assets\Scripts\AnimationsOnOff.cs" />
      <Compile Include="Assets\Scripts\BackPack2.cs" />
+     <Compile Include="Assets\Scripts\BoatTrigger.cs" />
+     <Compile Include="Assets\Scripts\BotSailsOff.cs" />
      <Compile Include="Assets\Scripts\Box.cs" />
      <Compile Include="Assets\Scripts\CampFireScript.cs" />
      <Compile Include="Assets\Scripts\CarlMovement.cs" />
@@ -101,6 +103,7 @@
      <Compile Include="Assets\Scripts\TestResultManager.cs" />
      <Compile Include="Assets\Scripts\TestStart.cs" />
      <Compile Include="Assets\Scripts\ThePictureFlyAway.cs" />
+     <Compile Include="Assets\Scripts\TriggerNoBoat.cs" />
      <Compile Include="Assets\Scripts\WalkingSound2.cs" />
      <Compile Include="Assets\Scripts\WallDeleterYpos.cs" />
      <Compile Include="Assets\Scripts\WhereAmInow.cs" />

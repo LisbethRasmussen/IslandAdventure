@@ -18,6 +18,7 @@ public class LetUsGoInvisible : MonoBehaviour {
 
 	private bool RunOnce = false;
 	private bool RunOnce3 = false;
+	private bool RunOnce4 = false;
 
 	private static bool WeDidNotSaveCarl = false;
 	private static bool CarlHasCookedHisFood = false;
@@ -29,6 +30,11 @@ public class LetUsGoInvisible : MonoBehaviour {
 	public static bool GetWeHaveSavedCarl(){return WeHaveSavedCarl;}
 	public static void SetWeHaveSavedCarl(bool x){WeHaveSavedCarl = x;}
 	public GameObject Carl;
+	private static bool WePullCarlUpNow = false;
+	public static void SetWePullCarlUpNow (bool x){WePullCarlUpNow = x;}
+
+	private static bool BeginConversationWithBoatMen = false;
+	public static bool GetBeginConversationWithBoatMen(){return BeginConversationWithBoatMen;}
 
 	private bool FadeOut = true; //we need two different kinds of states on the cube. One where it gets lighter
 	private bool FadeIn = false; //and one where it gets darker.
@@ -171,6 +177,14 @@ public class LetUsGoInvisible : MonoBehaviour {
 			renderer.material.color = new Color(0,0,0,1);
 			Movement2.SetDoNotMove (true);
 		}
+		if (BoatTrigger.GetBoatInRange() == true && BoatTrigger.GetShowBlackScreenByBoat() == true){
+			renderer.material.color = new Color(0,0,0,1);
+			Movement2.SetDoNotMove (true);
+		}
+		if (WePullCarlUpNow == true && RunOnce4 == false){
+			renderer.material.color = new Color(0,0,0,1);
+			Movement2.SetDoNotMove (true);
+		}
 
 		//renderer.material.color -= new Color(0,0,0,0.01f);//basically just telling the object, that the material to be rendered should be set to a new color.
 		//that color then has it's alpha channel changed as the only thing.
@@ -274,6 +288,28 @@ public class LetUsGoInvisible : MonoBehaviour {
 				}
 				if (Choices.GetChoice(3) == false){
 					Movement2.SetGoNormal(true);
+				}
+			}
+			if (BoatTrigger.GetBoatInRange() == true && BoatTrigger.GetShowBlackScreenByBoat() == true && BeginConversationWithBoatMen == false){
+				GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600),
+				         "\n\n\n\n"
+				         + "they send two people to look"
+				         + "\n"
+				         + "It take some time before they get back.");
+				if (GUI.Button (new Rect(Screen.width/2-50, Screen.height-100, 100, 25), "Next")){
+					renderer.material.color = new Color(0,0,0,0);
+					BeginConversationWithBoatMen = true;
+				}
+			}
+			if (WePullCarlUpNow == true && RunOnce4 == false){
+				GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600),
+				         "\n\n\n\n"
+				         + "You Pull Carl Up with all you strength. And something more.");
+				if (GUI.Button (new Rect(Screen.width/2-50, Screen.height-100, 100, 25), "Next")){
+					renderer.material.color = new Color(0,0,0,0);
+					RunOnce4 = true;
+					Movement2.SetDoNotMove(false);
+					Carl.SetActive(true);
 				}
 			}
 		}

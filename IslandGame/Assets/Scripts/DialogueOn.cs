@@ -113,5 +113,21 @@ public class DialogueOn : MonoBehaviour {
 			Dialogue14.SetActive (true);
 			Trigger [14 - 1] = false;
 		}
+		if (BoatTrigger.GetBoatInRange() == true && Trigger [15 - 1] == true){
+			GUIDialogue.SetDialogueON (true);
+			Dialogue15.SetActive (true);
+			Trigger [15 - 1] = false;
+			BoatTrigger.SetShowBlackScreenByBoat(true);
+		}
+		if (BoatTrigger.GetShowBlackScreenByBoat() == true && Trigger [16 - 1] == true){
+			GUIDialogue.SetDialogueON (true);
+			Dialogue16.SetActive (true);
+			Trigger [16 - 1] = false;
+		}
+		if (Choices.GetWasChoiceMade(6) == true && Choices.GetChoice(6) == false && Trigger [17 - 1] == true){
+			GUIDialogue.SetDialogueON (true);
+			Dialogue17.SetActive (true);
+			Trigger [17 - 1] = false;
+		}
 	}
 }
