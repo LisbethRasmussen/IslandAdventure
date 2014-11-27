@@ -276,11 +276,11 @@ public class LetUsGoInvisible : MonoBehaviour {
 		if (triggerCarlFallInHole.GetCarlHasFallen() == true && RunOnce3 == false){
 			GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600),
 			         "\n\n\n\n"
-			         + "Oh no! Carl has fallen!"
+			         + "You hear a loud crahs and Carl screaming as he falls down a sinkhole behind you"
 			         + "\n"
-			         + "Do I want to save that basterd"
+			         + "The snakes which most likely are down in the hole could attack Carl at any moment."
 			         + "\n"
-			         + "lololoolol");
+			         + "But the boat on the beach might also be about to sail and leave you behind.");
 			if (GUI.Button (new Rect(Screen.width/2-50, Screen.height-100, 100, 25), "Next")){
 				RunOnce3 = true;
 				renderer.material.color = new Color(0,0,0,0);
@@ -297,9 +297,14 @@ public class LetUsGoInvisible : MonoBehaviour {
 			if (GUIDialogue.GetConversation15Done() == true && RunOnce5 == false){
 				GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600),
 				         "\n\n\n\n"
-				         + "they send two people to look"
+				         + "The two men from the boat go over to help Carl at the sinkhole. You stay by the boat"
 				         + "\n"
-				         + "It take some time before they get back.");
+				         + "and whatch them as they go. At the hole it appears that one of the men is shaking his"
+				         + "\n"
+				         + "head as he looks down the hole. The other one shouts CARL! down the hole."
+				         + "\n"
+				         + "They appears to give up after a while and go back towards you."
+				         );
 				if (GUI.Button (new Rect(Screen.width/2-50, Screen.height-100, 100, 25), "Next")){
 					renderer.material.color = new Color(0,0,0,0);
 					RunOnce5 = true;
@@ -310,7 +315,11 @@ public class LetUsGoInvisible : MonoBehaviour {
 			if (WePullCarlUpNow == true && RunOnce4 == false){
 				GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600),
 				         "\n\n\n\n"
-				         + "You Pull Carl Up with all you strength. And something more.");
+				         + "You Pull Carl Up with all you strength. As you turn around to get to the boat"
+				         +"\n"
+				         +" you see that it is sailing away from the island."
+				         +"\n"
+				         +" You are never going to leave the island and are stuck with Carl for the rest of your life.");
 				if (GUI.Button (new Rect(Screen.width/2-50, Screen.height-100, 100, 25), "Next")){
 					renderer.material.color = new Color(0,0,0,0);
 					RunOnce4 = true;
