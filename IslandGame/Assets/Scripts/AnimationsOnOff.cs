@@ -9,6 +9,7 @@ public class AnimationsOnOff : MonoBehaviour {
 	public static bool Conversation4Active = false;
 	public static bool JumpInWater = false;
 	private bool ValueHolder = false;
+	public GameObject picture; 
 
 	public float animSpeed = 1.5f;
 	private static bool AnimON = true;
@@ -57,6 +58,7 @@ public class AnimationsOnOff : MonoBehaviour {
 				Carl.SetActive(true);
 				Movement2.SetCarlActive(true);
 				Movement2.SetAnimationCounter(Movement2.GetAnimationCounter() + 1);
+				picture.SetActive(false);
 			}
 		}
 
