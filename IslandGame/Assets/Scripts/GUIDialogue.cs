@@ -6,6 +6,9 @@ public class GUIDialogue : MonoBehaviour {
 	//new stuff--------------
 	private static bool DrinkCarl = false;
 	private static bool GetDrinkCarl(){return DrinkCarl;}
+
+	private static bool Conversation15Done = false;
+	public static bool GetConversation15Done(){return Conversation15Done;}
 	//---------------------
 
 	/*To start a dialogue is there 2 lines of code be used:
@@ -192,9 +195,11 @@ public class GUIDialogue : MonoBehaviour {
 			}
 			if (NumberOfDialogue == 15 && Choices.GetChoice(3) == true){
 				Movement2.SetGoFaster(true);
+				Conversation15Done = true;
 			}
 			if (NumberOfDialogue == 15 && Choices.GetChoice(3) == false){
 				Movement2.SetLegBroken(true);
+				Conversation15Done = true;
 			}
 			if (NumberOfDialogue == 16 && Choices.GetChoice(3) == true){
 				Movement2.SetGoFaster(true);

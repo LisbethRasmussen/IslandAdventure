@@ -9,10 +9,6 @@ public class BoatTrigger : MonoBehaviour {
 	private static bool BoatInRange = false;
 	public static bool GetBoatInRange(){return BoatInRange;}
 
-	private static bool ShowBlackScreenByBoat = false;
-	public static bool GetShowBlackScreenByBoat (){return ShowBlackScreenByBoat;}
-	public static void SetShowBlackScreenByBoat (bool x){ShowBlackScreenByBoat = x;}
-
 	// Use this for initialization
 	void Start () {
 	
