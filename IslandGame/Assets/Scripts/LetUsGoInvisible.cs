@@ -16,9 +16,13 @@ using System.Collections;
 
 public class LetUsGoInvisible : MonoBehaviour {
 
+	private static bool LastConversationWithBoatman = false;
+	public static bool GetLastConversationWithBoatman(){return LastConversationWithBoatman;}
+
 	private bool RunOnce = false;
 	private bool RunOnce3 = false;
 	private bool RunOnce4 = false;
+	private bool RunOnce5 = false;
 
 	private static bool WeDidNotSaveCarl = false;
 	private static bool CarlHasCookedHisFood = false;
@@ -32,9 +36,6 @@ public class LetUsGoInvisible : MonoBehaviour {
 	public GameObject Carl;
 	private static bool WePullCarlUpNow = false;
 	public static void SetWePullCarlUpNow (bool x){WePullCarlUpNow = x;}
-
-	private static bool BeginConversationWithBoatMen = false;
-	public static bool GetBeginConversationWithBoatMen(){return BeginConversationWithBoatMen;}
 
 	private bool FadeOut = true; //we need two different kinds of states on the cube. One where it gets lighter
 	private bool FadeIn = false; //and one where it gets darker.
@@ -177,10 +178,12 @@ public class LetUsGoInvisible : MonoBehaviour {
 			renderer.material.color = new Color(0,0,0,1);
 			Movement2.SetDoNotMove (true);
 		}
-		if (BoatTrigger.GetBoatInRange() == true && BoatTrigger.GetShowBlackScreenByBoat() == true){
+		//---------------------------------------------------------------------------------------
+		if (GUIDialogue.GetConversation15Done() == true && RunOnce5 == false){
 			renderer.material.color = new Color(0,0,0,1);
 			Movement2.SetDoNotMove (true);
 		}
+		//------------------------------------------------------------------------------------------
 		if (WePullCarlUpNow == true && RunOnce4 == false){
 			renderer.material.color = new Color(0,0,0,1);
 			Movement2.SetDoNotMove (true);
@@ -290,7 +293,8 @@ public class LetUsGoInvisible : MonoBehaviour {
 					Movement2.SetGoNormal(true);
 				}
 			}
-			if (BoatTrigger.GetBoatInRange() == true && BoatTrigger.GetShowBlackScreenByBoat() == true && BeginConversationWithBoatMen == false){
+			//-----------------------------------------------------------------------------
+			if (GUIDialogue.GetConversation15Done() == true && RunOnce5 == false){
 				GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600),
 				         "\n\n\n\n"
 				         + "they send two people to look"
@@ -298,9 +302,11 @@ public class LetUsGoInvisible : MonoBehaviour {
 				         + "It take some time before they get back.");
 				if (GUI.Button (new Rect(Screen.width/2-50, Screen.height-100, 100, 25), "Next")){
 					renderer.material.color = new Color(0,0,0,0);
-					BeginConversationWithBoatMen = true;
+					RunOnce5 = true;
+					LastConversationWithBoatman = true;
 				}
 			}
+			//------------------------------------------------------------------------------
 			if (WePullCarlUpNow == true && RunOnce4 == false){
 				GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600),
 				         "\n\n\n\n"
