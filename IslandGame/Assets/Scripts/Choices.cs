@@ -80,7 +80,7 @@ public class Choices : MonoBehaviour {
 
 
 			if (TestStart.GetTimeOn() == true){	// If a timer shall be set on the choice
-				lengthOfBar -= 0.8f;			// This shall be changed to illustrate around 7 seconds of time
+				lengthOfBar -= 0.75f;			// This shall be changed to illustrate around 7 seconds of time
 				timeBarBACK.enabled = true;
 				timeBarFRONT.enabled = true;
 				timeBarFRONT.pixelInset = new Rect (0-lengthOfBar/2, -180-10, lengthOfBar, 20);

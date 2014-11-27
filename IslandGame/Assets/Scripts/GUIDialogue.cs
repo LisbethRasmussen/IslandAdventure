@@ -199,10 +199,11 @@ public class GUIDialogue : MonoBehaviour {
 			}
 			if (NumberOfDialogue == 15 && Choices.GetChoice(3) == false){
 				Movement2.SetLegBroken(true);
-				Conversation15Done = true;
 			}
 			if (NumberOfDialogue == 16 && Choices.GetChoice(3) == true){
 				Movement2.SetGoFaster(true);
+				Application.Quit();
+
 			}
 			if (NumberOfDialogue == 16 && Choices.GetChoice(3) == false){
 				Movement2.SetLegBroken(true);

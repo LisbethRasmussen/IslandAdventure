@@ -46,6 +46,7 @@ public class LetUsGoInvisible : MonoBehaviour {
 	public GameObject Subtitle05;
 	public GameObject Subtitle071;
 	public GameObject Subtitle081;
+	public GameObject Subtitle091;
 
 	private int FadedTooManyTimes = 0; //we only want the scene to fade a certain number of times.
 	private static bool BlackMyScreen = false; //we need a "glitch" so the player knows that a cutscene is happening
@@ -291,41 +292,44 @@ public class LetUsGoInvisible : MonoBehaviour {
 				}
 				if (Choices.GetChoice(3) == false){
 					Movement2.SetGoNormal(true);
+					Subtitle091.SetActive(true);
 				}
 			}
-			//-----------------------------------------------------------------------------
-			if (GUIDialogue.GetConversation15Done() == true && RunOnce5 == false){
-				GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600),
-				         "\n\n\n\n"
-				         + "The two men from the boat go over to help Carl at the sinkhole. You stay by the boat"
-				         + "\n"
-				         + "and whatch them as they go. At the hole it appears that one of the men is shaking his"
-				         + "\n"
-				         + "head as he looks down the hole. The other one shouts CARL! down the hole."
-				         + "\n"
-				         + "They appears to give up after a while and go back towards you."
-				         );
-				if (GUI.Button (new Rect(Screen.width/2-50, Screen.height-100, 100, 25), "Next")){
-					renderer.material.color = new Color(0,0,0,0);
-					RunOnce5 = true;
-					LastConversationWithBoatman = true;
-				}
+
+		}
+		//-----------------------------------------------------------------------------
+		if (GUIDialogue.GetConversation15Done() == true && RunOnce5 == false){
+			print ("Hello Unity!");
+			GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600),
+			         "\n\n\n\n"
+			         + "The two men from the boat go over to help Carl at the sinkhole. You stay by the boat"
+			         + "\n"
+			         + "and whatch them as they go. At the hole it appears that one of the men is shaking his"
+			         + "\n"
+			         + "head as he looks down the hole. The other one shouts CARL! down the hole."
+			         + "\n"
+			         + "They appears to give up after a while and go back towards you."
+			         );
+			if (GUI.Button (new Rect(Screen.width/2-50, Screen.height-100, 100, 25), "Next")){
+				renderer.material.color = new Color(0,0,0,0);
+				RunOnce5 = true;
+				LastConversationWithBoatman = true;
 			}
-			//------------------------------------------------------------------------------
-			if (WePullCarlUpNow == true && RunOnce4 == false){
-				GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600),
-				         "\n\n\n\n"
-				         + "You Pull Carl Up with all you strength. As you turn around to get to the boat"
-				         +"\n"
-				         +" you see that it is sailing away from the island."
-				         +"\n"
-				         +" You are never going to leave the island and are stuck with Carl for the rest of your life.");
-				if (GUI.Button (new Rect(Screen.width/2-50, Screen.height-100, 100, 25), "Next")){
-					renderer.material.color = new Color(0,0,0,0);
-					RunOnce4 = true;
-					Movement2.SetDoNotMove(false);
-					Carl.SetActive(true);
-				}
+		}
+		//------------------------------------------------------------------------------
+		if (WePullCarlUpNow == true && RunOnce4 == false){
+			GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600),
+			         "\n\n\n\n"
+			         + "You Pull Carl Up with all you strength. As you turn around to get to the boat"
+			         +"\n"
+			         +" you see that it is sailing away from the island."
+			         +"\n"
+			         +" You are never going to leave the island and are stuck with Carl for the rest of your life.");
+			if (GUI.Button (new Rect(Screen.width/2-50, Screen.height-100, 100, 25), "Next")){
+				renderer.material.color = new Color(0,0,0,0);
+				RunOnce4 = true;
+				Movement2.SetDoNotMove(false);
+				Carl.SetActive(true);
 			}
 		}
 	}
