@@ -138,7 +138,6 @@ public class GUIDialogue : MonoBehaviour {
 
 			if (NumberOfDialogue == 8 && Choices.GetChoice(3) == true && LetUsGoInvisible.GetCarlHasCookedHisFood() == false){
 				LetUsGoInvisible.SetWeDidNotSaveCarl(true);
-				print ("dialogue 8 has been played");
 			}
 
 			if (NumberOfDialogue == 8 && Choices.GetChoice(3) == false){
@@ -296,7 +295,7 @@ public class GUIDialogue : MonoBehaviour {
 			}
 
 			// For dialogue 3 !!! (1 choice)
-			if (NumberOfDialogue == 3){
+			if (NumberOfDialogue == 3 && ChoiceIsMade == true){
 				if (Choices.GetChoice(1) == true){
 					lastDialogue = 4;
 						ChoiceIsMade = false;
@@ -308,11 +307,11 @@ public class GUIDialogue : MonoBehaviour {
 			}
 			// For dialogue 4 !!! (how the outcome of 1 choice was)
 			if (NumberOfDialogue == 4 && currentDialogue == 2){
-				if (Choices.GetChoice(1) == false){
+				if (Choices.GetChoice(1) == true){
 					lastDialogue = 5;
 					ChoiceIsMade = false;
 				}
-				else if (Choices.GetChoice(1) == true){
+				else if (Choices.GetChoice(1) == false){
 					currentDialogue = 5;
 					ChoiceIsMade = false;
 				}
