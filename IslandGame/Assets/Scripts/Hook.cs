@@ -87,7 +87,7 @@ public class Hook : MonoBehaviour {
 	void OnGUI(){
 
 		if (Movement2.GetMiniGameOn() == true){
-			GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600),
+			GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 200, 200),
 			         "\n\n\n\n"
 			         + "When standing at the boxes press T to rotate the stick up"
 			         + "\n"
