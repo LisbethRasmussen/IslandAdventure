@@ -84,7 +84,9 @@ public class GUIDialogue : MonoBehaviour {
 			Dialogue[13] = DiaBox14;
 		if(totalNumOfDia >= 15)
 			Dialogue[14] = DiaBox15;
+	
 	}
+
 	
 	// Update is called once per frame
 	void Update () {
