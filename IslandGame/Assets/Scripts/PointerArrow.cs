@@ -5,6 +5,7 @@ public class PointerArrow : MonoBehaviour {
 	//---------------------------------------------- Put the foodboxes here
 	public GameObject Arrow1;
 	private float counter = 0.0f;
+	private bool runOnce = false;
 
 	private bool GoUp = true;
 	private bool GoDown = false;
@@ -63,7 +64,7 @@ public class PointerArrow : MonoBehaviour {
 			Arrow1.SetActive(false);
 		}
 		//---------------------------------------------------------------------------------TWO, foodarea
-		if (GoUp2 == true){
+		if (GoUp2 == true && runOnce == false){
 			Arrow2.SetActive(true);
 			counter2+= 0.1f;
 			Arrow2.transform.position += new Vector3 (0,0.1f,0);
@@ -73,7 +74,7 @@ public class PointerArrow : MonoBehaviour {
 				counter2 = 0;
 			}
 		}
-		if (GoDown2 == true){
+		if (GoDown2 == true && runOnce == false){
 			Arrow2.SetActive(true);
 			counter2+= 0.1f;
 			Arrow2.transform.position -= new Vector3 (0,0.1f,0);
@@ -85,6 +86,7 @@ public class PointerArrow : MonoBehaviour {
 		}
 		if(Movement2.GetPlayerX() >= 1076 && Movement2.GetPlayerX() <= 1080 && Movement2.GetPlayerZ() <= 1335 && Movement2.GetPlayerZ() >= 1297){
 			Arrow2.SetActive(false);
+			runOnce = true;
 		}
 		//----------------------------------------------------------------------------------Three, girl
 		if (GoUp3 == true){
