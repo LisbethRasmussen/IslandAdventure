@@ -25,7 +25,15 @@ public class BotSailsOff : MonoBehaviour {
 			BeachGuyWhite.SetActive(false);
 
 			StandingGuy1.SetActive(true);
-			SittingGuy1.SetActive(false);
+			SittingGuy1.SetActive(true);
+		}
+		if (Choices.GetWasChoiceMade(6) == true && Choices.GetChoice(6) == false){
+			transform.position += new Vector3 (1,0,0);
+			BeachGuyBlack.SetActive(false);
+			BeachGuyWhite.SetActive(false);
+			
+			StandingGuy1.SetActive(true);
+			SittingGuy1.SetActive(true);
 		}
 
 	}

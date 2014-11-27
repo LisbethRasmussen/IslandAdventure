@@ -24,7 +24,7 @@ public class BoatTrigger : MonoBehaviour {
 		DistanceX = Mathf.Abs ((Movement2.GetPlayerX()) - (transform.position.x));
 		DistanceZ = Mathf.Abs ((Movement2.GetPlayerZ()) - (transform.position.z));
 
-		if (DistanceX <= 10 && DistanceZ <= 10){
+		if (DistanceX <= 25 && DistanceZ <= 25){
 			BoatInRange = true;
 		}
 		else{

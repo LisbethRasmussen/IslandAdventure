@@ -29,7 +29,7 @@ public class DeadGirl : MonoBehaviour {
 		DistanceX = Mathf.Abs (Movement2.GetPlayerX () - PosX);
 		DistanceZ = Mathf.Abs (Movement2.GetPlayerZ () - PosZ);
 
-		if (DistanceX <= 4.0f && DistanceZ <= 4.0f && LetUsGoInvisible.GetGirlBuriedYet() == false){
+		if (DistanceX <= 7.0f && DistanceZ <= 7.0f && LetUsGoInvisible.GetGirlBuriedYet() == false){
 			DeadGirlInRange = true;
 		}
 

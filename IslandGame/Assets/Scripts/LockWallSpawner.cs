@@ -47,7 +47,7 @@ public class LockWallSpawner : MonoBehaviour {
 
 
 
-		if (DistanceX <= 1197f && CarlDistanceX <= 1195f){
+		if (DistanceX <= 1180f && CarlDistanceX <= 1180f){
 				objectiveOne.SetActive(true);
 		}
 		/*if (DistanceX >= 2 && DistanceZ >= 2){

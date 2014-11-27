@@ -113,9 +113,11 @@ public class GUIDialogue : MonoBehaviour {
 			}
 			if (NumberOfDialogue == 4 && Choices.GetChoice(1) == true){
 				Movement2.SetGoNormal(true);
+				BackPack2.SetHaveBackpack(true);
 			}
 			if (NumberOfDialogue == 4 && Choices.GetChoice(1) == false){
 				Movement2.SetGoFaster(true);
+				BackPack2.SetHaveBackpack(true);
 			}
 			if (NumberOfDialogue == 5 && Choices.GetChoice(1) == true){
 				Movement2.SetGoNormal(true);
