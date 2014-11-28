@@ -191,10 +191,10 @@ public class LetUsGoInvisible : MonoBehaviour {
 		if (PlayerTrackerX >= 1036 && PlayerTrackerX <= 1075 && PlayerTrackerZ >= 735 && PlayerTrackerZ <= 740){
 			LookDownTheHole = true;
 		}
-		if (DustExplotion2.GetTheFirstDustCloudeIsSeen() == true && RunOnce6 == false && LookDownTheHole == true){
+		/*if (DustExplotion2.GetTheFirstDustCloudeIsSeen() == true && RunOnce6 == false && LookDownTheHole == true){
 			renderer.material.color = new Color(0,0,0,1);
 			Movement2.SetDoNotMove (true);
-		}
+		}*/
 		if (triggerCarlFallInHole.GetCarlHasFallen() == true && RunOnce3 == false){
 			renderer.material.color = new Color(0,0,0,1);
 			Movement2.SetDoNotMove (true);
@@ -310,7 +310,7 @@ public class LetUsGoInvisible : MonoBehaviour {
 			}
 		}
 		//----------------------------------------------------------------------------------
-		if (DustExplotion2.GetTheFirstDustCloudeIsSeen() == true && RunOnce6 == false && LookDownTheHole == true){
+		/*if (DustExplotion2.GetTheFirstDustCloudeIsSeen() == true && RunOnce6 == false && LookDownTheHole == true){
 			GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600),
 			         "\n\n\n\n"
 			         + "When the dust cloude has settle you and Carl go over to look at the newly appeared hole."
@@ -329,7 +329,7 @@ public class LetUsGoInvisible : MonoBehaviour {
 				Movement2.SetDoNotMove (false);
 				RunOnce6 = true;
 			}
-		}
+		}*/
 		//----------------------------------------------------------------------------------
 
 		if (triggerCarlFallInHole.GetCarlHasFallen() == true && RunOnce3 == false){
