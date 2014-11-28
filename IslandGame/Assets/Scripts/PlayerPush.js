@@ -1,9 +1,8 @@
-﻿#pragma strict
+﻿var power : float = 50000.0;
 
-function Start () {
+function OnTriggerEnter (player : Collider) {
 
-}
-
-function Update () {
+	if (player.tag=="Player")
+		player.GetComponent(ImpactReceiver).AddImpact(Vector3(power,power,0));
 
 }
