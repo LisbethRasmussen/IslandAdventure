@@ -16,4 +16,5 @@ function Update(){
 // apply the impact force:
 	if (impact.magnitude > 0.2) character.Move(impact * Time.deltaTime);
 		impact = Vector3.Lerp(impact, Vector3.zero, 5*Time.deltaTime); // consumes the impact energy each cycle:
+	
 }
