@@ -19,10 +19,20 @@ public class LetUsGoInvisible : MonoBehaviour {
 	private static bool LastConversationWithBoatman = false;
 	public static bool GetLastConversationWithBoatman(){return LastConversationWithBoatman;}
 
+	private float WeLoveCounters = 0;
+	private static bool YouEndAllAloneScreen = false;
+
 	private bool RunOnce = false;
 	private bool RunOnce3 = false;
 	private bool RunOnce4 = false;
 	private bool RunOnce5 = false;
+	private bool RunOnce6 = false;
+	private bool RunOnce7 = false;
+	private bool RunOnce8 = false;
+
+	private float PlayerTrackerX;
+	private float PlayerTrackerZ;
+	private bool LookDownTheHole = false;
 
 	private static bool WeDidNotSaveCarl = false;
 	private static bool CarlHasCookedHisFood = false;
@@ -78,6 +88,9 @@ public class LetUsGoInvisible : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		PlayerTrackerX = Movement2.GetPlayerX ();
+		PlayerTrackerZ = Movement2.GetPlayerZ ();
 
 		if (HasGameStarted == true && FadeOut == true){ //we want to start with this one, which is why it has already been set to true in the beginning (before the start function)
 			fadeCounter -= 0.01f;
@@ -175,6 +188,13 @@ public class LetUsGoInvisible : MonoBehaviour {
 		if (Choices.GetWasChoiceMade(5) == true){
 			Subtitle081.SetActive(true);
 		}
+		if (PlayerTrackerX >= 1036 && PlayerTrackerX <= 1075 && PlayerTrackerZ >= 735 && PlayerTrackerZ <= 740){
+			LookDownTheHole = true;
+		}
+		if (DustExplotion2.GetTheFirstDustCloudeIsSeen() == true && RunOnce6 == false && LookDownTheHole == true){
+			renderer.material.color = new Color(0,0,0,1);
+			Movement2.SetDoNotMove (true);
+		}
 		if (triggerCarlFallInHole.GetCarlHasFallen() == true && RunOnce3 == false){
 			renderer.material.color = new Color(0,0,0,1);
 			Movement2.SetDoNotMove (true);
@@ -184,8 +204,23 @@ public class LetUsGoInvisible : MonoBehaviour {
 			renderer.material.color = new Color(0,0,0,1);
 			Movement2.SetDoNotMove (true);
 		}
+		if (GUIDialogue.GetConversation16Done() == true && RunOnce7 == false) {
+			renderer.material.color = new Color(0,0,0,1);
+			Movement2.SetDoNotMove (true);
+		}
 		//------------------------------------------------------------------------------------------
 		if (WePullCarlUpNow == true && RunOnce4 == false){
+			renderer.material.color = new Color(0,0,0,1);
+			Movement2.SetDoNotMove (true);
+		}
+		if (TriggerNoBoat.GetGoodbyeBoat() == true && RunOnce8 == false && YouEndAllAloneScreen == false){
+			WeLoveCounters++;
+			if (WeLoveCounters >= 300){
+				YouEndAllAloneScreen = true;
+				WeLoveCounters = 0;
+			}
+		}
+		if (YouEndAllAloneScreen == true && RunOnce8 == false){
 			renderer.material.color = new Color(0,0,0,1);
 			Movement2.SetDoNotMove (true);
 		}
@@ -274,6 +309,29 @@ public class LetUsGoInvisible : MonoBehaviour {
 				Subtitle071.SetActive(true);
 			}
 		}
+		//----------------------------------------------------------------------------------
+		if (DustExplotion2.GetTheFirstDustCloudeIsSeen() == true && RunOnce6 == false && LookDownTheHole == true){
+			GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600),
+			         "\n\n\n\n"
+			         + "When the dust cloude has settle you and Carl go over to look at the newly appeared hole."
+			         + "\n"
+			         + "It's almost too dark to see down the hole, but it appears that there is a form of cave system"
+			         + "\n"
+			         + "down there. The noise of hisses aproach you as you lean in over the hole."
+			         + "\n"
+			         + "Carl, apparently having a better vision says that he spots snakes in the hole."
+			         + "\n"
+			         + "You both figure that it would be best to stay away from the holes and be carefull when"
+			         + "\n"
+			         + "proceeding onward as it appears that the ground you walk on is somewhat fragile.");
+			if (GUI.Button (new Rect(Screen.width/2-50, Screen.height-100, 100, 25), "Next")){
+				renderer.material.color = new Color(0,0,0,0);
+				Movement2.SetDoNotMove (false);
+				RunOnce6 = true;
+			}
+		}
+		//----------------------------------------------------------------------------------
+
 		if (triggerCarlFallInHole.GetCarlHasFallen() == true && RunOnce3 == false){
 			GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600),
 			         "\n\n\n\n"
@@ -331,6 +389,28 @@ public class LetUsGoInvisible : MonoBehaviour {
 				Movement2.SetDoNotMove(false);
 				Carl.SetActive(true);
 			}
+		}
+		if (GUIDialogue.GetConversation16Done() == true && RunOnce7 == false){
+			GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600),
+			         "\n\n\n\n"
+			         + "You leave the island with the men in the boat and return to the mainland at last."
+			         +"\n"
+			         +"A search and rescue party was send out to the island as fast as possible, but it was of"
+			         +"\n"
+			         +"no effort. There were no more living castaway people on the island.");
+		}
+		if (YouEndAllAloneScreen == true && RunOnce8 == false){
+			GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600),
+			         "\n\n\n\n"
+			         + "You soon loose the boat off sight in the distance. It is clear that they are not be"
+			         +"\n"
+			         +"Able to hear you. You hurry back to Carl to see what has become of him. Down in the"
+			         +"\n"
+			         +"hole you spot Carl lying all still with several snakes moving around him. You call out"
+			         +"\n"
+			         +"His name, but you soon realizes that he is already dead. If were from the fall or the"
+			         +"\n"
+			         +"snake is unknown to you. You are now stuck on the island alone forever.");
 		}
 	}
 }

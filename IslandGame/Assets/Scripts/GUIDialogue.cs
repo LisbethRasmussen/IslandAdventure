@@ -9,6 +9,10 @@ public class GUIDialogue : MonoBehaviour {
 
 	private static bool Conversation15Done = false;
 	public static bool GetConversation15Done(){return Conversation15Done;}
+
+	private static bool Conversation16Done = false;
+	public static bool GetConversation16Done(){return Conversation16Done;}
+
 	//---------------------
 
 	/*To start a dialogue is there 2 lines of code be used:

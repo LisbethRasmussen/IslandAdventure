@@ -29,6 +29,7 @@ public class DustExplotion2 : MonoBehaviour {
 		if (DistanceZ >= 764 && DistanceZ <= 781 && DistanceX >= 1073 && DistanceX <= 1090 && RunBefore1 == false){
 			invisibleDustcube1.SetActive (true);
 			RunBefore1 = true;
+			TheFirstDustCloudeIsSeen = true;
 
 		}
 		if (DistanceZ >= 753 && DistanceZ <= 758 && DistanceX >= 1043 && DistanceX <= 1062 && RunBefore2 == false){
