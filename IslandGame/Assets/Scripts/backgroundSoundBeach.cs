@@ -38,7 +38,7 @@ public class backgroundSoundBeach : MonoBehaviour {
 		// When entering the breach with the girl
 		if(Movement2.GetPlayerX() <= 885 && Movement2.GetPlayerX() >= 855 && Movement2.GetPlayerZ() <= 1200 && Movement2.GetPlayerZ() >= 1150 && EnterBeachGirl == false){
 			playerDistance = (855 - Movement2.GetPlayerX())* 0.03f;
-			audio.volume = Mathf.Abs(playerDistance);
+			audio.volume =  1 + playerDistance;
 			if (playerDistance >= 0){
 				EnterBeachGirl = true;
 				soundsource.audio.volume = 1.0f;
@@ -58,7 +58,7 @@ public class backgroundSoundBeach : MonoBehaviour {
 		// When entering the breach after meeting the dying man
 		if(Movement2.GetPlayerX() <= 1135 && Movement2.GetPlayerX() >= 1105 && Movement2.GetPlayerZ() <= 1050 && Movement2.GetPlayerZ() >= 1010 && EnterBeachAfterMan == false){
 			playerDistance = (1105 - Movement2.GetPlayerX())* 0.03f;
-			audio.volume = Mathf.Abs(playerDistance);
+			audio.volume =  1 + playerDistance;
 			if (playerDistance >= 0){
 				EnterBeachAfterMan = true;
 				soundsource.audio.volume = 1.0f;
@@ -78,7 +78,7 @@ public class backgroundSoundBeach : MonoBehaviour {
 		// When entering the breach after leaving or saving carl
 		if(Movement2.GetPlayerX() <= 1200 && Movement2.GetPlayerX() >= 1170 && Movement2.GetPlayerZ() <= 610 && Movement2.GetPlayerZ() >= 560 && EnterLastBeach == false){
 			playerDistance = (1170 - Movement2.GetPlayerX())* 0.03f;
-			audio.volume = Mathf.Abs(playerDistance);
+			audio.volume =  1 + playerDistance;
 			if (playerDistance >= 0){
 				EnterLastBeach = true;
 				soundsource.audio.volume = 1.0f;

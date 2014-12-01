@@ -48,7 +48,7 @@ public class backgroundsoundjungle : MonoBehaviour {
 		// When entering the jungle after the girl
 		if(Movement2.GetPlayerX() <= 861 && Movement2.GetPlayerX() >= 831 && Movement2.GetPlayerZ() <= 1100 && Movement2.GetPlayerZ() >= 1050 && EnterJungleDyingMan == false){
 			playerDistance = (861 - Movement2.GetPlayerX())* 0.03f;
-			audio.volume = Mathf.Abs(playerDistance);
+			audio.volume =  1 + playerDistance;
 			if (playerDistance >= 0){
 				EnterJungleDyingMan = true;
 				soundsource.audio.volume = 1.0f;
@@ -68,7 +68,7 @@ public class backgroundsoundjungle : MonoBehaviour {
 		// When entering the jungle with the holes
 		if(Movement2.GetPlayerX() <= 1175 && Movement2.GetPlayerX() >= 1100 && Movement2.GetPlayerZ() <= 861 && Movement2.GetPlayerZ() >= 831 && EnterJungleHoles == false){
 			playerDistance = (831 - Movement2.GetPlayerZ())* 0.03f;
-			audio.volume = Mathf.Abs(playerDistance);
+			audio.volume =  1 + playerDistance;
 			if (playerDistance >= 0){
 				EnterJungleHoles = true;
 				soundsource.audio.volume = 1.0f;
