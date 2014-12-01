@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>D:/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>D:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -60,6 +60,7 @@
      <Compile Include="Assets\LowPolyBushVinesPackage\Standard Assets\Image Effects (Pro Only)\SepiaToneEffect.cs" />
      <Compile Include="Assets\LowPolyBushVinesPackage\Standard Assets\Image Effects (Pro Only)\TwirlEffect.cs" />
      <Compile Include="Assets\LowPolyBushVinesPackage\Standard Assets\Image Effects (Pro Only)\VortexEffect.cs" />
+     <Compile Include="Assets\Scripts\ActivateFloatingPic.cs" />
      <Compile Include="Assets\Scripts\AnimationPositionTest.cs" />
      <Compile Include="Assets\Scripts\AnimationsOnOff.cs" />
      <Compile Include="Assets\Scripts\BackPack2.cs" />
@@ -72,6 +73,7 @@
      <Compile Include="Assets\Scripts\Choices.cs" />
      <Compile Include="Assets\Scripts\Conversations.cs" />
      <Compile Include="Assets\Scripts\DeadGirl.cs" />
+     <Compile Include="Assets\Scripts\DeleteYourselfePhoto.cs" />
      <Compile Include="Assets\Scripts\DestroyYourselfe.cs" />
      <Compile Include="Assets\Scripts\DialogueOn.cs" />
      <Compile Include="Assets\Scripts\DustExplotion2.cs" />
@@ -99,6 +101,7 @@
      <Compile Include="Assets\Scripts\SharkBait\SharkBait4.cs" />
      <Compile Include="Assets\Scripts\SharkBait\SharkBait5.cs" />
      <Compile Include="Assets\Scripts\SharkBait\SharkBait6.cs" />
+     <Compile Include="Assets\Scripts\SoundInverterFromTo.cs" />
      <Compile Include="Assets\Scripts\Subtitles.cs" />
      <Compile Include="Assets\Scripts\TestResultManager.cs" />
      <Compile Include="Assets\Scripts\TestStart.cs" />
@@ -107,6 +110,12 @@
      <Compile Include="Assets\Scripts\WalkingSound2.cs" />
      <Compile Include="Assets\Scripts\WallDeleterYpos.cs" />
      <Compile Include="Assets\Scripts\WhereAmInow.cs" />
+     <Compile Include="Assets\Scripts\backgroundSoundBeach.cs" />
+     <Compile Include="Assets\Scripts\backgroundsoundCrack.cs" />
+     <Compile Include="Assets\Scripts\backgroundsoundDig.cs" />
+     <Compile Include="Assets\Scripts\backgroundsoundGrowl.cs" />
+     <Compile Include="Assets\Scripts\backgroundsoundSnore.cs" />
+     <Compile Include="Assets\Scripts\backgroundsoundjungle.cs" />
      <Compile Include="Assets\Scripts\stupidball.cs" />
      <Compile Include="Assets\Scripts\stupidball1.cs" />
      <Compile Include="Assets\Scripts\testResult.cs" />

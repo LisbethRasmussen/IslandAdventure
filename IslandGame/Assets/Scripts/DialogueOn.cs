@@ -24,6 +24,7 @@ public class DialogueOn : MonoBehaviour {
 	public GameObject Dialogue17;
 	public GameObject Dialogue18;
 	public GameObject Dialogue19;
+	public GameObject StoneIslandWall;
 
 	private bool[] Trigger;	// A trigger for letting a dialogue only trigger once
 
@@ -61,6 +62,7 @@ public class DialogueOn : MonoBehaviour {
 		if (Hook.GetBoxesOnLand () == 3 && Movement2.GetFoodCount () == 3 && Trigger [3 - 1] == true){
 			GUIDialogue.SetDialogueON (true);
 			Dialogue3.SetActive (true);
+			StoneIslandWall.SetActive(false);
 			Trigger [3 - 1] = false;
 		}
 		if (AnimationsOnOff.GetConversation4Active() == true && Trigger [4 - 1] == true){
