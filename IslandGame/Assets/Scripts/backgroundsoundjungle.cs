@@ -19,7 +19,7 @@ public class backgroundsoundjungle : MonoBehaviour {
 		
 		soundsource.loop = true; //makes sure that the sound track loops when it has reached the end, if the player decides to go for that long a time period.
 		soundsource.Play();
-		audio.volume = 0;
+		soundsource.audio.volume = 0;
 	}
 	
 	// Update is called once per frame
@@ -28,20 +28,20 @@ public class backgroundsoundjungle : MonoBehaviour {
 		// When going out of the stone-island
 		if(Movement2.GetPlayerX() <= 1195 && Movement2.GetPlayerX() >= 1162 && Movement2.GetPlayerZ() <= 1447 && Movement2.GetPlayerZ() >= 1407 && EnterJungleCave == false){
 			playerDistance = (1162 - Movement2.GetPlayerX())* 0.03f;
-			audio.volume = Mathf.Abs(playerDistance);
+			audio.volume = 1 + playerDistance;
 			if (playerDistance >= 0){
 				EnterJungleCave = true;
-				audio.volume = 1.0f;
+				soundsource.audio.volume = 1.0f;
 			}
 		}
-		
+
 		// When Leaving the cave area
 		if(Movement2.GetPlayerX() <= 885 && Movement2.GetPlayerX() >= 855 && Movement2.GetPlayerZ() <= 1200 && Movement2.GetPlayerZ() >= 1150 && EnterJungleCave == true){
 			playerDistance = (Movement2.GetPlayerX() - 855)* 0.03f;
 			audio.volume = Mathf.Abs(playerDistance);
 			if (Mathf.Abs(playerDistance) <= 0){
 				EnterJungleCave = false;
-				audio.volume = 0;
+				soundsource.audio.volume = 0;
 			}
 		}
 		
@@ -51,7 +51,7 @@ public class backgroundsoundjungle : MonoBehaviour {
 			audio.volume = Mathf.Abs(playerDistance);
 			if (playerDistance >= 0){
 				EnterJungleDyingMan = true;
-				audio.volume = 1.0f;
+				soundsource.audio.volume = 1.0f;
 			}
 		}
 		
@@ -61,7 +61,7 @@ public class backgroundsoundjungle : MonoBehaviour {
 			audio.volume = Mathf.Abs(playerDistance);
 			if (Mathf.Abs(playerDistance) <= 0){
 				EnterJungleDyingMan = false;
-				audio.volume = 0;
+				soundsource.audio.volume = 0;
 			}
 		}
 		
@@ -71,7 +71,7 @@ public class backgroundsoundjungle : MonoBehaviour {
 			audio.volume = Mathf.Abs(playerDistance);
 			if (playerDistance >= 0){
 				EnterJungleHoles = true;
-				audio.volume = 1.0f;
+				soundsource.audio.volume = 1.0f;
 			}
 		}
 		
@@ -81,7 +81,7 @@ public class backgroundsoundjungle : MonoBehaviour {
 			audio.volume = Mathf.Abs(playerDistance);
 			if (Mathf.Abs(playerDistance) <= 0){
 				EnterJungleHoles = false;
-				audio.volume = 0;
+				soundsource.audio.volume = 0;
 			}
 		}
 	}

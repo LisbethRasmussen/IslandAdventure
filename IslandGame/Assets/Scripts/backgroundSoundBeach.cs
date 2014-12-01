@@ -31,7 +31,7 @@ public class backgroundSoundBeach : MonoBehaviour {
 			audio.volume = Mathf.Abs(playerDistance);
 			if (Mathf.Abs(playerDistance) <= 0){
 				FirstSoundShift = true;
-				audio.volume = 0;
+				soundsource.audio.volume = 0;
 			}
 		}
 
@@ -41,7 +41,7 @@ public class backgroundSoundBeach : MonoBehaviour {
 			audio.volume = Mathf.Abs(playerDistance);
 			if (playerDistance >= 0){
 				EnterBeachGirl = true;
-				audio.volume = 1.0f;
+				soundsource.audio.volume = 1.0f;
 			}
 		}
 
@@ -51,7 +51,7 @@ public class backgroundSoundBeach : MonoBehaviour {
 			audio.volume = Mathf.Abs(playerDistance);
 			if (Mathf.Abs(playerDistance) <= 0){
 				EnterBeachGirl = false;
-				audio.volume = 0;
+				soundsource.audio.volume = 0;
 			}
 		}
 
@@ -61,7 +61,7 @@ public class backgroundSoundBeach : MonoBehaviour {
 			audio.volume = Mathf.Abs(playerDistance);
 			if (playerDistance >= 0){
 				EnterBeachAfterMan = true;
-				audio.volume = 1.0f;
+				soundsource.audio.volume = 1.0f;
 			}
 		}
 
@@ -71,7 +71,7 @@ public class backgroundSoundBeach : MonoBehaviour {
 			audio.volume = Mathf.Abs(playerDistance);
 			if (Mathf.Abs(playerDistance) <= 0){
 				EnterBeachAfterMan = false;
-				audio.volume = 0;
+				soundsource.audio.volume = 0;
 			}
 		}
 
@@ -81,7 +81,7 @@ public class backgroundSoundBeach : MonoBehaviour {
 			audio.volume = Mathf.Abs(playerDistance);
 			if (playerDistance >= 0){
 				EnterLastBeach = true;
-				audio.volume = 1.0f;
+				soundsource.audio.volume = 1.0f;
 			}
 		}
 
