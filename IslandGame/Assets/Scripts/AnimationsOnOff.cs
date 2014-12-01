@@ -79,7 +79,7 @@ public class AnimationsOnOff : MonoBehaviour {
 			}
 		}
 		if (Movement2.GetAnimationCounter() == 3 && Movement2.GetAnimationOn() == true && ValueHolder == true && Choices.GetChoice(2) == false && Choices.GetWasChoiceMade(2) == true){
-			LetUsGoInvisible.SetHowManyBlackFrames(10);
+			LetUsGoInvisible.SetHowManyBlackFrames(35);
 			LetUsGoInvisible.SetBlackMyScreen(true);
 			anim.SetInteger("NumberOfAnimation", 3); //player jumps into water
 			if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("JumpWater") && this.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1){
@@ -91,7 +91,7 @@ public class AnimationsOnOff : MonoBehaviour {
 		}
 		if (Movement2.GetAnimationOn() == true && JumpInWater == true){
 			if(Choices.GetChoice(2) == true){
-				LetUsGoInvisible.SetHowManyBlackFrames(10);
+				LetUsGoInvisible.SetHowManyBlackFrames(20);
 				LetUsGoInvisible.SetBlackMyScreen(true);
 			}
 			//print ("anim 4");
