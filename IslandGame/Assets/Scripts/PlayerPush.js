@@ -2,7 +2,7 @@
 
 //function OnTriggerEnter (player : Collider) {
 
-void Update(){
+/*void Update(){
 
     function OnTriggerStay(other : Collider) {
    		print("COLLIDED!!");
@@ -16,7 +16,7 @@ void Update(){
     	}
     }
 
-}
+}*/
 	//if (player.tag=="Player"){
 	//	player.GetComponent(ImpactReceiver).AddImpact(Vector3(0,power,0));
 		//player.transform.Translate(0,0,-100);
