@@ -18,6 +18,8 @@ public class backgroundsoundjungle : MonoBehaviour {
 		soundsource.clip = JungleSound; //setting the sound to be emitted to the one which is placed in the inspector of the object
 		
 		soundsource.loop = true; //makes sure that the sound track loops when it has reached the end, if the player decides to go for that long a time period.
+		soundsource.Play();
+		audio.volume = 0;
 	}
 	
 	// Update is called once per frame
@@ -27,7 +29,6 @@ public class backgroundsoundjungle : MonoBehaviour {
 		if(Movement2.GetPlayerX() <= 1195 && Movement2.GetPlayerX() >= 1162 && Movement2.GetPlayerZ() <= 1447 && Movement2.GetPlayerZ() >= 1407 && EnterJungleCave == false){
 			playerDistance = (1162 - Movement2.GetPlayerX())* 0.03f;
 			audio.volume = Mathf.Abs(playerDistance);
-			soundsource.Play();
 			if (playerDistance >= 0){
 				EnterJungleCave = true;
 				audio.volume = 1.0f;
