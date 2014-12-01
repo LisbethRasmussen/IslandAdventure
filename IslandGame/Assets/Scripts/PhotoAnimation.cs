@@ -33,8 +33,8 @@ public class PhotoAnimation : MonoBehaviour {
 				/*Movement2.SetAnimationOn(true);
 				AnimationsOnOff.SetIdlle(true);*/
 				ActivateAnimationOne = true;
-				Choices.SetDecisionToBeMade(true);
-				Choices.SetChoiceNumber(2);
+				/*Choices.SetDecisionToBeMade(true);
+				Choices.SetChoiceNumber(2);*/
 				Movement2.SetDoNotMove(true);
 				Carl.SetActive(false);
 			}
