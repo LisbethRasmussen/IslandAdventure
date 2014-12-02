@@ -21,7 +21,7 @@ public class WhereAmInow : MonoBehaviour {
 		DistanceY = Mathf.Abs (Movement2.GetPlayerY());
 		DistanceZ = Mathf.Abs (Movement2.GetPlayerZ());
 
-		WhereIam.text = DistanceX + "   " + DistanceY + "   " + DistanceZ;
+		//WhereIam.text = DistanceX + "   " + DistanceY + "   " + DistanceZ;
 	
 	}
 }

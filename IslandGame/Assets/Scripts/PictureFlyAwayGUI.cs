@@ -24,7 +24,7 @@ public class PictureFlyAwayGUI : MonoBehaviour {
 
 	void OnGUI() {
 		if (GUION == true && triggerOnce == false){
-			GUI.Box (new Rect (Screen.width/2-100, Screen.height/2-100, 200, 200), "A strong gust rips the photo\nof your daughter away from you\nand slowly floats over to the ocean.");
+			GUI.Box (new Rect (Screen.width/2-100, Screen.height/2-100, 250, 75), "A strong gust rips the photo\nof your daughter away from you\nand slowly floats over to the ocean.");
 			if (GUI.Button (new Rect (Screen.width/2-50, Screen.height/2+100, 100, 25), "Next")){
 				Choices.SetDecisionToBeMade(true);
 				Choices.SetChoiceNumber(2);
