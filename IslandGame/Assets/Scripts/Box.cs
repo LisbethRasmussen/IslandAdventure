@@ -34,7 +34,10 @@ public class Box : MonoBehaviour {
 			inRange = true;
 			PrivateInRange = true;
 		}
-		if (PrivateInRange == true){
+		else{
+			PrivateInRange = false;
+		}
+		if (PrivateInRange == true && Hook.GetyouMayPickUpAnotherBox() == true){
 			gameObject.SetActive(false);
 		}
 

@@ -382,13 +382,9 @@ public class LetUsGoInvisible : MonoBehaviour {
 			         +"\n"
 			         +" you see that it is sailing away from the island."
 			         +"\n"
-			         +" You are never going to leave the island and are stuck with Carl for the rest of your life.");
-			if (GUI.Button (new Rect(Screen.width/2-50, Screen.height-100, 100, 25), "Next")){
-				renderer.material.color = new Color(0,0,0,0);
-				RunOnce4 = true;
-				Movement2.SetDoNotMove(false);
-				Carl.SetActive(true);
-			}
+			         +" You are never going to leave the island and are stuck with Carl for the rest of your life."
+			         +"\n\n\n"
+			         +"Thank you for playing! Now please get hold of us so we can give you a questionnaire :)");
 		}
 		if (GUIDialogue.GetConversation16Done() == true && RunOnce7 == false){
 			GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600),
@@ -397,7 +393,9 @@ public class LetUsGoInvisible : MonoBehaviour {
 			         +"\n"
 			         +"A search and rescue party was send out to the island as fast as possible, but it was of"
 			         +"\n"
-			         +"no effort. There were no more living castaway people on the island.");
+			         +"no effort. There were no more living castaway people on the island."
+			         +"\n\n\n"
+			         +"Thank you for playing! Now please get hold of us so we can give you a questionnaire :)");
 		}
 		if (YouEndAllAloneScreen == true && RunOnce8 == false){
 			GUI.Box (new Rect(Screen.width/2-300, Screen.height/2-300, 600, 600),
@@ -410,7 +408,9 @@ public class LetUsGoInvisible : MonoBehaviour {
 			         +"\n"
 			         +"His name, but you soon realizes that he is already dead. If were from the fall or the"
 			         +"\n"
-			         +"snake is unknown to you. You are now stuck on the island alone forever.");
+			         +"snake is unknown to you. You are now stuck on the island alone forever."
+					 +"\n\n\n"
+			         +"Thank you for playing! Now please get hold of us so we can give you a questionnaire :)");
 		}
 	}
 }

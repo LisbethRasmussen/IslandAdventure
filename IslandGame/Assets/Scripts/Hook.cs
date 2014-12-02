@@ -16,6 +16,11 @@ public class Hook : MonoBehaviour {
 	public GameObject BoxInWater1;
 	public GameObject BoxInWater2;
 	public GameObject BoxInWater3;
+
+	private static bool youMayPickUpAnotherBox = true;
+	public static bool GetyouMayPickUpAnotherBox(){return youMayPickUpAnotherBox;}
+
+	private bool WeCheatOnlyOnce = false;
 	
 	private bool Box1 = false;
 	private bool Box2 = false;
@@ -52,8 +57,13 @@ public class Hook : MonoBehaviour {
 		PosZ = WorldPos.z;
 		PosY = WorldPos.y;
 
+		if (myCheatBox.activeSelf == false){
+			youMayPickUpAnotherBox = true;
+		}
+
 		if (Box.GetInRange() == true){
 			myCheatBox.SetActive(true);
+			youMayPickUpAnotherBox = false;
 		}
 
 		if (Box1 == false && Box.GetInRange() ==true && BoxInWater1.activeSelf == false && PosX <= 1287 && PosX >= 1274 && PosZ <= 1435 && PosZ >=1419){
@@ -76,6 +86,11 @@ public class Hook : MonoBehaviour {
 			myCheatBox.SetActive (false);
 			Box.SetInRange(false);
 			BoxesOnLand += 1;
+		}
+		if (Input.GetKey(KeyCode.K) && WeCheatOnlyOnce == false){
+			BoxesOnLand = 3;
+			Movement2.SetFoodCount(3);
+			WeCheatOnlyOnce = true;
 		}
 
 		/*if (Box.GetInRange() == true){			// If the hook is in range of the box:

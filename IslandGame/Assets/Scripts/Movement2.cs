@@ -7,6 +7,12 @@ using System.Collections;
 
 public class Movement2 : MonoBehaviour {
 
+	private int saftyCounterToUseForJumpHelp = 0;
+	private bool HelpMeIamSTUCK = false;
+
+	private bool SlipAndFallInTheWater = false;
+	private float saftyCounterForPushedInWater = 0;
+
 	private static int SubtitleCounter = 0;
 	public static int GetSubtitleCounter(){return SubtitleCounter;}
 	public static void SetSubtitleCounter(int x){SubtitleCounter = x;}
@@ -151,6 +157,44 @@ public class Movement2 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (Choices.GetWasChoiceMade(2) == true && Choices.GetChoice(2) == true && playerPosX <= 1215 && playerPosX >= 1210 && playerPosZ <= 1434 && playerPosZ >= 1429 && SlipAndFallInTheWater == false){
+			transform.position += new Vector3 (0,0,0.6f);
+			saftyCounterForPushedInWater ++;
+			if (saftyCounterForPushedInWater >= 18){
+				SlipAndFallInTheWater = true;
+			}
+		}
+
+		if (Input.GetKey(KeyCode.P) && HelpMeIamSTUCK == false){
+			transform.position += new Vector3 (0,1,0);
+			saftyCounterToUseForJumpHelp ++;
+			if (saftyCounterToUseForJumpHelp == 30){
+				HelpMeIamSTUCK = true;
+			}
+		}
+		if (Input.GetKey(KeyCode.O)){
+			HelpMeIamSTUCK = false;
+		}
+
+		if (Input.GetKey(KeyCode.U)){
+			GUIDialogue.SetDialogueON(false);
+			AnimationON = false;
+			DoNotMove = false;
+			ChoiceScreenOn = false;
+			if (Choices.GetWasChoiceMade(1) == true &&Choices.GetWasChoiceMade (3) == false && Choices.GetChoice(1) == false){
+				GoFaster = true;
+			}
+			if(Choices.GetWasChoiceMade(1) == true &&Choices.GetWasChoiceMade (3) == false && Choices.GetChoice(1) == true){
+				GoNormal = true;
+			}
+			if (Choices.GetWasChoiceMade (3) == true && Choices.GetChoice(3) == true){
+				GoFaster = true;
+			}
+			if (Choices.GetWasChoiceMade (3) == true && Choices.GetChoice(3) == false){
+				LegBroken = true;
+			}
+		}
 
 		//print ("GoNormal " + GoNormal + " GoFaster " + GoFaster + " Dig " + GUIDialogue.GetDialogueON () + " AnimON " + AnimationON + " do not move " + DoNotMove + " choiches " + ChoiceScreenOn);
 
@@ -325,7 +369,7 @@ public class Movement2 : MonoBehaviour {
 		}
 		if (playerPosX >= 1080 && playerPosZ >= 1272 && playerPosZ <= 1359 && GatherFood == true){
 			CWallL.SetActive(true);
-			CWallR.SetActive(true);
+			//CWallR.SetActive(true);
 		}
 		if (foodCount >= 4 && doneWithFoodCollect == false){
 			GatherFood = false;
@@ -338,6 +382,7 @@ public class Movement2 : MonoBehaviour {
 			Fire.SetActive(false);
 			doneWithFoodCollect = true;
 			foodCount = foodCount/2;
+			CWallR.SetActive(true);
 		}
 		if (CampFireScript.GetFedXtimes() == 3 && foodCount >= 1){
 			Fire.SetActive(true);
