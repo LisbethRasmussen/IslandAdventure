@@ -182,6 +182,9 @@ public class Movement2 : MonoBehaviour {
 			AnimationON = false;
 			DoNotMove = false;
 			ChoiceScreenOn = false;
+			if (Choices.GetWasChoiceMade (1) == false){
+				GoNormal = true;
+			}
 			if (Choices.GetWasChoiceMade(1) == true &&Choices.GetWasChoiceMade (3) == false && Choices.GetChoice(1) == false){
 				GoFaster = true;
 			}
