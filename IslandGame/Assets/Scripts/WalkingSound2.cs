@@ -13,7 +13,7 @@ public class WalkingSound2 : MonoBehaviour {
 		soundsource.clip = SteppingSound; //setting the sound to be emitted to the one which is placed in the inspector of the object
 		
 		soundsource.loop = true; //makes sure that the sound track loops when it has reached the end, if the player decides to go for that long a time period.
-		
+		soundsource.audio.volume = 0.5f;
 	}
 	// Update is called once per frame
 	void Update () {
